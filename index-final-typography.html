@@ -104,7 +104,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('public/images/wideheadshot.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/wideheadshot.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -1788,33 +1788,80 @@
 
         function createFloatingQuote(quote, index) {
             const element = document.createElement('div');
-            element.className = `floating-quote ${quote.size}`;
+
+            // Randomize size/depth for each instance
+            const sizes = ['distant', 'small', 'medium', 'large', 'near'];
+            const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+            element.className = `floating-quote ${randomSize}`;
             element.textContent = quote.text;
 
-            // Random positioning with much better vertical spacing to avoid overlaps
-            const verticalZones = 8; // Divide screen into 8 vertical zones
-            const zoneHeight = 100 / verticalZones;
-            const zone = index % verticalZones;
-            const minTop = zone * zoneHeight;
-            const maxTop = (zone + 1) * zoneHeight - 10;
-            const top = minTop + Math.random() * (maxTop - minTop);
+            // Choose random movement type
+            const movementTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'scroll-tied'];
+            const movementType = movementTypes[Math.floor(Math.random() * movementTypes.length)];
 
-            // Spread horizontally based on depth
-            const depthOffset = quote.size === 'distant' ? -60 :
-                              quote.size === 'small' ? -50 :
-                              quote.size === 'medium' ? -40 :
-                              quote.size === 'large' ? -30 : -20;
-            const left = depthOffset + Math.random() * 20;
+            element.setAttribute('data-movement', movementType);
+
+            // Set initial position based on movement type
+            let top, left, animationName, duration;
+
+            switch(movementType) {
+                case 'horizontal':
+                    // Standard left-to-right movement
+                    top = Math.random() * 90;
+                    left = -80 + Math.random() * 60;
+                    animationName = 'floatQuote';
+                    duration = 25 + Math.random() * 35;
+                    break;
+
+                case 'vertical':
+                    // Top-to-bottom or bottom-to-top movement
+                    top = Math.random() > 0.5 ? -20 : 110;
+                    left = Math.random() * 80 + 10;
+                    animationName = 'floatVertical';
+                    duration = 20 + Math.random() * 25;
+                    break;
+
+                case 'diagonal':
+                    // Diagonal movement
+                    top = Math.random() > 0.5 ? -20 : 110;
+                    left = Math.random() > 0.5 ? -80 : 120;
+                    animationName = 'floatDiagonal';
+                    duration = 30 + Math.random() * 30;
+                    break;
+
+                case 'circular':
+                    // Circular/orbital movement
+                    top = 20 + Math.random() * 60;
+                    left = 20 + Math.random() * 60;
+                    animationName = 'floatCircular';
+                    duration = 40 + Math.random() * 40;
+                    break;
+
+                case 'scroll-tied':
+                    // Will be handled by scroll event
+                    top = Math.random() * 90;
+                    left = Math.random() * 100;
+                    animationName = 'none';
+                    duration = 0;
+                    element.classList.add('scroll-quote');
+                    break;
+            }
 
             element.style.top = `${top}%`;
             element.style.left = `${left}%`;
 
-            // Animation with staggered timing
-            const duration = 30 + Math.random() * 20; // 30-50 seconds
-            const delay = index * 2; // Stagger start times
+            if (animationName !== 'none') {
+                const delay = Math.random() * 10;
+                element.style.animation = `${animationName} ${duration}s linear infinite`;
+                element.style.animationDelay = `${delay}s`;
+            }
 
-            element.style.animation = `floatQuote ${duration}s linear infinite`;
-            element.style.animationDelay = `${delay}s`;
+            // Add random rotation and opacity variations
+            const rotation = (Math.random() - 0.5) * 20;
+            const opacityVariation = 0.7 + Math.random() * 0.3;
+
+            element.style.transform = `rotate(${rotation}deg)`;
+            element.style.opacity = opacityVariation;
 
             return element;
         }
@@ -1837,6 +1884,62 @@
                     transform: translateX(120vw) translateY(-50px) rotate(5deg);
                     opacity: 0;
                 }
+            }
+
+            @keyframes floatVertical {
+                0% {
+                    transform: translateY(0) translateX(0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(120vh) translateX(30px) rotate(10deg);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes floatDiagonal {
+                0% {
+                    transform: translate(0, 0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(120vw, 120vh) rotate(25deg);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes floatCircular {
+                0% {
+                    transform: rotate(0deg) translateX(80px) rotate(0deg);
+                    opacity: 0.4;
+                }
+                25% {
+                    opacity: 1;
+                }
+                75% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: rotate(360deg) translateX(80px) rotate(-360deg);
+                    opacity: 0.4;
+                }
+            }
+
+            .scroll-quote {
+                will-change: transform;
+                transition: transform 0.1s ease-out;
             }
         `;
         document.head.appendChild(style);
@@ -2164,6 +2267,19 @@
                         parallaxBook.style.transform = `translateY(${yPos}px) scale(1.1)`;
                         parallaxBook.style.objectPosition = `center ${objectPositionY}%`;
                     }
+
+                    // Handle scroll-tied quotes
+                    const scrollQuotes = document.querySelectorAll('.scroll-quote');
+                    scrollQuotes.forEach((quote, index) => {
+                        const scrollFactor = 0.1 + (index % 3) * 0.05; // Different scroll speeds
+                        const direction = index % 2 === 0 ? 1 : -1; // Alternate directions
+
+                        const translateY = scrolled * scrollFactor * direction;
+                        const translateX = scrolled * scrollFactor * 0.5 * direction;
+                        const rotation = scrolled * 0.02 * direction;
+
+                        quote.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotation}deg)`;
+                    });
                 });
             }
         });
