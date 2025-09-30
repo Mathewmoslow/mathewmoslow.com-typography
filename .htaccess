@@ -1,0 +1,2 @@
+# Redirect voicemail.mp3 to voicemail/ folder
+Redirect 301 /voicemail.mp3 https://mathewmoslow.com/voicemail/
