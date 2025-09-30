@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience stories through words and music. Author of A Novel Divorce and Beyond The Reach Of Justice - where literature meets soundtrack.">
+    <title>Mathew Moslow - Books with Soundtracks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Georgia:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            /* Smooth controlled scrolling for 1:1 finger response */
+            scroll-behavior: auto;
+        }
+
+        /* Create a scroll container that dampens scroll speed */
+        html {
+            scroll-behavior: auto;
+        }
+
+        /* Unified Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                #0f0f0f 0%,
+                #1a1a1a 10%,
+                #1f1f1f 30%,
+                #1a1a1a 50%,
+                #161616 70%,
+                #0f0f0f 100%
+            );
+            z-index: -1;
+        }
+
+        /* All sections float on the background */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Navigation - Unified Dark Theme */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e8d5b7;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero Section with Background Image */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('public/images/wideheadshot.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 6px 12px rgba(0,0,0,0.7);
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-family: 'Georgia', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            max-width: 600px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.7);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Carousel Section for Books */
+        .carousel-section {
+            min-height: 100vh;
+            padding: 120px 20px 80px;
+            position: relative;
+            background: transparent;
+        }
+
+        .carousel-container {
+            position: sticky;
+            top: 0;
+            background: transparent;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: white;
+            margin-bottom: 80px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 50px 0;
+            transform-style: preserve-3d;
+            perspective: 2000px;
+        }
+
+        .swiper-slide {
+            background: transparent;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Horizontal Card Design - Enhanced 3D Floating Effect */
+        .book-card {
+            display: flex;
+            background: linear-gradient(135deg, #f5e6d3 0%, #ffffff 50%, #f5e6d3 100%);
+            /* Enhanced 3D shadow for floating effect */
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.6),
+                0 15px 40px rgba(0,0,0,0.4),
+                0 5px 15px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+            border-radius: 12px;
+            height: 450px;
+            max-width: 1000px;
+            margin: 0 auto;
+            will-change: transform;
+            border: 2px solid #4a7c59;
+            /* 3D perspective and floating */
+            transform: translateZ(20px) rotateX(1deg);
+            position: relative;
+        }
+
+        /* Enhanced floating effect when active */
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, rgba(74, 124, 89, 0.3), transparent, rgba(74, 124, 89, 0.3));
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: scale(1.02) translateZ(50px) rotateX(2deg);
+            box-shadow:
+                0 35px 100px rgba(0,0,0,0.7),
+                0 20px 50px rgba(74, 124, 89, 0.4);
+        }
+
+        .book-card:hover::before {
+            opacity: 1;
+        }
+
+        .swiper-slide-active .book-card {
+            transform: scale(1.08) translateZ(40px) rotateX(2deg);
+            box-shadow:
+                0 40px 120px rgba(0,0,0,0.8),
+                0 25px 60px rgba(74, 124, 89, 0.5),
+                0 10px 30px rgba(74, 124, 89, 0.3);
+        }
+
+        .swiper-slide-active .book-card::before {
+            opacity: 0.7;
+        }
+
+        .book-card.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* Book Cover Section */
+        .book-cover-wrapper {
+            flex: 0 0 300px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f8;
+        }
+
+        .book-cover-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover .book-cover-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Book Content Section */
+        .book-content {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(245,230,211,0.3));
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .book-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .book-synopsis {
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .book-synopsis::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .book-synopsis::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .book-synopsis::-webkit-scrollbar-thumb {
+            background: #4a7c59;
+            border-radius: 3px;
+        }
+
+        .book-synopsis::-webkit-scrollbar-thumb:hover {
+            background: #5a8c69;
+        }
+
+        .book-synopsis p {
+            margin-bottom: 15px;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .book-action {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4a7c59;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+
+        .book-action:hover {
+            background: #5a8c69;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+
+        .book-action.secondary {
+            background: transparent;
+            color: #4a7c59;
+            border: 2px solid #4a7c59;
+        }
+
+        .book-action.secondary:hover {
+            background: #4a7c59;
+            color: white;
+        }
+
+        .book-action.tertiary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #666;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+
+        .book-action.tertiary:hover {
+            background: #666;
+            color: white;
+        }
+
+        /* Swiper Navigation */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: #4a7c59;
+        }
+
+        /* About Section - Dark Timeline Style */
+        .about-section {
+            padding: 120px 20px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero-content {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .about-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .about-hero-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-statement {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            position: relative;
+            color: white;
+            font-weight: 500;
+            display: inline-block;
+            transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .highlight.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4a7c59;
+            transition: width 0.8s ease-out 0.4s;
+        }
+
+        .highlight.visible::after {
+            width: 100%;
+        }
+
+        .journey-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .journey-section-timeline {
+            position: relative;
+            margin-bottom: 120px;
+            display: flex;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        /* Left side layout */
+        .journey-section-timeline.left {
+            justify-content: flex-start;
+        }
+
+        .journey-section-timeline.left .section-number {
+            order: 1;
+            margin-right: 60px;
+        }
+
+        .journey-section-timeline.left .section-content {
+            order: 2;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        /* Right side layout */
+        .journey-section-timeline.right {
+            justify-content: flex-end;
+        }
+
+        .journey-section-timeline.right .section-number {
+            order: 2;
+            margin-left: 60px;
+        }
+
+        .journey-section-timeline.right .section-content {
+            order: 1;
+            text-align: right;
+            max-width: 500px;
+        }
+
+        .journey-section-timeline:last-child {
+            padding-bottom: 0;
+        }
+
+        .journey-section-timeline::after {
+            content: '';
+            position: absolute;
+            left: 80px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            transform-origin: top;
+            transform: scaleY(0);
+            transition: transform 1s ease-out;
+        }
+
+        .journey-section-timeline.visible::after {
+            transform: scaleY(1);
+        }
+
+        .section-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a7c59;
+            margin-right: 40px;
+            min-width: 60px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .section-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .section-content {
+            flex: 1;
+        }
+
+        .journey-section-timeline .section-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 8px;
+            transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .journey-section-timeline.visible .section-title {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-location {
+            font-size: 0.9rem;
+            color: #4a7c59;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .journey-section-timeline.visible .section-location {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-description {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+        }
+
+        /* Soundtrack Section with Vinyl Behind Text Effect */
+        .soundtrack-section {
+            min-height: 100vh;
+            padding: 100px 20px 80px;
+            background: transparent;
+            position: relative;
+        }
+
+        .soundtrack-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .soundtrack-container .section-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .soundtrack-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 80px;
+            font-style: normal;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .soundtrack-subtitle em {
+            font-style: italic;
+            display: block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .track-collection {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .track-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .track-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+        }
+
+        .track-visual {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            flex-shrink: 0;
+        }
+
+        .album-cover {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 2;
+            transition: transform 0.6s ease;
+        }
+
+        .track-card:hover .album-cover {
+            transform: translateX(-50px) rotateY(-10deg);
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vinyl-record {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #3a3a3a 30%, #2a2a2a 31%, #1a1a1a 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: transform 0.6s ease;
+        }
+
+        .track-card:hover .vinyl-record {
+            transform: translateX(120px) rotateZ(15deg);
+        }
+
+        .vinyl-record.spinning {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: translateX(120px) rotateZ(0deg); }
+            to { transform: translateX(120px) rotateZ(360deg); }
+        }
+
+        .vinyl-label {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at center, #4a7c59 0%, #3a6249 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 3;
+            position: relative;
+        }
+
+        .vinyl-grooves {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .vinyl-grooves::before,
+        .vinyl-grooves::after {
+            content: '';
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .vinyl-grooves::before {
+            width: 190px;
+            height: 190px;
+        }
+
+        .vinyl-grooves::after {
+            width: 150px;
+            height: 150px;
+        }
+
+        .track-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-left: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .track-title {
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .track-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #4a7c59;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .play-btn:hover {
+            background: #5a8c69;
+            transform: scale(1.1);
+        }
+
+        .play-btn.playing {
+            background: #8b4513;
+        }
+
+        .play-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* Visual Journey Section */
+        .visual-journey-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: transparent;
+            position: relative;
+        }
+
+        .visual-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .visual-subtitle {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            font-family: 'Georgia', serif;
+            margin-bottom: 80px;
+        }
+
+        .journey-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .journey-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .journey-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .journey-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .journey-caption {
+            padding: 30px;
+            text-align: left;
+        }
+
+        .journey-caption h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .journey-caption p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: transparent;
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c59;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-submit {
+            background: #4a7c59;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: #5a8c69;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #4a7c59;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #5a8c69;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .book-card {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .book-card.reverse {
+                flex-direction: column;
+            }
+
+            .book-cover-wrapper {
+                flex: none;
+                height: 300px;
+            }
+
+            .book-content {
+                padding: 30px;
+            }
+
+            .book-title {
+                font-size: 1.8rem;
+            }
+
+            .track-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .track-info {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+
+            .journey-container {
+                padding-left: 0;
+            }
+
+            .journey-section-timeline {
+                flex-direction: column;
+            }
+
+            .journey-section-timeline::after {
+                display: none;
+            }
+
+            .section-number {
+                margin-bottom: 15px;
+            }
+
+            .carousel-section {
+                padding: 40px 10px;
+            }
+
+            .about-statement {
+                font-size: 1.2rem;
+            }
+
+            .about-hero-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">Mathew Moslow</a>
+            <ul class="nav-links">
+                <li><a href="#books">Books</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#soundtrack">Soundtrack</a></li>
+                <li><a href="#visual-journey">Visual Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Mathew Moslow</h1>
+        <p>Experience stories through words and music</p>
+        <div class="scroll-indicator">▼</div>
+    </section>
+
+    <!-- Carousel Section for Books -->
+    <section class="carousel-section" id="books">
+        <div class="carousel-container">
+            <h2 class="section-title">Books</h2>
+            <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- Book 1: A Novel Divorce -->
+                <div class="swiper-slide">
+                    <article class="book-card">
+                        <div class="book-cover-wrapper">
+                            <img src="public/images/v1@3x.png" alt="A Novel Divorce Book Cover" loading="lazy">
+                        </div>
+                        <div class="book-content">
+                            <h3 class="book-title">A Novel Divorce</h3>
+                            <p class="book-subtitle">A Story of Conscious Uncoupling</p>
+                            <div class="book-synopsis">
+                                <p>The beginning of this story isn't the heartbreak, or the honeymoon, or even the aftermath of the orgy that became pure panic. This story begins in Montego Bay, Jamaica, where a boy learns to perform to survive. Until his performance becomes his identity and that identity becomes a prison, trapping him in a marriage that wasn't meant to be. But he had been playing the role so long he'd forgotten there was ever a person beneath the costume.</p>
+                                <p>What unfolds across these pages is not a guide to getting over the end of a relationship. It's one man's retelling of the coming apart and the putting back together. From ayahuasca ceremonies in jungle sweat lodges to nights spent prowling hookup apps, from barstools to breakdowns during naked yoga, he maps the clumsy beginning of his second life—and the strange cast of characters who help him shape it.</p>
+                                <p>A Novel Divorce will take you on a journey through therapy, through emotional torment, through a hundred hard conversations and a few soft to the discovery of a new kind of love for Mathew, A Novel Love. Self love.</p>
+                                <p>By laying himself bare and offering a refreshing honesty Moslow shows us that walking away can be an act of love. That staying isn't the only measure of commitment. And that the person you become after the end might just be the truest, freest version of all.</p>
+                            </div>
+                            <div class="book-meta">
+                                <a href="#" class="book-action">Get My Copy</a>
+                                <button class="book-action secondary" onclick="openPeek('divorce')">Sneak a Peek</button>
+                                <button class="book-action tertiary" onclick="playAudioPreview('divorce')">Audio Preview</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Book 2: Beyond The Reach Of Justice -->
+                <div class="swiper-slide">
+                    <article class="book-card reverse">
+                        <div class="book-cover-wrapper">
+                            <img src="public/images/ayadv1@3x.png" alt="Beyond The Reach Of Justice Book Cover" loading="lazy">
+                        </div>
+                        <div class="book-content">
+                            <h3 class="book-title">Beyond The Reach Of Justice</h3>
+                            <p class="book-subtitle">A Dark Psychological Thriller</p>
+                            <div class="book-synopsis">
+                                <p>In the shadow of Jamaica's colonial past, where ancestral estates whisper of old money and even older sins, Jonathan Blake watches his inheritance slip away.</p>
+                                <p>A skilled nurse by day, Jonathan masks a mind haunted since his mother's tragic overdose—a death he blames on his father's cruelty. When Richard Blake disinherits his only son, the betrayal cuts deep. But when his father announces plans to transform their ancestral great house into a tacky all-inclusive resort—with the help of his young interior designer girlfriend, Anna Sutton—Jonathan's grief transforms into something far more dangerous: a meticulously plotted revenge.</p>
+                                <p>When his family's library of colonial-era law books gives Jonathan the answer to his problems, and armed with his medical expertise, he sets in motion a year-long countdown.</p>
+                                <p>Some inheritances are written in blood. Some justice exists beyond the reach of law.</p>
+                            </div>
+                            <div class="book-meta">
+                                <a href="#" class="book-action">Get My Copy</a>
+                                <button class="book-action secondary" onclick="openPeek('justice')">Sneak a Peek</button>
+                                <button class="book-action tertiary" onclick="playAudioPreview('justice')">Audio Preview</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Placeholder Card 1 -->
+                <div class="swiper-slide">
+                    <article class="book-card">
+                        <div class="book-cover-wrapper">
+                            <div style="width: 100%; height: 100%; background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-style: italic;">Coming Soon</div>
+                        </div>
+                        <div class="book-content">
+                            <h3>Future Release</h3>
+                            <p>New work in progress. Stay tuned for updates on upcoming publications.</p>
+                            <div class="book-meta">
+                                <span style="color: rgba(255,255,255,0.5); font-style: italic;">Coming Soon</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Placeholder Card 2 -->
+                <div class="swiper-slide">
+                    <article class="book-card reverse">
+                        <div class="book-cover-wrapper">
+                            <div style="width: 100%; height: 100%; background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-style: italic;">Coming Soon</div>
+                        </div>
+                        <div class="book-content">
+                            <h3>Future Release</h3>
+                            <p>New work in progress. Stay tuned for updates on upcoming publications.</p>
+                            <div class="book-meta">
+                                <span style="color: rgba(255,255,255,0.5); font-style: italic;">Coming Soon</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Placeholder Card 3 -->
+                <div class="swiper-slide">
+                    <article class="book-card">
+                        <div class="book-cover-wrapper">
+                            <div style="width: 100%; height: 100%; background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-style: italic;">Coming Soon</div>
+                        </div>
+                        <div class="book-content">
+                            <h3>Future Release</h3>
+                            <p>New work in progress. Stay tuned for updates on upcoming publications.</p>
+                            <div class="book-meta">
+                                <span style="color: rgba(255,255,255,0.5); font-style: italic;">Coming Soon</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+                <!-- Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <!-- Hero Statement -->
+            <div class="about-hero-content">
+                <h2 class="about-hero-title">ABOUT MATHEW MOSLOW</h2>
+                <p class="about-statement">
+                    Mathew Moslow writes from the intersection of
+                    <span class="highlight">healing and honesty</span>,
+                    where the messy work of becoming human meets the courage to
+                    examine what we'd rather leave unexamined.
+                </p>
+            </div>
+
+            <!-- Journey Sections - Alternating Left/Right Layout -->
+            <div class="journey-container">
+                <!-- Left Side -->
+                <div class="journey-section-timeline left">
+                    <div class="section-number">01</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Beaches of Jamaica</h3>
+                        <p class="section-location">MONTEGO BAY</p>
+                        <p class="section-description">
+                            Growing up gay in Montego Bay taught him early that survival sometimes means performing, but his work now centers on the radical act of showing up authentically—especially when it's uncomfortable.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="journey-section-timeline right">
+                    <div class="section-number">02</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Psychiatric Nursing</h3>
+                        <p class="section-location">HOSPITAL FLOORS</p>
+                        <p class="section-description">
+                            A psychiatric nurse in training and a seeker by nature, Mathew's journey from the beaches of Jamaica to the hospital floors of Florida reads like a masterclass in intentional transformation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Left Side -->
+                <div class="journey-section-timeline left">
+                    <div class="section-number">03</div>
+                    <div class="section-content">
+                        <h3 class="section-title">The Pressure Cooker Method</h3>
+                        <p class="section-location">A REVOLUTIONARY APPROACH</p>
+                        <p class="section-description">
+                            His approach to life's most difficult moments is refreshingly unconventional. When his marriage to Aaron began to unravel, rather than following the traditional script of bitter divorce proceedings, they chose what Mathew calls a "pressure cooker" method—confronting pain head-on, with therapeutic support, to transform heartbreak into something resembling wisdom.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="journey-section-timeline right">
+                    <div class="section-number">04</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Author & Truth-Teller</h3>
+                        <p class="section-location">PRESENT DAY • FLORIDA</p>
+                        <p class="section-description">
+                            Currently working on his second book, "Beyond The Reach Of Justice"—a thriller about a disinherited nurse who turns to crime—Mathew demonstrates the range that comes from someone unafraid to explore the darker corners of human motivation, whether in fiction or his own life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soundtrack Section -->
+    <section class="soundtrack-section" id="soundtrack">
+        <div class="soundtrack-container">
+            <h2 class="section-title">A Book with a Soundtrack</h2>
+            <p class="soundtrack-subtitle">I didn't only write journal entries on my phone, I wrote full songs, poems and put them on verses.<br><br>With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, those words were put to music and I even sang in part on a few tracks.<br><br><em>Please enjoy this expression of emotion in another form</em></p>
+
+            <div class="track-collection">
+                <!-- Track 1 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/flgb2.jpeg" alt="Feels Like Goodbye">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">01</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Feels Like Goodbye</h3>
+                        <p class="track-description">This was the first song that came out of me during the divorce. I was trying to make sense of why we were tearing apart something that didn't feel broken—just wrong-shaped, maybe? Neither of us wanted to lose each other completely, but we both knew we couldn't stay married. We were figuring out how to keep all the good stuff, all the reasons we fell for each other in the first place, while letting go of this thing that was suffocating us both.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/feelslikegoodbye.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/breathing2.jpeg" alt="While I'm Breathing">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">02</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">While I'm Breathing</h3>
+                        <p class="track-description">I was scrolling through Instagram and came across a post that absolutely struck me—like being hit sideways, and I guess that's what happened to the guy who originally posted it. I took his words and reimagined them somewhat, then spent about 24 hours straight writing and reworking the music, trying to sing and understand a genre I was completely unfamiliar with. But it had to sound like this. I was crazed, and this is the result.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/breathing.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/wineandlines.png" alt="Fine Wine and Fine Lines">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">03</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Fine Wine and Fine Lines</h3>
+                        <p class="track-description">This started as a poem to my dog Amber, then evolved. I contemplated not including it because I knew it would make Aaron cry those happy tears that wish things had been different—nostalgia. But things are great, and we will always have the memories, and we will always have Costa Rica. This song is a cheeky nod to aging gracefully and has a hidden commentary only Aaron will pick up on regarding photos and maybe the sheer number of them.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/finewineandfinelines.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/LMCOVER2.png" alt="Lovely Mess">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">04</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Lovely Mess</h3>
+                        <p class="track-description">This was inspired by women who are badass and go through divorce, raise kids, keep their heads up, but still long for their man. It's for the late-night booty callers, the ones who don't delete his number from their phone, the strong, confident, independent ones who still want someone to rub their back and tell them they're doing a good job. It was actually written originally to be an Evanescence-Nicki Minaj mashup and turned into this jam-rock track.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/lovelymess.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 5 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/flgb2.jpeg" alt="Feels Like Goodbye (Outro)">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">05</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Feels Like Goodbye (Outro)</h3>
+                        <p class="track-description">Because this song just needed more sadness.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/feelslikegoodbyeoutro.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Player (Hidden) -->
+            <audio id="audioPlayer" style="display: none;">
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+    </section>
+
+    <!-- Visual Journey Section -->
+    <section class="visual-journey-section" id="visual-journey">
+        <div class="visual-container">
+            <h2 class="section-title">Visual Journey</h2>
+            <p class="visual-subtitle">Behind the scenes of the creative process</p>
+
+            <div class="journey-gallery">
+                <div class="journey-item">
+                    <img src="public/images/journey/newprocess.png" alt="Writing Process" loading="lazy">
+                    <div class="journey-caption">
+                        <h3>The Writing Process</h3>
+                        <p>From journal entries to published memoir - the evolution of raw emotion into structured narrative.</p>
+                    </div>
+                </div>
+
+                <div class="journey-item">
+                    <img src="public/images/journey/bookprogress.png" alt="Book Development" loading="lazy">
+                    <div class="journey-caption">
+                        <h3>From Draft to Print</h3>
+                        <p>The transformation from handwritten notes to the final book design.</p>
+                    </div>
+                </div>
+
+                <div class="journey-item">
+                    <img src="public/images/journey/spark.png" alt="Creative Spark" loading="lazy">
+                    <div class="journey-caption">
+                        <h3>The Creative Spark</h3>
+                        <p>Finding inspiration in the most unexpected moments of healing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="contact-subtitle">Have thoughts on the books? Questions about the journey? I'd love to hear from you.</p>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Mathew Moslow. All rights reserved.</p>
+        <p>Built with care and intention.</p>
+    </footer>
+
+    <!-- Modal for previews -->
+    <div id="previewModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modalContent">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Custom scroll dampening for 1:1 finger control
+        let scrollDampening = 0.3; // Reduce scroll speed by 70%
+        let isScrolling = false;
+        let scrollEndTimer;
+
+        function dampenedScroll(event) {
+            event.preventDefault();
+
+            const delta = event.deltaY * scrollDampening;
+            const currentScroll = window.scrollY;
+            const targetScroll = currentScroll + delta;
+
+            // Smooth scroll to target position
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'auto'
+            });
+
+            // Clear existing timer
+            clearTimeout(scrollEndTimer);
+
+            // Set scroll end timer
+            scrollEndTimer = setTimeout(() => {
+                isScrolling = false;
+            }, 100);
+
+            isScrolling = true;
+        }
+
+        // Apply dampening to wheel events
+        window.addEventListener('wheel', dampenedScroll, { passive: false });
+
+        // Parallax scrolling effect for book cards
+        let lastScrollTop = 0;
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            // Enhanced book carousel parallax with 3D depth
+            const carousel = document.querySelector('.carousel-section');
+            const cards = document.querySelectorAll('.swiper-slide');
+
+            if (carousel) {
+                const rect = carousel.getBoundingClientRect();
+                const isVisible = rect.top < windowHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    const parallaxSpeed = 0.1;
+                    const translateY = rect.top * parallaxSpeed;
+
+                    cards.forEach((card, index) => {
+                        const bookCard = card.querySelector('.book-card');
+                        if (bookCard) {
+                            const offset = index * 15;
+                            const depth = Math.abs(translateY) * 0.3;
+                            const rotation = translateY * 0.005;
+                            const cardTransform = `translateY(${translateY + offset}px) translateZ(${depth}px) rotateX(${rotation}deg)`;
+                            bookCard.style.transform = cardTransform;
+                            // Remove transitions for real-time response
+                            bookCard.style.transition = 'none';
+                        }
+                    });
+                }
+            }
+
+            // About section scroll-driven animations
+            const aboutSections = document.querySelectorAll('.journey-section-timeline');
+            aboutSections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < windowHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    // Calculate scroll progress through the element
+                    const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
+
+                    // Different animations for left vs right
+                    const isLeft = section.classList.contains('left');
+                    const startX = isLeft ? -100 : 100;
+                    const currentX = startX * (1 - progress);
+
+                    // Apply transform based on scroll position
+                    const opacity = Math.min(1, progress * 2);
+                    const scale = 0.8 + (progress * 0.2);
+
+                    section.style.transform = `translateX(${currentX}px) scale(${scale})`;
+                    section.style.opacity = opacity;
+                    section.style.transition = 'none'; // Real-time response
+                }
+            });
+
+            // Hero title scroll-driven effect
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                const parallaxY = scrolled * 0.5;
+                heroTitle.style.transform = `translateY(${parallaxY}px)`;
+                heroTitle.style.transition = 'none';
+            }
+
+            lastScrollTop = scrolled;
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+
+        // Smooth scroll with custom timing
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const targetPosition = target.offsetTop - 80; // Account for header
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 1800;
+                    let start = null;
+
+                    function animation(currentTime) {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const progress = Math.min(timeElapsed / duration, 1);
+
+                        const easeInOutQuart = progress < 0.5
+                            ? 8 * progress * progress * progress * progress
+                            : 1 - Math.pow(-2 * progress + 2, 4) / 2;
+
+                        window.scrollTo(0, startPosition + distance * easeInOutQuart);
+
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        }
+                    }
+
+                    requestAnimationFrame(animation);
+                }
+            });
+        });
+
+        // Improved scroll-controlled carousel variables
+        let currentSlide = 0;
+        let scrollThreshold = 0;
+        let swiper;
+        let totalSlides = 0;
+
+        // Initialize Swiper for scroll control
+        function initSwiper() {
+            swiper = new Swiper('.mySwiper', {
+                slidesPerView: 1,
+                spaceBetween: 50,
+                centeredSlides: true,
+                loop: false,
+                grabCursor: true,
+                allowTouchMove: true,
+                autoplay: false,
+                speed: 300,
+
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+                breakpoints: {
+                    768: {
+                        slidesPerView: 1,
+                    },
+                    1024: {
+                        slidesPerView: 1,
+                    }
+                }
+            });
+
+            totalSlides = document.querySelectorAll('.swiper-slide').length;
+            console.log('Total slides:', totalSlides);
+        }
+
+        // Direct scroll-controlled carousel tied to scroll position with comprehensive debugging
+        function handleCarouselScroll() {
+            const carouselSection = document.querySelector('.carousel-section');
+
+            console.log('=== CAROUSEL SCROLL HANDLER INITIALIZATION ===');
+            console.log('Carousel section found:', !!carouselSection);
+            console.log('Carousel section element:', carouselSection);
+
+            if (!carouselSection) {
+                console.error('CRITICAL ERROR: Carousel section not found!');
+                return;
+            }
+
+            window.addEventListener('scroll', (e) => {
+                console.log('\n--- SCROLL EVENT FIRED ---');
+
+                const rect = carouselSection.getBoundingClientRect();
+                const sectionHeight = carouselSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+
+                console.log('Section rect:', {
+                    top: rect.top,
+                    bottom: rect.bottom,
+                    height: rect.height
+                });
+                console.log('Section height:', sectionHeight);
+                console.log('Window height:', windowHeight);
+                console.log('Total slides available:', totalSlides);
+                console.log('Swiper object exists:', !!swiper);
+                console.log('Current slide index:', currentSlide);
+
+                // Check if we're in the carousel section - trigger when section is visible
+                const inCarouselSection = rect.top < windowHeight && rect.bottom > 0;
+                console.log('In carousel section?', inCarouselSection);
+                console.log('rect.top <= 0:', rect.top <= 0);
+                console.log('rect.bottom > windowHeight:', rect.bottom > windowHeight);
+
+                if (inCarouselSection) {
+                    console.log('\n*** INSIDE CAROUSEL SECTION - PROCESSING ***');
+
+                    // Calculate scroll progress with much larger scroll area for finger control
+                    // Use a much larger virtual scroll area (3x section height) for fine control
+                    const virtualScrollArea = sectionHeight * 3;
+                    const scrollDistanceIntoSection = Math.max(0, windowHeight - rect.top);
+                    const rawScrollProgress = Math.min(1, scrollDistanceIntoSection / virtualScrollArea);
+
+                    console.log('Virtual scroll area:', virtualScrollArea);
+                    console.log('Scroll distance into section:', scrollDistanceIntoSection);
+                    console.log('Raw scroll progress:', rawScrollProgress);
+
+                    // Map progress directly to slides with much finer control
+                    // Each card gets equal scroll space with smooth transitions
+                    const exactSlidePosition = rawScrollProgress * (totalSlides - 1);
+                    const targetSlide = Math.min(Math.max(0, Math.round(exactSlidePosition)), totalSlides - 1);
+
+                    // Use fractional positions for smooth interpolation between slides
+                    const slideProgress = exactSlidePosition - Math.floor(exactSlidePosition);
+
+                    console.log('Exact slide position (float):', exactSlidePosition);
+                    console.log('Slide progress within current slide:', slideProgress);
+                    console.log('Target slide (rounded):', targetSlide);
+                    console.log('Current slide:', currentSlide);
+                    console.log('Slides different?', targetSlide !== currentSlide);
+
+                    // Always update to match exact scroll position with instant transitions
+                    if (targetSlide !== currentSlide && swiper) {
+                        console.log('\n*** ATTEMPTING SLIDE CHANGE ***');
+                        console.log('From slide:', currentSlide, 'to slide:', targetSlide);
+
+                        try {
+                            currentSlide = targetSlide;
+                            // Instant transition (0ms) for real-time responsiveness
+                            const slideResult = swiper.slideTo(currentSlide, 0);
+                            console.log('Swiper slideTo result:', slideResult);
+                            console.log('Swiper active index after change:', swiper.activeIndex);
+                            console.log('Swiper real index after change:', swiper.realIndex);
+                        } catch (error) {
+                            console.error('Error during slide transition:', error);
+                        }
+                    } else if (!swiper) {
+                        console.error('SWIPER NOT AVAILABLE!');
+                    } else {
+                        console.log('No slide change needed (same slide)');
+                    }
+                } else {
+                    console.log('Outside carousel section - no action');
+                }
+            });
+        }
+
+        // Initialize on load with comprehensive debugging
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('\n=== DOM CONTENT LOADED ===');
+            console.log('Initializing swiper and carousel scroll...');
+
+            try {
+                initSwiper();
+                console.log('Swiper initialized successfully');
+                console.log('Swiper object:', swiper);
+                console.log('Swiper slides:', swiper ? swiper.slides.length : 'N/A');
+            } catch (error) {
+                console.error('Error initializing swiper:', error);
+            }
+
+            try {
+                handleCarouselScroll();
+                console.log('Carousel scroll handler set up successfully');
+            } catch (error) {
+                console.error('Error setting up carousel scroll:', error);
+            }
+
+            console.log('=== INITIALIZATION COMPLETE ===\n');
+        });
+
+        // About Section Scroll Animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    if (entry.target.classList.contains('journey-section-timeline')) {
+                        const number = entry.target.querySelector('.section-number');
+                        const title = entry.target.querySelector('.section-title');
+                        const location = entry.target.querySelector('.section-location');
+
+                        setTimeout(() => {
+                            if (number) number.classList.add('visible');
+                        }, 100);
+
+                        setTimeout(() => {
+                            if (title) title.classList.add('visible');
+                        }, 300);
+
+                        setTimeout(() => {
+                            if (location) location.classList.add('visible');
+                        }, 500);
+                    }
+                } else {
+                    entry.target.classList.remove('visible');
+
+                    if (entry.target.classList.contains('journey-section-timeline')) {
+                        const elements = entry.target.querySelectorAll('.visible');
+                        elements.forEach(el => el.classList.remove('visible'));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const aboutTitle = document.querySelector('.about-hero-title');
+            const highlight = document.querySelector('.highlight');
+            const journeySections = document.querySelectorAll('.journey-section-timeline');
+
+            if (aboutTitle) observer.observe(aboutTitle);
+            if (highlight) observer.observe(highlight);
+            journeySections.forEach(section => observer.observe(section));
+        });
+
+        // Music Player Functions
+        let currentAudio = null;
+        let currentButton = null;
+        let currentVinyl = null;
+
+        function togglePlay(button, audioSrc) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const vinyl = button.closest('.track-card').querySelector('.vinyl-record');
+
+            if (currentButton === button && !audioPlayer.paused) {
+                audioPlayer.pause();
+                button.classList.remove('playing');
+                button.querySelector('.play-icon').textContent = '▶';
+                vinyl.classList.remove('spinning');
+            } else {
+                if (currentButton) {
+                    currentButton.classList.remove('playing');
+                    currentButton.querySelector('.play-icon').textContent = '▶';
+                }
+                if (currentVinyl) {
+                    currentVinyl.classList.remove('spinning');
+                }
+
+                audioPlayer.src = audioSrc;
+                audioPlayer.play();
+                button.classList.add('playing');
+                button.querySelector('.play-icon').textContent = '⏸';
+                vinyl.classList.add('spinning');
+
+                currentButton = button;
+                currentVinyl = vinyl;
+            }
+
+            audioPlayer.onended = function() {
+                button.classList.remove('playing');
+                button.querySelector('.play-icon').textContent = '▶';
+                vinyl.classList.remove('spinning');
+                currentButton = null;
+                currentVinyl = null;
+            };
+        }
+
+        // Utility Functions
+        async function openPeek(bookType) {
+            const modal = document.getElementById('previewModal');
+            const modalContent = document.getElementById('modalContent');
+
+            let content = '';
+
+            if (bookType === 'divorce') {
+                try {
+                    const response = await fetch('src/novel-divorce-peek.txt');
+                    const peekText = await response.text();
+                    content = `
+                        <div style="color: white; padding: 40px; max-height: 70vh; overflow-y: auto;">
+                            <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">A Novel Divorce - Sneak Peek</h2>
+                            <div style="line-height: 1.8; font-size: 1.1rem; white-space: pre-wrap;">
+                                ${peekText}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    content = '<p style="color: white; padding: 40px;">Content not available</p>';
+                }
+            } else if (bookType === 'justice') {
+                try {
+                    const response = await fetch('src/beyond-reach-peek.txt');
+                    const peekText = await response.text();
+                    content = `
+                        <div style="color: white; padding: 40px; max-height: 70vh; overflow-y: auto;">
+                            <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">Beyond The Reach Of Justice - Sneak Peek</h2>
+                            <div style="line-height: 1.8; font-size: 1.1rem; white-space: pre-wrap;">
+                                ${peekText}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    content = '<p style="color: white; padding: 40px;">Content not available</p>';
+                }
+            }
+
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function playAudioPreview(bookType) {
+            const modal = document.getElementById('previewModal');
+            const modalContent = document.getElementById('modalContent');
+
+            let content = '';
+
+            if (bookType === 'divorce') {
+                content = `
+                    <div style="color: white; padding: 40px; text-align: center;">
+                        <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">A Novel Divorce - Audio Preview</h2>
+                        <p style="margin-bottom: 30px;">Listen to a sample from the audiobook narrated by the author.</p>
+                        <audio controls style="width: 100%; margin-bottom: 20px;">
+                            <source src="public/audio/noveldivorcesnippet.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p style="font-style: italic; color: rgba(255,255,255,0.7);">Full audiobook available where books are sold.</p>
+                    </div>
+                `;
+            } else if (bookType === 'justice') {
+                content = `
+                    <div style="color: white; padding: 40px; text-align: center;">
+                        <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">Beyond The Reach Of Justice - Audio Preview</h2>
+                        <p style="margin-bottom: 30px;">Listen to a sample from the audiobook.</p>
+                        <audio controls style="width: 100%; margin-bottom: 20px;">
+                            <source src="public/audio/chapter1blakehall.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p style="font-style: italic; color: rgba(255,255,255,0.7);">Full audiobook coming soon.</p>
+                    </div>
+                `;
+            }
+
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('previewModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Contact Form Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+
+                    // Simple validation
+                    if (!name || !email || !subject || !message) {
+                        alert('Please fill in all fields.');
+                        return;
+                    }
+
+                    // Create mailto link
+                    const mailtoLink = `mailto:contact@mathewmoslow.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
+
+                    // Open default email client
+                    window.location.href = mailtoLink;
+
+                    // Show success message
+                    alert('Thank you for your message! Your default email client should open to send the message.');
+
+                    // Reset form
+                    contactForm.reset();
+                });
+            }
+        });
+
+        // Copy audio preview files
+        function copyAudioPreviews() {
+            // This would be handled by the build process
+            // Audio preview files should be copied to public/audio/
+        }
+    </script>
+</body>
+</html>

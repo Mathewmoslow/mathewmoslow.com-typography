@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience stories through words and music. Author of A Novel Divorce and Beyond The Reach Of Justice - where literature meets soundtrack.">
+    <title>Mathew Moslow - Books with Soundtracks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Georgia:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            scroll-behavior: auto;
+        }
+
+        /* Unified Background - Typography Heavy Dark Theme */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                #0f0f0f 0%,
+                #1a1a1a 10%,
+                #1f1f1f 30%,
+                #1a1a1a 50%,
+                #161616 70%,
+                #0f0f0f 100%
+            );
+            z-index: -1;
+        }
+
+        /* All sections float on the background */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e8d5b7;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero Section with Typography Focus */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('public/images/wideheadshot.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 6px 12px rgba(0,0,0,0.7);
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-family: 'Georgia', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            max-width: 600px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.7);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Typography-Heavy Floating Quote System */
+        .quote-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .floating-quote {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            font-weight: 300;
+            transform-style: preserve-3d;
+        }
+
+        .floating-quote.small {
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            color: rgba(74, 124, 89, 0.08);
+            z-index: 1;
+        }
+
+        .floating-quote.medium {
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            color: rgba(232, 213, 183, 0.12);
+            z-index: 2;
+        }
+
+        .floating-quote.large {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: rgba(74, 124, 89, 0.15);
+            z-index: 3;
+        }
+
+        .floating-quote.distant {
+            font-size: clamp(0.6rem, 1vw, 0.9rem);
+            color: rgba(74, 124, 89, 0.04);
+            z-index: 0;
+            filter: blur(1px);
+        }
+
+        .floating-quote.near {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: rgba(232, 213, 183, 0.18);
+            z-index: 4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Books Section - Typography-Heavy Like About Section */
+        .books-section {
+            padding: 120px 20px 40px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .books-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 100px;
+            text-align: center;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Book Sections - Alternating Left/Right Like About Timeline */
+        .book-section-timeline {
+            position: relative;
+            margin-bottom: 150px;
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        /* Left side layout */
+        .book-section-timeline.left {
+            justify-content: flex-start;
+        }
+
+        .book-section-timeline.left .book-number {
+            order: 1;
+            margin-right: 60px;
+        }
+
+        .book-section-timeline.left .book-content-area {
+            order: 2;
+            text-align: left;
+            max-width: 800px;
+        }
+
+        /* Right side layout */
+        .book-section-timeline.right {
+            justify-content: flex-end;
+        }
+
+        .book-section-timeline.right .book-number {
+            order: 2;
+            margin-left: 60px;
+        }
+
+        .book-section-timeline.right .book-content-area {
+            order: 1;
+            text-align: right;
+            max-width: 800px;
+        }
+
+        .book-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a7c59;
+            min-width: 120px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .book-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .book-content-area {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .book-cover-wrapper {
+            flex: 0 0 280px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border: 3px solid #4a7c59;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-cover-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-cover-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .book-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 500;
+            transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-subtitle {
+            color: #e8d5b7;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-synopsis {
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: transform 0.8s ease-out 0.5s, opacity 0.8s ease-out 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-synopsis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            transition: transform 0.8s ease-out 0.6s, opacity 0.8s ease-out 0.6s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-meta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-action {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4a7c59;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+
+        .book-action:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+
+        .book-action.secondary {
+            background: transparent;
+            color: #4a7c59;
+            border: 2px solid #4a7c59;
+        }
+
+        .book-action.secondary:hover {
+            background: #4a7c59;
+            color: white;
+        }
+
+        .book-action.tertiary {
+            background: transparent;
+            color: #e8d5b7;
+            border: 2px solid #e8d5b7;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+
+        .book-action.tertiary:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+        }
+
+        /* Soundtrack Section - Typography Heavy with Graphics */
+        .soundtrack-section {
+            min-height: 100vh;
+            padding: 40px 20px 80px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .soundtrack-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                rgba(74, 124, 89, 0.03) 0%,
+                transparent 25%,
+                rgba(232, 213, 183, 0.02) 50%,
+                transparent 75%,
+                rgba(74, 124, 89, 0.03) 100%
+            );
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+
+        .soundtrack-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .soundtrack-hero {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .soundtrack-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: #4a7c59;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .soundtrack-sub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #e8d5b7;
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .soundtrack-description {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .soundtrack-description p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: left;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .soundtrack-description p:first-child {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .soundtrack-description p:last-child {
+            font-style: italic;
+            color: #e8d5b7;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-top: 40px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Decorative Elements */
+        .soundtrack-hero::after {
+            content: '♪ ♫ ♪';
+            position: absolute;
+            top: -40px;
+            right: 10%;
+            font-size: 3rem;
+            color: rgba(74, 124, 89, 0.2);
+            transform: rotate(15deg);
+            animation: floatAndScale 4s ease-in-out infinite;
+        }
+
+        .soundtrack-hero::before {
+            content: '♫ ♪ ♫';
+            position: absolute;
+            bottom: -30px;
+            left: 10%;
+            font-size: 2.5rem;
+            color: rgba(232, 213, 183, 0.2);
+            transform: rotate(-10deg);
+            animation: floatAndScale 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatAndScale {
+            0%, 100% {
+                transform: translateY(0px) scale(1) rotate(15deg);
+            }
+            25% {
+                transform: translateY(-8px) scale(1.1) rotate(12deg);
+            }
+            50% {
+                transform: translateY(-12px) scale(1.05) rotate(18deg);
+            }
+            75% {
+                transform: translateY(-6px) scale(1.08) rotate(14deg);
+            }
+        }
+
+        /* Section Separators with Book Cover Images */
+        .section-separator {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 80px 0;
+            overflow: hidden;
+        }
+
+        .separator-image {
+            width: 120px;
+            height: auto;
+            opacity: 0.15;
+            filter: blur(1px);
+            transform: perspective(800px) rotateY(15deg) rotateX(5deg);
+            transition: all 0.6s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .separator-image:hover {
+            opacity: 0.3;
+            filter: blur(0px);
+            transform: perspective(800px) rotateY(0deg) rotateX(0deg) scale(1.1);
+        }
+
+        /* Floating vinyl graphics */
+        .vinyl-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                rgba(74, 124, 89, 0.1) 0%,
+                rgba(74, 124, 89, 0.05) 30%,
+                transparent 70%
+            );
+            border: 2px solid rgba(74, 124, 89, 0.1);
+        }
+
+        .vinyl-decoration::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: rgba(232, 213, 183, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .vinyl-decoration.vinyl-1 {
+            top: 10%;
+            left: 5%;
+            animation: slowSpin 15s linear infinite;
+        }
+
+        .vinyl-decoration.vinyl-2 {
+            top: 20%;
+            right: 8%;
+            animation: slowSpin 20s linear infinite reverse;
+        }
+
+        .vinyl-decoration.vinyl-3 {
+            bottom: 15%;
+            left: 10%;
+            animation: slowSpin 18s linear infinite;
+        }
+
+        @keyframes slowSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+
+        .track-collection {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .track-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 124, 89, 0.2);
+        }
+
+        .track-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+            border-color: #e8d5b7;
+        }
+
+        .track-visual {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            flex-shrink: 0;
+        }
+
+        .album-cover {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 2;
+            transition: transform 0.6s ease;
+        }
+
+        .track-card:hover .album-cover {
+            transform: translateX(-50px) rotateY(-10deg);
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vinyl-record {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #2a2a2a 30%, #1a1a1a 31%, #0a0a0a 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: transform 0.6s ease;
+        }
+
+        .track-card:hover .vinyl-record {
+            transform: translateX(120px) rotateZ(15deg);
+        }
+
+        .vinyl-record.spinning {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: translateX(120px) rotateZ(0deg); }
+            to { transform: translateX(120px) rotateZ(360deg); }
+        }
+
+        .vinyl-label {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at center, #4a7c59 0%, #3a6249 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 3;
+            position: relative;
+        }
+
+        .vinyl-grooves {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .vinyl-grooves::before,
+        .vinyl-grooves::after {
+            content: '';
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .vinyl-grooves::before {
+            width: 190px;
+            height: 190px;
+        }
+
+        .vinyl-grooves::after {
+            width: 150px;
+            height: 150px;
+        }
+
+        .track-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-left: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .track-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .track-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #4a7c59;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .play-btn:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+            transform: scale(1.1);
+        }
+
+        .play-btn.playing {
+            background: #8b4513;
+        }
+
+        /* About Section - Exact Copy from Backup */
+        .about-section {
+            padding: 120px 20px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero-content {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .about-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .about-hero-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-statement {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            position: relative;
+            color: white;
+            font-weight: 500;
+            display: inline-block;
+            transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .highlight.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4a7c59;
+            transition: width 0.8s ease-out 0.4s;
+        }
+
+        .highlight.visible::after {
+            width: 100%;
+        }
+
+        .journey-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .journey-section-timeline {
+            position: relative;
+            margin-bottom: 120px;
+            display: flex;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .journey-section-timeline.left {
+            justify-content: flex-start;
+        }
+
+        .journey-section-timeline.left .section-number {
+            order: 1;
+            margin-right: 60px;
+        }
+
+        .journey-section-timeline.left .section-content {
+            order: 2;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .journey-section-timeline.right {
+            justify-content: flex-end;
+        }
+
+        .journey-section-timeline.right .section-number {
+            order: 2;
+            margin-left: 60px;
+        }
+
+        .journey-section-timeline.right .section-content {
+            order: 1;
+            text-align: right;
+            max-width: 500px;
+        }
+
+        .section-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a7c59;
+            margin-right: 40px;
+            min-width: 60px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .section-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .section-content {
+            flex: 1;
+        }
+
+        .journey-section-timeline .section-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 8px;
+            transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .journey-section-timeline.visible .section-title {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-location {
+            font-size: 0.9rem;
+            color: #e8d5b7;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .journey-section-timeline.visible .section-location {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-description {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            transition: transform 0.8s ease-out 0.5s, opacity 0.8s ease-out 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .journey-section-timeline.visible .section-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: transparent;
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            border-radius: 8px;
+            text-align: left;
+            border: 1px solid rgba(74, 124, 89, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #e8d5b7;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c59;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-submit {
+            background: #4a7c59;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .book-section-timeline {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 80px;
+            }
+
+            .book-section-timeline.left,
+            .book-section-timeline.right {
+                justify-content: center;
+            }
+
+            .book-section-timeline.left .book-number,
+            .book-section-timeline.right .book-number {
+                order: 0;
+                margin: 0 0 30px 0;
+            }
+
+            .book-section-timeline.left .book-content-area,
+            .book-section-timeline.right .book-content-area {
+                order: 1;
+                text-align: center;
+                flex-direction: column;
+            }
+
+            .book-cover-wrapper {
+                flex: none;
+                height: 300px;
+                margin-bottom: 20px;
+            }
+
+            .track-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .track-info {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+
+            .journey-section-timeline {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 80px;
+            }
+
+            .journey-section-timeline.left,
+            .journey-section-timeline.right {
+                justify-content: center;
+            }
+
+            .journey-section-timeline.left .section-number,
+            .journey-section-timeline.right .section-number {
+                order: 0;
+                margin: 0 0 30px 0;
+            }
+
+            .journey-section-timeline.left .section-content,
+            .journey-section-timeline.right .section-content {
+                order: 1;
+                text-align: center;
+            }
+
+            .contact-form {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Typography Layer -->
+    <div class="quote-layer" id="quoteLayer">
+        <!-- Dynamic quotes will be inserted here -->
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">Mathew Moslow</a>
+            <ul class="nav-links">
+                <li><a href="#books">Books</a></li>
+                <li><a href="#soundtrack">Soundtrack</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Mathew Moslow</h1>
+        <p>I nurse. I research. I write stories.</p>
+    </section>
+
+    <!-- Books Section - Typography Heavy Timeline Style -->
+    <section class="books-section" id="books">
+        <div class="books-container">
+            <h2 class="section-title">Books</h2>
+
+            <!-- Book 1: A Novel Divorce - Left Side -->
+            <div class="book-section-timeline left">
+                <div class="book-number">01</div>
+                <div class="book-content-area">
+                    <div class="book-cover-wrapper">
+                        <img src="public/images/v1@3x.png" alt="A Novel Divorce Book Cover" loading="lazy">
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">A Novel Divorce</h3>
+                        <p class="book-subtitle">A Story of Conscious Uncoupling</p>
+                        <div class="book-synopsis">
+                            <p>The beginning of this story isn't the heartbreak, or the honeymoon, or even the aftermath of the sexual escapades that always seemed to become pure panic. This story begins in Montego Bay, Jamaica, where a boy learns to perform to survive. Until his performance becomes his identity and that identity becomes a prison, trapping him in a marriage that wasn't meant to be.</p>
+                            <p>What unfolds across these pages is not a guide to getting over the end of a relationship. It's one man's retelling of the coming apart and the putting back together. From ayahuasca ceremonies in jungle sweat lodges to nights spent prowling hookup apps, from barstools to breakdowns during naked yoga, he maps the clumsy beginning of his second life—and the strange cast of characters who help him shape it.</p>
+                        </div>
+                        <div class="book-meta">
+                            <a href="#" class="book-action">Get My Copy</a>
+                            <button class="book-action secondary" onclick="openPeek('divorce')">Sneak a Peek</button>
+                            <button class="book-action tertiary" onclick="playAudioPreview('divorce')">Audio Preview</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2: Beyond The Reach Of Justice - Right Side -->
+            <div class="book-section-timeline right">
+                <div class="book-number">02</div>
+                <div class="book-content-area">
+                    <div class="book-content">
+                        <h3 class="book-title">Beyond The Reach Of Justice</h3>
+                        <p class="book-subtitle">A Dark Psychological Thriller</p>
+                        <div class="book-synopsis">
+                            <p><strong>In the shadow of Jamaica's colonial past, where ancestral estates whisper of old money and even older sins, Jonathan Blake watches his inheritance slip away.</strong></p>
+                            <p>A skilled nurse by day, Jonathan masks a mind haunted since his mother's tragic overdose—a death he blames on his father's cruelty. When Richard Blake disinherits his only son, the betrayal cuts deep. But when his father announces plans to transform their ancestral great house into a tacky all-inclusive resort—with the help of his young interior designer girlfriend, Anna Sutton—Jonathan's grief transforms into something far more dangerous: a meticulously plotted revenge.</p>
+                            <p>When his family's library of colonial-era law books gives Jonathan the answer to his problems, and armed with his medical expertise, he sets in motion a year-long countdown.</p>
+                        </div>
+                        <div class="book-meta">
+                            <a href="#" class="book-action">Get My Copy</a>
+                            <button class="book-action secondary" onclick="openPeek('justice')">Sneak a Peek</button>
+                            <button class="book-action tertiary" onclick="playAudioPreview('justice')">Audio Preview</button>
+                        </div>
+                    </div>
+                    <div class="book-cover-wrapper">
+                        <img src="public/images/ayadv1@3x.png" alt="Beyond The Reach Of Justice Book Cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="section-separator">
+        <img src="public/images/books/v1@3x.png" alt="Book Cover" class="separator-image">
+    </div>
+
+    <!-- Soundtrack Section -->
+    <section class="soundtrack-section" id="soundtrack">
+        <!-- Floating vinyl decorations -->
+        <div class="vinyl-decoration vinyl-1"></div>
+        <div class="vinyl-decoration vinyl-2"></div>
+        <div class="vinyl-decoration vinyl-3"></div>
+
+        <div class="soundtrack-container">
+            <div class="soundtrack-hero">
+                <h2 class="soundtrack-main-title">A Book with a Soundtrack?</h2>
+                <h3 class="soundtrack-sub-title">How Novel!</h3>
+
+
+                <div class="soundtrack-description">
+                    <p>I didn't only write journal entries during my separation and divorce, I wrote full songs, I wrote poems and turned them into verses.</p>
+
+                    <p>With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and I sang. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form. The bloopers, they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.</p>
+
+                    <p>Please enjoy this expression of emotion in music form.</p>
+                </div>
+            </div>
+
+            <div class="track-collection">
+                <!-- Track 1 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/flgb2.jpeg" alt="Feels Like Goodbye">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">01</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Feels Like Goodbye</h3>
+                        <p class="track-description">This was the first song that came out of me during the divorce. I was trying to make sense of why we were tearing apart something that didn't feel broken—just wrong-shaped, maybe? Neither of us wanted to lose each other completely, but we both knew we couldn't stay married. We were figuring out how to keep all the good stuff, all the reasons we fell for each other in the first place, while letting go of this thing that was suffocating us both.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/feelslikegoodbye.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/breathing2.jpeg" alt="While I'm Breathing">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">02</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">While I'm Breathing</h3>
+                        <p class="track-description">I was scrolling through Instagram and came across a post that absolutely struck me—like being hit sideways, and I guess that's what happened to the guy who originally posted it. I took his words and reimagined them somewhat, then spent about 24 hours straight writing and reworking the music, trying to sing and understand a genre I was completely unfamiliar with. But it had to sound like this. I was crazed, and this is the result.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/whileimbreathing.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/wineandlines.png" alt="Fine Wine and Fine Lines">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">03</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Fine Wine and Fine Lines</h3>
+                        <p class="track-description">This started as a poem to my dog Amber, then evolved. It is actually the first time I played around with harmonies, I sang it only once but digitally created the harmonics and while it isn't perfect it's pretty cool. I contemplated not including it because it makes me happy cry. But things are great, and we will always have the memories, and we will always have Costa Rica. This song is a cheeky nod to aging gracefully and has a hidden message only my ex husband will understand :)</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/finewineandfinelines.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/LMCOVER2.png" alt="Lovely Mess">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">04</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Lovely Mess</h3>
+                        <p class="track-description">This was inspired by women who are badass and go through divorce, raise kids, keep their heads up, but still long for their man. It's for the late-night booty callers, the ones who don't delete his number from their phone, the strong, confident, independent ones who still want someone to rub their back and tell them they're doing a good job. It was actually written originally to be an Evanescence-Nicki Minaj mashup and turned into this jam-rock track.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/lovelymess.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 5 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="public/images/flgb2.jpeg" alt="Feels Like Goodbye (Outro)">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">05</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Feels Like Goodbye (Outro)</h3>
+                        <p class="track-description">Because this song just needed more sadness.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'public/audio/feelslikegoodbyeoutro.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Player (Hidden) -->
+            <audio id="audioPlayer" style="display: none;">
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+    </section>
+
+    <!-- About Section - Exact Copy from Backup -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <!-- Hero Statement -->
+            <div class="about-hero-content">
+                <h2 class="about-hero-title">ABOUT MATHEW MOSLOW</h2>
+                <p class="about-statement">
+                    Mathew Moslow writes from the intersection of
+                    <span class="highlight">healing and honesty</span>,
+                    where the messy work of becoming human meets the courage to
+                    examine what we'd rather leave unexamined.
+                </p>
+            </div>
+
+            <!-- Journey Sections - Alternating Left/Right Layout -->
+            <div class="journey-container">
+                <!-- Left Side -->
+                <div class="journey-section-timeline left">
+                    <div class="section-number">01</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Beaches of Jamaica</h3>
+                        <p class="section-location">MONTEGO BAY</p>
+                        <p class="section-description">
+                            Growing up gay in Montego Bay taught him early that survival sometimes means performing, but his work now centers on the radical act of showing up authentically—especially when it's uncomfortable.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="journey-section-timeline right">
+                    <div class="section-number">02</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Psychiatric Nursing</h3>
+                        <p class="section-location">HOSPITAL FLOORS</p>
+                        <p class="section-description">
+                            A psychiatric nurse in training and a seeker by nature, Mathew's journey from the beaches of Jamaica to the hospital floors of Florida reads like a masterclass in intentional transformation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Left Side -->
+                <div class="journey-section-timeline left">
+                    <div class="section-number">03</div>
+                    <div class="section-content">
+                        <h3 class="section-title">The Pressure Cooker Method</h3>
+                        <p class="section-location">A REVOLUTIONARY APPROACH</p>
+                        <p class="section-description">
+                            His approach to life's most difficult moments is refreshingly unconventional. When his marriage to Aaron began to unravel, rather than following the traditional script of bitter divorce proceedings, they chose what Mathew calls a "pressure cooker" method—confronting pain head-on, with therapeutic support, to transform heartbreak into something resembling wisdom.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="journey-section-timeline right">
+                    <div class="section-number">04</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Author & Truth-Teller</h3>
+                        <p class="section-location">PRESENT DAY • FLORIDA</p>
+                        <p class="section-description">
+                            Currently working on his second book, "Beyond The Reach Of Justice"—a thriller about a disinherited nurse who turns to crime—Mathew demonstrates the range that comes from someone unafraid to explore the darker corners of human motivation, whether in fiction or his own life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="contact-subtitle">Have thoughts on the books? Questions about the journey? I'd love to hear from you.</p>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal for previews -->
+    <div id="previewModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modalContent">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Typography-Heavy Floating Quote System
+        const quotes = [
+            { text: "complete and total peace", size: "medium" },
+            { text: "a divorce that refuses to conform to scripts", size: "large" },
+            { text: "pressure cooker method", size: "small" },
+            { text: "transformation as ongoing practice", size: "medium" },
+            { text: "Love is a living thing, fluid and ever-adapting", size: "large" },
+            { text: "What if divorce could be an act of love?", size: "medium" },
+            { text: "the work of showing up fully for his life", size: "small" },
+            { text: "genuine transformation in public view", size: "medium" },
+            { text: "not your therapist's divorce story", size: "small" },
+            { text: "a manifesto for a new way of seeing how love evolves", size: "large" },
+            { text: "the messy middle", size: "small" },
+            { text: "voraciously curious", size: "medium" },
+            { text: "controlled burn, clearing ground for something new", size: "large" },
+            { text: "dramatic molting, painful yet necessary", size: "medium" },
+            { text: "the work of showing up fully", size: "small" },
+            { text: "intentional dissolution", size: "medium" },
+            { text: "what if ending could be a beginning?", size: "medium" },
+            { text: "stories we tell about separation", size: "small" },
+            { text: "comfort isn't the goal, transformation is", size: "large" }
+        ];
+
+        function createFloatingQuote(quote, index) {
+            const element = document.createElement('div');
+            element.className = `floating-quote ${quote.size}`;
+            element.textContent = quote.text;
+
+            // Random positioning with proper spacing to avoid overlaps
+            const minTop = 10 + (index % 4) * 20; // Spread quotes vertically
+            const maxTop = 80 - (index % 3) * 15;
+            const top = minTop + Math.random() * (maxTop - minTop);
+
+            const minLeft = -50;
+            const maxLeft = -20;
+            const left = minLeft + Math.random() * (maxLeft - minLeft);
+
+            element.style.top = `${top}%`;
+            element.style.left = `${left}%`;
+
+            // Animation with staggered timing
+            const duration = 30 + Math.random() * 20; // 30-50 seconds
+            const delay = index * 2; // Stagger start times
+
+            element.style.animation = `floatQuote ${duration}s linear infinite`;
+            element.style.animationDelay = `${delay}s`;
+
+            return element;
+        }
+
+        // CSS Animation for floating quotes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatQuote {
+                0% {
+                    transform: translateX(0) translateY(0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(120vw) translateY(-50px) rotate(5deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize floating quotes with proper spacing
+        function initFloatingQuotes() {
+            const quoteLayer = document.getElementById('quoteLayer');
+            quotes.forEach((quote, index) => {
+                const element = createFloatingQuote(quote, index);
+                quoteLayer.appendChild(element);
+
+                // Create continuous quotes with spacing
+                setInterval(() => {
+                    const newElement = createFloatingQuote(quote, index);
+                    quoteLayer.appendChild(newElement);
+
+                    // Remove old quotes to prevent accumulation
+                    setTimeout(() => {
+                        if (newElement.parentNode) {
+                            newElement.parentNode.removeChild(newElement);
+                        }
+                    }, 60000);
+                }, 20000 + (index * 3000)); // Stagger new quote creation
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    if (entry.target.classList.contains('journey-section-timeline') ||
+                        entry.target.classList.contains('book-section-timeline')) {
+                        const number = entry.target.querySelector('.section-number, .book-number');
+                        const title = entry.target.querySelector('.section-title, .book-title');
+                        const location = entry.target.querySelector('.section-location, .book-subtitle');
+
+                        setTimeout(() => {
+                            if (number) number.classList.add('visible');
+                        }, 100);
+
+                        setTimeout(() => {
+                            if (title) title.classList.add('visible');
+                        }, 300);
+
+                        setTimeout(() => {
+                            if (location) location.classList.add('visible');
+                        }, 500);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Music Player Functions
+        let currentAudio = null;
+        let currentButton = null;
+        let currentVinyl = null;
+
+        function togglePlay(button, audioSrc) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const vinyl = button.closest('.track-card').querySelector('.vinyl-record');
+
+            if (currentButton === button && !audioPlayer.paused) {
+                audioPlayer.pause();
+                button.classList.remove('playing');
+                button.querySelector('.play-icon').textContent = '▶';
+                vinyl.classList.remove('spinning');
+            } else {
+                if (currentButton) {
+                    currentButton.classList.remove('playing');
+                    currentButton.querySelector('.play-icon').textContent = '▶';
+                }
+                if (currentVinyl) {
+                    currentVinyl.classList.remove('spinning');
+                }
+
+                audioPlayer.src = audioSrc;
+                audioPlayer.play();
+                button.classList.add('playing');
+                button.querySelector('.play-icon').textContent = '⏸';
+                vinyl.classList.add('spinning');
+
+                currentButton = button;
+                currentVinyl = vinyl;
+            }
+
+            audioPlayer.onended = function() {
+                button.classList.remove('playing');
+                button.querySelector('.play-icon').textContent = '▶';
+                vinyl.classList.remove('spinning');
+                currentButton = null;
+                currentVinyl = null;
+            };
+        }
+
+        // Utility Functions
+        async function openPeek(bookType) {
+            const modal = document.getElementById('previewModal');
+            const modalContent = document.getElementById('modalContent');
+
+            let content = '';
+
+            if (bookType === 'divorce') {
+                try {
+                    const response = await fetch('src/novel-divorce-peek.txt');
+                    const peekText = await response.text();
+                    content = `
+                        <div style="color: white; padding: 40px; max-height: 70vh; overflow-y: auto;">
+                            <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">A Novel Divorce - Sneak Peek</h2>
+                            <div style="line-height: 1.8; font-size: 1.1rem; white-space: pre-wrap;">
+                                ${peekText}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    content = '<p style="color: white; padding: 40px;">Content not available</p>';
+                }
+            } else if (bookType === 'justice') {
+                try {
+                    const response = await fetch('src/beyond-reach-peek.txt');
+                    const peekText = await response.text();
+                    content = `
+                        <div style="color: white; padding: 40px; max-height: 70vh; overflow-y: auto;">
+                            <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">Beyond The Reach Of Justice - Sneak Peek</h2>
+                            <div style="line-height: 1.8; font-size: 1.1rem; white-space: pre-wrap;">
+                                ${peekText}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    content = '<p style="color: white; padding: 40px;">Content not available</p>';
+                }
+            }
+
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function playAudioPreview(bookType) {
+            const modal = document.getElementById('previewModal');
+            const modalContent = document.getElementById('modalContent');
+
+            let content = '';
+
+            if (bookType === 'divorce') {
+                content = `
+                    <div style="color: white; padding: 40px; text-align: center;">
+                        <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">A Novel Divorce - Audio Preview</h2>
+                        <p style="margin-bottom: 30px;">Listen to a sample from the audiobook narrated by the author.</p>
+                        <audio controls style="width: 100%; margin-bottom: 20px;">
+                            <source src="public/audio/noveldivorcesnippet.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p style="font-style: italic; color: rgba(255,255,255,0.7);">Full audiobook available where books are sold.</p>
+                    </div>
+                `;
+            } else if (bookType === 'justice') {
+                content = `
+                    <div style="color: white; padding: 40px; text-align: center;">
+                        <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif;">Beyond The Reach Of Justice - Audio Preview</h2>
+                        <p style="margin-bottom: 30px;">Listen to a sample from the audiobook.</p>
+                        <audio controls style="width: 100%; margin-bottom: 20px;">
+                            <source src="public/audio/chapter1blakehall.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p style="font-style: italic; color: rgba(255,255,255,0.7);">Full audiobook coming soon.</p>
+                    </div>
+                `;
+            }
+
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('previewModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Contact Form Handler
+        function handleContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+
+                    // Simple validation
+                    if (!name || !email || !subject || !message) {
+                        alert('Please fill in all fields.');
+                        return;
+                    }
+
+                    // Create mailto link
+                    const mailtoLink = `mailto:contact@mathewmoslow.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
+
+                    // Open default email client
+                    window.location.href = mailtoLink;
+
+                    // Show success message
+                    alert('Thank you for your message! Your default email client should open to send the message.');
+
+                    // Reset form
+                    contactForm.reset();
+                });
+            }
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize floating quotes
+            initFloatingQuotes();
+
+            // Observe elements for animation
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const bookSections = document.querySelectorAll('.book-section-timeline');
+            const aboutTitle = document.querySelector('.about-hero-title');
+            const highlight = document.querySelector('.highlight');
+            const journeySections = document.querySelectorAll('.journey-section-timeline');
+            const bookCovers = document.querySelectorAll('.book-cover-wrapper');
+
+            sectionTitles.forEach(title => observer.observe(title));
+            bookSections.forEach(section => observer.observe(section));
+            if (aboutTitle) observer.observe(aboutTitle);
+            if (highlight) observer.observe(highlight);
+            journeySections.forEach(section => observer.observe(section));
+            bookCovers.forEach(cover => observer.observe(cover));
+
+            handleContactForm();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience stories through words and music. Author of A Novel Divorce and Beyond The Reach Of Justice - where literature meets soundtrack.">
+    <title>Mathew Moslow - Books with Soundtracks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Georgia:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Unified Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                #0f0f0f 0%,
+                #1a1a1a 10%,
+                #1f1f1f 30%,
+                #1a1a1a 50%,
+                #161616 70%,
+                #0f0f0f 100%
+            );
+            z-index: -1;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e8d5b7;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('public/images/wideheadshot.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 6px 12px rgba(0,0,0,0.7);
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-family: 'Georgia', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            max-width: 600px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.7);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Books Section - Simple Alternating Layout */
+        .books-section {
+            padding: 100px 20px 80px;
+            position: relative;
+            background: transparent;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: white;
+            margin-bottom: 80px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .books-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .book-section {
+            position: relative;
+            margin-bottom: 120px;
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .book-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Left Side Layout */
+        .book-section.left {
+            justify-content: flex-start;
+        }
+
+        .book-section.left .book-number {
+            order: 1;
+            margin-right: 60px;
+        }
+
+        .book-section.left .book-card {
+            order: 2;
+            text-align: left;
+        }
+
+        /* Right Side Layout */
+        .book-section.right {
+            justify-content: flex-end;
+        }
+
+        .book-section.right .book-number {
+            order: 2;
+            margin-left: 60px;
+        }
+
+        .book-section.right .book-card {
+            order: 1;
+            text-align: right;
+        }
+
+        .book-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a7c59;
+            min-width: 80px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .book-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .book-card {
+            flex: 1;
+            max-width: 800px;
+            background: linear-gradient(135deg,
+                rgba(245, 230, 211, 0.95) 0%,
+                rgba(255, 255, 255, 0.98) 50%,
+                rgba(245, 230, 211, 0.95) 100%);
+            border-radius: 16px;
+            border: 2px solid rgba(74, 124, 89, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .book-cover-wrapper {
+            flex: 0 0 250px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f8;
+        }
+
+        .book-cover-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover .book-cover-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .book-content {
+            flex: 1;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: transparent;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-weight: 600;
+            transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .book-section.visible .book-title {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .book-subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section.visible .book-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-synopsis {
+            color: #444;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            max-height: 200px;
+            overflow-y: auto;
+            transition: transform 0.8s ease-out 0.5s, opacity 0.8s ease-out 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section.visible .book-synopsis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-synopsis::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .book-synopsis::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .book-synopsis::-webkit-scrollbar-thumb {
+            background: #4a7c59;
+            border-radius: 3px;
+        }
+
+        .book-synopsis p {
+            margin-bottom: 15px;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            transition: transform 0.8s ease-out 0.6s, opacity 0.8s ease-out 0.6s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section.visible .book-meta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-action {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4a7c59;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+
+        .book-action:hover {
+            background: #5a8c69;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+
+        .book-action.secondary {
+            background: transparent;
+            color: #4a7c59;
+            border: 2px solid #4a7c59;
+        }
+
+        .book-action.secondary:hover {
+            background: #4a7c59;
+            color: white;
+        }
+
+        .book-action.tertiary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #666;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+
+        .book-action.tertiary:hover {
+            background: #666;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .book-section {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 80px;
+            }
+
+            .book-section.left,
+            .book-section.right {
+                justify-content: center;
+            }
+
+            .book-section.left .book-number,
+            .book-section.right .book-number {
+                order: 0;
+                margin: 0 0 30px 0;
+            }
+
+            .book-section.left .book-card,
+            .book-section.right .book-card {
+                order: 1;
+                text-align: left;
+            }
+
+            .book-card {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            .book-cover-wrapper {
+                flex: none;
+                height: 300px;
+            }
+
+            .book-content {
+                padding: 30px;
+            }
+
+            .book-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">Mathew Moslow</a>
+            <ul class="nav-links">
+                <li><a href="#books">Books</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#soundtrack">Soundtrack</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Mathew Moslow</h1>
+        <p>Experience stories through words and music</p>
+    </section>
+
+    <!-- Books Section -->
+    <section class="books-section" id="books">
+        <h2 class="section-title">Books</h2>
+
+        <div class="books-container">
+            <!-- Book 1: A Novel Divorce - Left Side -->
+            <div class="book-section left">
+                <div class="book-number">01</div>
+                <div class="book-card">
+                    <div class="book-cover-wrapper">
+                        <img src="public/images/v1@3x.png" alt="A Novel Divorce Book Cover" loading="lazy">
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">A Novel Divorce</h3>
+                        <p class="book-subtitle">A Story of Conscious Uncoupling</p>
+                        <div class="book-synopsis">
+                            <p><strong>This is not your mother's divorce story.</strong></p>
+                            <p>The beginning of this story isn't the heartbreak, or the honeymoon, or even the aftermath of the sexual escapades that always seemed to become pure panic. This story begins in Montego Bay, Jamaica, where a boy learns to perform to survive. Until his performance becomes his identity and that identity becomes a prison, trapping him in a marriage that wasn't meant to be.</p>
+                            <p>What unfolds across these pages is not a guide to getting over the end of a relationship. It's one man's retelling of the coming apart and the putting back together. From ayahuasca ceremonies in jungle sweat lodges to nights spent prowling hookup apps, from barstools to breakdowns during naked yoga, he maps the clumsy beginning of his second life—and the strange cast of characters who help him shape it.</p>
+                        </div>
+                        <div class="book-meta">
+                            <a href="#" class="book-action">Get My Copy</a>
+                            <button class="book-action secondary">Sneak a Peek</button>
+                            <button class="book-action tertiary">Audio Preview</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2: Beyond The Reach Of Justice - Right Side -->
+            <div class="book-section right">
+                <div class="book-number">02</div>
+                <div class="book-card">
+                    <div class="book-content">
+                        <h3 class="book-title">Beyond The Reach Of Justice</h3>
+                        <p class="book-subtitle">A Dark Psychological Thriller</p>
+                        <div class="book-synopsis">
+                            <p><strong>In the shadow of Jamaica's colonial past, where ancestral estates whisper of old money and even older sins, Jonathan Blake watches his inheritance slip away.</strong></p>
+                            <p>A skilled nurse by day, Jonathan masks a mind haunted since his mother's tragic overdose—a death he blames on his father's cruelty. When Richard Blake disinherits his only son, the betrayal cuts deep. But when his father announces plans to transform their ancestral great house into a tacky all-inclusive resort—with the help of his young interior designer girlfriend, Anna Sutton—Jonathan's grief transforms into something far more dangerous: a meticulously plotted revenge.</p>
+                            <p>When his family's library of colonial-era law books gives Jonathan the answer to his problems, and armed with his medical expertise, he sets in motion a year-long countdown.</p>
+                        </div>
+                        <div class="book-meta">
+                            <a href="#" class="book-action">Get My Copy</a>
+                            <button class="book-action secondary">Sneak a Peek</button>
+                            <button class="book-action tertiary">Audio Preview</button>
+                        </div>
+                    </div>
+                    <div class="book-cover-wrapper">
+                        <img src="public/images/ayadv1@3x.png" alt="Beyond The Reach Of Justice Book Cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for animations (like About section)
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    if (entry.target.classList.contains('book-section')) {
+                        const number = entry.target.querySelector('.book-number');
+                        setTimeout(() => {
+                            if (number) number.classList.add('visible');
+                        }, 100);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const bookSections = document.querySelectorAll('.book-section');
+            bookSections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
