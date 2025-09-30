@@ -156,35 +156,42 @@
         }
 
         .floating-quote.small {
-            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
-            color: rgba(74, 124, 89, 0.08);
+            font-size: clamp(0.7rem, 1.2vw, 1rem);
+            color: rgba(74, 124, 89, 0.06);
             z-index: 1;
+            filter: blur(0.8px);
+            transform: translateZ(-150px) scale(0.85);
         }
 
         .floating-quote.medium {
-            font-size: clamp(1.2rem, 2.5vw, 2rem);
-            color: rgba(232, 213, 183, 0.12);
+            font-size: clamp(1rem, 2vw, 1.6rem);
+            color: rgba(232, 213, 183, 0.09);
             z-index: 2;
+            filter: blur(0.5px);
+            transform: translateZ(-75px) scale(0.92);
         }
 
         .floating-quote.large {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            color: rgba(74, 124, 89, 0.15);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            color: rgba(74, 124, 89, 0.12);
             z-index: 3;
+            transform: translateZ(0px) scale(1);
         }
 
         .floating-quote.distant {
-            font-size: clamp(0.6rem, 1vw, 0.9rem);
-            color: rgba(74, 124, 89, 0.04);
+            font-size: clamp(0.5rem, 0.8vw, 0.7rem);
+            color: rgba(74, 124, 89, 0.03);
             z-index: 0;
-            filter: blur(1px);
+            filter: blur(2px);
+            transform: translateZ(-300px) scale(0.7);
         }
 
         .floating-quote.near {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: rgba(232, 213, 183, 0.18);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            color: rgba(232, 213, 183, 0.2);
             z-index: 4;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transform: translateZ(100px) scale(1.1);
         }
 
         /* Books Section - Typography-Heavy Like About Section */
@@ -312,6 +319,7 @@
             height: 100%;
             object-fit: contain;
             object-position: center;
+            transition: transform 0.1s linear;
         }
 
         .book-content {
@@ -468,53 +476,86 @@
         }
 
         .soundtrack-main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            color: #4a7c59;
-            margin-bottom: 10px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+            font-family: 'Georgia', serif;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            color: rgba(232, 213, 183, 0.4);
+            margin-bottom: 5px;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
         }
 
         .soundtrack-sub-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            color: #e8d5b7;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            color: #4a7c59;
             font-style: italic;
-            font-weight: 300;
-            margin-bottom: 40px;
-            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            margin-bottom: 50px;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.2);
         }
 
         .soundtrack-description {
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 750px;
+            margin: 0 auto 60px;
             position: relative;
         }
 
-        .soundtrack-description p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            text-align: left;
+        .soundtrack-intro {
+            color: rgba(232, 213, 183, 0.75);
+            font-size: clamp(1rem, 1.7vw, 1.15rem);
+            line-height: 2;
+            margin-bottom: 30px;
+            font-family: 'Georgia', serif;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .soundtrack-intro.drop-cap {
             position: relative;
-            padding: 0 20px;
         }
 
-        .soundtrack-description p:first-child {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .soundtrack-description p:last-child {
-            font-style: italic;
-            color: #e8d5b7;
-            font-size: 1.4rem;
-            text-align: center;
-            margin-top: 40px;
+        .drop-cap-letter {
+            float: left;
+            font-size: 4.5em;
+            line-height: 0.85;
+            margin-right: 0.08em;
+            margin-top: 0.05em;
             font-family: 'Playfair Display', serif;
+            color: #4a7c59;
+            font-weight: 400;
+        }
+
+        .soundtrack-intro.body-text {
+            text-indent: 2em;
+        }
+
+        .soundtrack-intro.confession {
+            font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+            color: rgba(232, 213, 183, 0.6);
+            font-style: italic;
+            margin-top: 35px;
+        }
+
+        .soundtrack-intro.invitation {
+            text-align: center;
+            color: #e8d5b7;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-top: 45px;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.02em;
+        }
+
+        .em-dash {
+            margin: 0 0.3em;
+            color: rgba(74, 124, 89, 0.5);
+        }
+
+        .soundtrack-intro em {
+            font-style: italic;
+            color: rgba(232, 213, 183, 0.95);
         }
 
         /* Decorative Elements */
@@ -558,28 +599,33 @@
         /* Section Separators with Book Cover Images */
         .section-separator {
             position: relative;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 80px 0;
+            height: 350px;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
             overflow: hidden;
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
         .separator-image {
-            width: 120px;
-            height: auto;
-            opacity: 0.15;
-            filter: blur(1px);
-            transform: perspective(800px) rotateY(15deg) rotateX(5deg);
-            transition: all 0.6s ease;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 45%;
+            opacity: 0.85;
+            will-change: transform;
+            transition: transform 0.1s linear, object-position 0.1s linear;
         }
 
-        .separator-image:hover {
-            opacity: 0.3;
-            filter: blur(0px);
-            transform: perspective(800px) rotateY(0deg) rotateX(0deg) scale(1.1);
+        @media (max-width: 768px) {
+            .section-separator {
+                height: 250px;
+            }
+            .separator-image {
+                object-position: center 48%;
+            }
         }
 
         /* Floating vinyl graphics */
@@ -847,37 +893,27 @@
         }
 
         .about-statement {
-            font-size: clamp(1.2rem, 2vw, 1.8rem);
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 800px;
-            margin: 0 auto;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            line-height: 1.8;
+            color: rgba(232, 213, 183, 0.7);
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            position: relative;
         }
 
         .highlight {
             position: relative;
-            color: white;
-            font-weight: 500;
+            color: #e8d5b7;
+            font-weight: 400;
+            font-style: italic;
             display: inline-block;
-            transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        .highlight.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #4a7c59;
-            transition: width 0.8s ease-out 0.4s;
+            border-bottom: 2px solid #4a7c59;
+            padding-bottom: 2px;
         }
 
         .highlight.visible::after {
@@ -1089,11 +1125,42 @@
             background-color: rgba(0,0,0,0.9);
         }
 
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
         .modal-content {
             margin: auto;
             display: block;
             width: 80%;
             max-width: 700px;
+            background: rgba(26, 26, 26, 0.98);
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            border: 1px solid rgba(74, 124, 89, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 5px;
         }
 
         .close-modal {
@@ -1139,13 +1206,22 @@
             .book-section-timeline.right .book-content-area {
                 order: 1;
                 text-align: center;
-                flex-direction: column;
+                flex-direction: column-reverse;
             }
 
             .book-cover-wrapper {
                 flex: none;
-                height: 300px;
-                margin-bottom: 20px;
+                width: 85%;
+                max-width: 400px;
+                height: 400px;
+                margin: 0 auto 30px;
+                overflow: hidden;
+            }
+
+            .book-cover-wrapper img {
+                object-fit: cover;
+                height: 120%;
+                transform: translateY(0);
             }
 
             .track-card {
@@ -1254,7 +1330,7 @@
                             <p>When his family's library of colonial-era law books gives Jonathan the answer to his problems, and armed with his medical expertise, he sets in motion a year-long countdown.</p>
                         </div>
                         <div class="book-meta">
-                            <a href="#" class="book-action">Get My Copy</a>
+                            <button class="book-action" onclick="openReserveModal()">Reserve My Copy</button>
                             <button class="book-action secondary" onclick="openPeek('justice')">Sneak a Peek</button>
                             <button class="book-action tertiary" onclick="playAudioPreview('justice')">Audio Preview</button>
                         </div>
@@ -1267,9 +1343,9 @@
         </div>
     </section>
 
-    <!-- Section Separator -->
-    <div class="section-separator">
-        <img src="public/images/books/v1@3x.png" alt="Book Cover" class="separator-image">
+    <!-- Section Separator with Parallax -->
+    <div class="section-separator" id="parallax-separator">
+        <img src="public/images/book-cover-eyes-new.png" alt="Book Cover" class="separator-image" id="parallax-book">
     </div>
 
     <!-- Soundtrack Section -->
@@ -1284,13 +1360,22 @@
                 <h2 class="soundtrack-main-title">A Book with a Soundtrack?</h2>
                 <h3 class="soundtrack-sub-title">How Novel!</h3>
 
-
                 <div class="soundtrack-description">
-                    <p>I didn't only write journal entries during my separation and divorce, I wrote full songs, I wrote poems and turned them into verses.</p>
+                    <p class="soundtrack-intro drop-cap">
+                        <span class="drop-cap-letter">I</span> didn't only write journal entries during my separation and divorce<span class="em-dash">—</span>I wrote full songs, I wrote poems and turned them into verses.
+                    </p>
 
-                    <p>With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and I sang. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form. The bloopers, they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.</p>
+                    <p class="soundtrack-intro body-text">
+                        With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and <em>I sang</em>. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form.
+                    </p>
 
-                    <p>Please enjoy this expression of emotion in music form.</p>
+                    <p class="soundtrack-intro confession">
+                        The bloopers<span class="em-dash">—</span>they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.
+                    </p>
+
+                    <p class="soundtrack-intro invitation">
+                        <em>Please enjoy this expression of emotion in music form.</em>
+                    </p>
                 </div>
             </div>
 
@@ -1420,10 +1505,10 @@
             <div class="about-hero-content">
                 <h2 class="about-hero-title">ABOUT MATHEW MOSLOW</h2>
                 <p class="about-statement">
-                    Mathew Moslow writes from the intersection of
-                    <span class="highlight">healing and honesty</span>,
-                    where the messy work of becoming human meets the courage to
-                    examine what we'd rather leave unexamined.
+                    <em>Mathew Moslow</em> writes from the intersection of
+                    <span class="highlight">healing</span> and <span class="highlight">honesty</span>—where the
+                    messy work of becoming human meets the courage to examine what we'd rather
+                    leave unexamined.
                 </p>
             </div>
 
@@ -1486,7 +1571,7 @@
             <h2 class="section-title">Get in Touch</h2>
             <p class="contact-subtitle">Have thoughts on the books? Questions about the journey? I'd love to hear from you.</p>
 
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xeogwwbp" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -1549,14 +1634,20 @@
             element.className = `floating-quote ${quote.size}`;
             element.textContent = quote.text;
 
-            // Random positioning with proper spacing to avoid overlaps
-            const minTop = 10 + (index % 4) * 20; // Spread quotes vertically
-            const maxTop = 80 - (index % 3) * 15;
+            // Random positioning with much better vertical spacing to avoid overlaps
+            const verticalZones = 8; // Divide screen into 8 vertical zones
+            const zoneHeight = 100 / verticalZones;
+            const zone = index % verticalZones;
+            const minTop = zone * zoneHeight;
+            const maxTop = (zone + 1) * zoneHeight - 10;
             const top = minTop + Math.random() * (maxTop - minTop);
 
-            const minLeft = -50;
-            const maxLeft = -20;
-            const left = minLeft + Math.random() * (maxLeft - minLeft);
+            // Spread horizontally based on depth
+            const depthOffset = quote.size === 'distant' ? -60 :
+                              quote.size === 'small' ? -50 :
+                              quote.size === 'medium' ? -40 :
+                              quote.size === 'large' ? -30 : -20;
+            const left = depthOffset + Math.random() * 20;
 
             element.style.top = `${top}%`;
             element.style.left = `${left}%`;
@@ -1690,6 +1781,59 @@
             };
         }
 
+        // Reserve Modal Function
+        function openReserveModal() {
+            const modal = document.getElementById('reserveModal');
+            if (!modal) {
+                // Create modal if it doesn't exist
+                const modalHTML = `
+                    <div id="reserveModal" class="modal-overlay" onclick="if(event.target === this) closeReserveModal()">
+                        <div class="modal-content" style="max-width: 500px;">
+                            <button class="modal-close" onclick="closeReserveModal()" type="button">×</button>
+                            <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif; text-align: center;">Reserve Your Copy</h2>
+                            <p style="margin-bottom: 30px; text-align: center; color: rgba(232, 213, 183, 0.8);">Be among the first to receive <em>Beyond The Reach Of Justice</em> when it's released.</p>
+                            <form action="https://formspree.io/f/xwpojjdg" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Your Name:</label>
+                                    <input type="text" name="name" required style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Your Email:</label>
+                                    <input type="email" name="email" required style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Format Preference (optional):</label>
+                                    <select name="format" style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem;">
+                                        <option value="">Select format</option>
+                                        <option value="hardcover">Hardcover</option>
+                                        <option value="paperback">Paperback</option>
+                                        <option value="ebook">eBook</option>
+                                        <option value="audiobook">Audiobook</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Message (optional):</label>
+                                    <textarea name="message" rows="3" style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem; resize: vertical;"></textarea>
+                                </div>
+                                <button type="submit" style="padding: 15px 30px; background: #4a7c59; color: white; border: none; border-radius: 4px; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">Reserve My Copy</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+            }
+            document.getElementById('reserveModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReserveModal() {
+            const modal = document.getElementById('reserveModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
         // Utility Functions
         async function openPeek(bookType) {
             const modal = document.getElementById('previewModal');
@@ -1782,37 +1926,8 @@
 
         // Contact Form Handler
         function handleContactForm() {
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-
-                    // Get form data
-                    const formData = new FormData(contactForm);
-                    const name = formData.get('name');
-                    const email = formData.get('email');
-                    const subject = formData.get('subject');
-                    const message = formData.get('message');
-
-                    // Simple validation
-                    if (!name || !email || !subject || !message) {
-                        alert('Please fill in all fields.');
-                        return;
-                    }
-
-                    // Create mailto link
-                    const mailtoLink = `mailto:contact@mathewmoslow.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
-
-                    // Open default email client
-                    window.location.href = mailtoLink;
-
-                    // Show success message
-                    alert('Thank you for your message! Your default email client should open to send the message.');
-
-                    // Reset form
-                    contactForm.reset();
-                });
-            }
+            // Form now submits directly to Formspree
+            // No preventDefault needed - let the form submit naturally
         }
 
         // Initialize everything
@@ -1836,6 +1951,64 @@
             bookCovers.forEach(cover => observer.observe(cover));
 
             handleContactForm();
+
+            // Mobile book cover scroll effect
+            function initBookCoverScroll() {
+                if (window.innerWidth <= 768) {
+                    const bookCovers = document.querySelectorAll('.book-cover-wrapper img');
+
+                    bookCovers.forEach(img => {
+                        const wrapper = img.parentElement;
+
+                        window.addEventListener('scroll', () => {
+                            const rect = wrapper.getBoundingClientRect();
+                            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                            if (isVisible) {
+                                // Calculate scroll progress for this element
+                                const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                                const translateY = -20 + (scrollProgress * 20); // Moves from -20% to 0%
+
+                                img.style.transform = `translateY(${translateY}%)`;
+                            }
+                        });
+                    });
+                }
+            }
+
+            initBookCoverScroll();
+            window.addEventListener('resize', initBookCoverScroll);
+
+            // Parallax effect for book separator
+            const parallaxBook = document.getElementById('parallax-book');
+            const parallaxSeparator = document.getElementById('parallax-separator');
+
+            if (parallaxBook && parallaxSeparator) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const separatorTop = parallaxSeparator.offsetTop;
+                    const separatorHeight = parallaxSeparator.offsetHeight;
+                    const windowHeight = window.innerHeight;
+
+                    // Calculate if separator is in viewport
+                    const separatorVisible = (scrolled + windowHeight > separatorTop) &&
+                                            (scrolled < separatorTop + separatorHeight);
+
+                    if (separatorVisible) {
+                        // Calculate parallax offset with slower movement (0.5 speed)
+                        const relativeScroll = scrolled - separatorTop + windowHeight / 2;
+                        const yPos = relativeScroll * 0.5;
+
+                        // Calculate object position to reveal more face as you scroll
+                        const scrollProgress = (scrolled - separatorTop + windowHeight) / (separatorHeight + windowHeight);
+                        const objectPositionY = 45 - (scrollProgress * 10); // Moves from 45% to 35% as you scroll
+
+                        // Apply transform with parallax effect and object position shift
+                        parallaxBook.style.transform = `translateY(${yPos}px) scale(1.1)`;
+                        parallaxBook.style.objectPosition = `center ${objectPositionY}%`;
+                    }
+                });
+            }
         });
     </script>
 </body>
