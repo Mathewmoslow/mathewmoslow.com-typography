@@ -317,7 +317,7 @@
         .book-cover-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
             transition: transform 0.1s linear;
         }
@@ -1029,6 +1029,91 @@
             transform: translateY(0);
         }
 
+        /* Journey Section */
+        .journey-section {
+            padding: 120px 20px;
+            background: transparent;
+            position: relative;
+        }
+
+        .journey-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .journey-number {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            color: rgba(74, 124, 89, 0.3);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .journey-section-timeline.visible .journey-number {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .journey-content-area {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .journey-image-wrapper {
+            flex: 0 0 350px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border: 3px solid #4a7c59;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .journey-section-timeline.visible .journey-image-wrapper {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .journey-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .journey-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .journey-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: #e8d5b7;
+            margin-bottom: 20px;
+            transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .journey-section-timeline.visible .journey-title {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         /* Contact Section */
         .contact-section {
             min-height: 100vh;
@@ -1385,7 +1470,7 @@
                 <div class="track-card">
                     <div class="track-visual">
                         <div class="album-cover">
-                            <img src="public/images/flgb2.jpeg" alt="Feels Like Goodbye">
+                            <img src="images/flgb2.jpeg" alt="Feels Like Goodbye">
                         </div>
                         <div class="vinyl-record">
                             <div class="vinyl-label">
@@ -1407,7 +1492,7 @@
                 <div class="track-card">
                     <div class="track-visual">
                         <div class="album-cover">
-                            <img src="public/images/breathing2.jpeg" alt="While I'm Breathing">
+                            <img src="images/breathing2.jpeg" alt="While I'm Breathing">
                         </div>
                         <div class="vinyl-record">
                             <div class="vinyl-label">
@@ -1429,7 +1514,7 @@
                 <div class="track-card">
                     <div class="track-visual">
                         <div class="album-cover">
-                            <img src="public/images/wineandlines.png" alt="Fine Wine and Fine Lines">
+                            <img src="images/wineandlines.png" alt="Fine Wine and Fine Lines">
                         </div>
                         <div class="vinyl-record">
                             <div class="vinyl-label">
@@ -1451,7 +1536,7 @@
                 <div class="track-card">
                     <div class="track-visual">
                         <div class="album-cover">
-                            <img src="public/images/LMCOVER2.png" alt="Lovely Mess">
+                            <img src="images/LMCOVER2.png" alt="Lovely Mess">
                         </div>
                         <div class="vinyl-record">
                             <div class="vinyl-label">
@@ -1473,7 +1558,7 @@
                 <div class="track-card">
                     <div class="track-visual">
                         <div class="album-cover">
-                            <img src="public/images/flgb2.jpeg" alt="Feels Like Goodbye (Outro)">
+                            <img src="images/flgb2.jpeg" alt="Feels Like Goodbye (Outro)">
                         </div>
                         <div class="vinyl-record">
                             <div class="vinyl-label">
