@@ -1710,11 +1710,15 @@
 
         @media (max-width: 768px) {
             #flipbook-container {
-                padding: 10px;
-                height: 85vh;
+                padding: 20px 15px;
+                height: auto;
+                min-height: 85vh;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
+                justify-content: flex-start;
+                gap: 20px;
+                position: relative;
+                z-index: 1000;
             }
 
             .page {
@@ -1727,6 +1731,8 @@
                 max-width: 95vw;
                 max-height: 65vh;
                 margin-bottom: 10px;
+                position: relative;
+                z-index: 1001;
             }
 
             .flipbook-btn {
@@ -1738,6 +1744,9 @@
             #bookTitle {
                 font-size: 1.3rem !important;
                 margin-bottom: 15px;
+                color: #e8d5b7 !important;
+                position: relative;
+                z-index: 1001;
             }
 
             .modal-content {
@@ -1746,6 +1755,10 @@
                 margin: 20px auto;
                 max-height: 95vh;
                 overflow-y: auto;
+            }
+
+            .close-modal {
+                z-index: 1002 !important;
             }
         }
 
@@ -2945,25 +2958,33 @@
             // Mobile: Use scrollable single-page reader
             if (isMobileDevice) {
                 bookContainer.innerHTML = '';
-                bookContainer.style.width = '100%';
-                bookContainer.style.height = 'auto';
-                bookContainer.style.maxHeight = '70vh';
-                bookContainer.style.overflowY = 'auto';
-                bookContainer.style.overflowX = 'hidden';
-                bookContainer.style.padding = '20px';
-                bookContainer.style.background = 'rgba(232, 213, 183, 0.05)';
-                bookContainer.style.borderRadius = '8px';
-                bookContainer.style.WebkitOverflowScrolling = 'touch';
+                bookContainer.style.cssText = `
+                    width: 100%;
+                    max-width: 100%;
+                    height: auto;
+                    max-height: 65vh;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    padding: 25px;
+                    background: #f4f0e6;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+                    -webkit-overflow-scrolling: touch;
+                    position: relative;
+                    z-index: 1001;
+                `;
 
                 const content = document.createElement('div');
-                content.style.color = '#1a1a1a';
-                content.style.lineHeight = '1.8';
-                content.style.fontSize = '1rem';
-                content.style.fontFamily = 'Georgia, serif';
+                content.style.cssText = `
+                    color: #1a1a1a;
+                    line-height: 1.8;
+                    font-size: 1rem;
+                    font-family: Georgia, serif;
+                `;
 
                 // Format text with paragraphs
                 const paragraphs = peekText.split('\n\n').filter(p => p.trim());
-                content.innerHTML = paragraphs.map(p => `<p style="margin-bottom: 1.5em;">${p}</p>`).join('');
+                content.innerHTML = paragraphs.map(p => `<p style="margin-bottom: 1.5em; color: #1a1a1a;">${p}</p>`).join('');
 
                 bookContainer.appendChild(content);
 
