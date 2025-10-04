@@ -15,13 +15,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            height: 100%;
+        }
+
         body {
             font-family: 'Georgia', serif;
             background: #1a1a1a;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            scroll-behavior: auto;
         }
 
         /* Unified Background - Typography Heavy Dark Theme */
@@ -96,7 +99,7 @@
             color: white;
         }
 
-        /* Hero Section with Typography Focus */
+        /* Hero Section with 3-Layer Parallax */
         .hero {
             height: 100vh;
             display: flex;
@@ -104,10 +107,45 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/wideheadshot.jpg');
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .hero-layer.background {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/bg.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .hero-layer.couch {
+            background-image: url('images/couch.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 2;
+        }
+
+        .hero-layer.subject {
+            background-image: url('images/subject.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            transition: opacity 0.3s ease-out;
         }
 
         .hero h1 {
@@ -132,16 +170,16 @@
             line-height: 1.4;
         }
 
-        /* Typography-Heavy Floating Quote System */
+        /* Typography-Heavy Parallax Quote System */
         .quote-layer {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            min-height: 100vh;
             pointer-events: none;
-            z-index: 2;
-            overflow: hidden;
+            z-index: 0;
         }
 
         .floating-quote {
@@ -150,48 +188,14 @@
             font-style: italic;
             white-space: nowrap;
             pointer-events: none;
-            opacity: 0;
             font-weight: 300;
-            transform-style: preserve-3d;
+            will-change: transform, opacity;
+            transition: opacity 0.3s ease-out;
         }
 
-        .floating-quote.small {
-            font-size: clamp(0.7rem, 1.2vw, 1rem);
-            color: rgba(74, 124, 89, 0.06);
-            z-index: 1;
-            filter: blur(0.8px);
-            transform: translateZ(-150px) scale(0.85);
-        }
-
-        .floating-quote.medium {
-            font-size: clamp(1rem, 2vw, 1.6rem);
-            color: rgba(232, 213, 183, 0.09);
-            z-index: 2;
-            filter: blur(0.5px);
-            transform: translateZ(-75px) scale(0.92);
-        }
-
-        .floating-quote.large {
-            font-size: clamp(1.8rem, 3.5vw, 3rem);
-            color: rgba(74, 124, 89, 0.12);
-            z-index: 3;
-            transform: translateZ(0px) scale(1);
-        }
-
-        .floating-quote.distant {
-            font-size: clamp(0.5rem, 0.8vw, 0.7rem);
-            color: rgba(74, 124, 89, 0.03);
-            z-index: 0;
-            filter: blur(2px);
-            transform: translateZ(-300px) scale(0.7);
-        }
-
-        .floating-quote.near {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            color: rgba(232, 213, 183, 0.2);
-            z-index: 4;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            transform: translateZ(100px) scale(1.1);
+        /* Quote sizes and styles based on z-depth */
+        .floating-quote {
+            /* Base styles - will be overridden by inline styles based on depth */
         }
 
         /* Books Section - Typography-Heavy Like About Section */
@@ -236,6 +240,8 @@
             display: flex;
             align-items: center;
             min-height: 400px;
+            will-change: transform;
+            transition: transform 0.1s linear;
         }
 
         /* Left side layout */
@@ -320,6 +326,7 @@
             object-fit: cover;
             object-position: center;
             transition: transform 0.1s linear;
+            opacity: 1;
         }
 
         .book-content {
@@ -596,10 +603,10 @@
             }
         }
 
-        /* Section Separators with Book Cover Images */
+        /* Section Separators with Multi-Layer Parallax */
         .section-separator {
             position: relative;
-            height: 350px;
+            height: 150vh; /* Tall enough to show full image + parallax movement */
             width: 100vw;
             margin-left: calc(-50vw + 50%);
             margin-right: calc(-50vw + 50%);
@@ -608,15 +615,37 @@
             margin-bottom: 40px;
         }
 
-        .separator-image {
+        .separator-layer {
             position: absolute;
+            top: -50%; /* Start higher to provide space for upward movement */
+            left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 45%;
-            opacity: 0.85;
+            height: 250%; /* Extra tall to prevent gaps */
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
             will-change: transform;
-            transition: transform 0.1s linear, object-position 0.1s linear;
+        }
+
+        .separator-layer.separator-bg {
+            background-image: url('images/book-cover-eyes-new-parallaxBG.png');
+            background-size: cover; /* Fill to avoid gaps */
+            z-index: 1;
+        }
+
+        .separator-layer.separator-subject {
+            background-image: url('images/book-cover-eyes-new-parallaxsubject.png');
+            z-index: 2;
+        }
+
+        .separator-layer.separator-book {
+            background-image: url('images/book-cover-eyes-new-parallaxbook.png');
+            z-index: 3;
+        }
+
+        .separator-layer.separator-front {
+            background-image: url('images/parallaxfront.png');
+            z-index: 4;
         }
 
         @media (max-width: 768px) {
@@ -728,6 +757,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 1;
         }
 
         .vinyl-record {
@@ -1090,6 +1120,7 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            opacity: 1;
         }
 
         .journey-content {
@@ -1291,7 +1322,7 @@
             .book-section-timeline.right .book-content-area {
                 order: 1;
                 text-align: center;
-                flex-direction: column-reverse;
+                flex-direction: column;
             }
 
             .book-cover-wrapper {
@@ -1301,6 +1332,11 @@
                 height: 400px;
                 margin: 0 auto 30px;
                 overflow: hidden;
+                order: 1;
+            }
+
+            .book-content {
+                order: 2;
             }
 
             .book-cover-wrapper img {
@@ -1339,8 +1375,23 @@
 
             .journey-section-timeline.left .section-content,
             .journey-section-timeline.right .section-content {
-                order: 1;
+                order: 2;
                 text-align: center;
+            }
+
+            .journey-section-timeline.left .journey-content-area,
+            .journey-section-timeline.right .journey-content-area {
+                flex-direction: column;
+            }
+
+            .journey-section-timeline.left .journey-image-wrapper,
+            .journey-section-timeline.right .journey-image-wrapper {
+                order: 1;
+            }
+
+            .journey-section-timeline.left .journey-content,
+            .journey-section-timeline.right .journey-content {
+                order: 2;
             }
 
             .contact-form {
@@ -1369,10 +1420,15 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Parallax Layers -->
     <section class="hero" id="home">
-        <h1>Mathew Moslow</h1>
-        <p>I nurse. I research. I write stories.</p>
+        <div class="hero-layer background"></div>
+        <div class="hero-layer couch"></div>
+        <div class="hero-layer subject"></div>
+        <div class="hero-content">
+            <h1>Mathew Moslow</h1>
+            <p>I nurse. I research. I write stories.</p>
+        </div>
     </section>
 
     <!-- Books Section - Typography Heavy Timeline Style -->
@@ -1416,7 +1472,7 @@
                             <p>When his family's library of colonial-era law books gives Jonathan the answer to his problems, and armed with his medical expertise, he sets in motion a year-long countdown.</p>
                         </div>
                         <div class="book-meta">
-                            <button class="book-action" onclick="openReserveModal()">Reserve My Copy</button>
+                            <button class="book-action" onclick="openReserveModal()">Snag My Copy</button>
                             <button class="book-action secondary" onclick="openPeek('justice')">Sneak a Peek</button>
                             <button class="book-action tertiary" onclick="playAudioPreview('justice')">Audio Preview</button>
                         </div>
@@ -1429,9 +1485,12 @@
         </div>
     </section>
 
-    <!-- Section Separator with Parallax -->
+    <!-- Section Separator with Multi-Layer Parallax -->
     <div class="section-separator" id="parallax-separator">
-        <img src="images/book-cover-eyes-new.png" alt="Book Cover" class="separator-image" id="parallax-book">
+        <div class="separator-layer separator-bg"></div>
+        <div class="separator-layer separator-subject"></div>
+        <div class="separator-layer separator-book"></div>
+        <div class="separator-layer separator-front"></div>
     </div>
 
     <!-- Soundtrack Section -->
@@ -1788,181 +1847,174 @@
 
         function createFloatingQuote(quote, index) {
             const element = document.createElement('div');
+            element.className = `floating-quote`;
 
-            // Randomize size/depth for each instance
-            const sizes = ['distant', 'small', 'medium', 'large', 'near'];
-            const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
-            element.className = `floating-quote ${randomSize}`;
-            element.textContent = quote.text;
+            // Calculate total document height for positioning
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.clientHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight
+            );
 
-            // Choose random movement type
-            const movementTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'scroll-tied'];
-            const movementType = movementTypes[Math.floor(Math.random() * movementTypes.length)];
+            // Spread quotes across entire document height
+            const topPosition = Math.random() * documentHeight;
+            const left = 5 + Math.random() * 90; // 5% to 95%
 
-            element.setAttribute('data-movement', movementType);
-
-            // Set initial position based on movement type
-            let top, left, animationName, duration;
-
-            switch(movementType) {
-                case 'horizontal':
-                    // Standard left-to-right movement
-                    top = Math.random() * 90;
-                    left = -80 + Math.random() * 60;
-                    animationName = 'floatQuote';
-                    duration = 25 + Math.random() * 35;
-                    break;
-
-                case 'vertical':
-                    // Top-to-bottom or bottom-to-top movement
-                    top = Math.random() > 0.5 ? -20 : 110;
-                    left = Math.random() * 80 + 10;
-                    animationName = 'floatVertical';
-                    duration = 20 + Math.random() * 25;
-                    break;
-
-                case 'diagonal':
-                    // Diagonal movement
-                    top = Math.random() > 0.5 ? -20 : 110;
-                    left = Math.random() > 0.5 ? -80 : 120;
-                    animationName = 'floatDiagonal';
-                    duration = 30 + Math.random() * 30;
-                    break;
-
-                case 'circular':
-                    // Circular/orbital movement
-                    top = 20 + Math.random() * 60;
-                    left = 20 + Math.random() * 60;
-                    animationName = 'floatCircular';
-                    duration = 40 + Math.random() * 40;
-                    break;
-
-                case 'scroll-tied':
-                    // Will be handled by scroll event
-                    top = Math.random() * 90;
-                    left = Math.random() * 100;
-                    animationName = 'none';
-                    duration = 0;
-                    element.classList.add('scroll-quote');
-                    break;
-            }
-
-            element.style.top = `${top}%`;
+            element.style.top = `${topPosition}px`;
             element.style.left = `${left}%`;
 
-            if (animationName !== 'none') {
-                const delay = Math.random() * 10;
-                element.style.animation = `${animationName} ${duration}s linear infinite`;
-                element.style.animationDelay = `${delay}s`;
+            // Create z-depth value (0 = far back, 100 = close to viewer)
+            const zDepth = Math.random() * 100;
+            element.setAttribute('data-z-depth', zDepth.toFixed(2));
+
+            // Base font size based on z-depth
+            const baseFontSize = 0.4 + (zDepth / 100) * 3.6;
+
+            // Opacity based on depth
+            const baseOpacity = 0.05 + (zDepth / 100) * 0.25;
+            element.setAttribute('data-base-opacity', baseOpacity.toFixed(2));
+
+            // Blur based on depth
+            const blurAmount = 3 - (zDepth / 100) * 2.5;
+            if (blurAmount > 0.5) {
+                element.style.filter = `blur(${blurAmount}px)`;
             }
 
-            // Add random rotation and opacity variations
-            const rotation = (Math.random() - 0.5) * 20;
-            const opacityVariation = 0.7 + Math.random() * 0.3;
+            // Font variations
+            const fonts = ['Playfair Display', 'Georgia', 'serif'];
+            const fontWeights = [300, 400, 500];
 
-            element.style.transform = `rotate(${rotation}deg)`;
-            element.style.opacity = opacityVariation;
+            // Stylize each word individually
+            const words = quote.text.split(' ');
+            const styledHTML = words.map((word, wordIndex) => {
+                // Random variations for each word
+                const wordSizeVariation = 0.7 + (Math.random() * 0.6); // 0.7x to 1.3x
+                const wordOpacityVariation = 0.6 + (Math.random() * 0.4); // 0.6 to 1.0
+                const wordFont = fonts[Math.floor(Math.random() * fonts.length)];
+                const wordWeight = fontWeights[Math.floor(Math.random() * fontWeights.length)];
+
+                // Emphasize keywords (longer words or certain positions)
+                const isKeyword = word.length > 6 || wordIndex === 0 || wordIndex === words.length - 1;
+                const emphasisMultiplier = isKeyword ? 1.2 : 1;
+
+                const finalSize = baseFontSize * wordSizeVariation * emphasisMultiplier;
+                const finalOpacity = baseOpacity * wordOpacityVariation;
+
+                // Color variation
+                let color;
+                if (zDepth < 33) {
+                    color = `rgba(74, 124, 89, ${finalOpacity})`;
+                } else if (zDepth < 66) {
+                    color = `rgba(232, 213, 183, ${finalOpacity})`;
+                } else {
+                    color = `rgba(232, 213, 183, ${finalOpacity})`;
+                }
+
+                return `<span style="font-size: ${finalSize}rem; font-family: '${wordFont}', serif; font-weight: ${wordWeight}; opacity: ${wordOpacityVariation}; color: ${color};">${word}</span>`;
+            }).join(' ');
+
+            element.innerHTML = styledHTML;
+
+            // Overall text properties
+            if (zDepth > 66) {
+                element.style.textShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            }
+
+            // Parallax speed
+            const parallaxSpeed = 0.05 + (zDepth / 100) * 0.55;
+            element.setAttribute('data-parallax-speed', parallaxSpeed.toFixed(2));
+
+            // Random rotation
+            const rotation = (Math.random() - 0.5) * 15;
+            element.setAttribute('data-rotation', rotation);
+
+            // Start with opacity 0
+            element.style.opacity = '0';
 
             return element;
         }
 
-        // CSS Animation for floating quotes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes floatQuote {
-                0% {
-                    transform: translateX(0) translateY(0) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateX(120vw) translateY(-50px) rotate(5deg);
-                    opacity: 0;
-                }
-            }
+        // No animations needed - all handled by scroll event
 
-            @keyframes floatVertical {
-                0% {
-                    transform: translateY(0) translateX(0) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(120vh) translateX(30px) rotate(10deg);
-                    opacity: 0;
-                }
-            }
-
-            @keyframes floatDiagonal {
-                0% {
-                    transform: translate(0, 0) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translate(120vw, 120vh) rotate(25deg);
-                    opacity: 0;
-                }
-            }
-
-            @keyframes floatCircular {
-                0% {
-                    transform: rotate(0deg) translateX(80px) rotate(0deg);
-                    opacity: 0.4;
-                }
-                25% {
-                    opacity: 1;
-                }
-                75% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: rotate(360deg) translateX(80px) rotate(-360deg);
-                    opacity: 0.4;
-                }
-            }
-
-            .scroll-quote {
-                will-change: transform;
-                transition: transform 0.1s ease-out;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initialize floating quotes with proper spacing
+        // Initialize floating quotes - repeat each quote multiple times for density
         function initFloatingQuotes() {
             const quoteLayer = document.getElementById('quoteLayer');
+            const repetitions = 5; // Each quote appears 5 times at different positions/depths
+
             quotes.forEach((quote, index) => {
-                const element = createFloatingQuote(quote, index);
-                quoteLayer.appendChild(element);
+                for (let i = 0; i < repetitions; i++) {
+                    const element = createFloatingQuote(quote, index);
+                    quoteLayer.appendChild(element);
+                }
+            });
+        }
 
-                // Create continuous quotes with spacing
-                setInterval(() => {
-                    const newElement = createFloatingQuote(quote, index);
-                    quoteLayer.appendChild(newElement);
+        // Handle scroll-based parallax for quotes, hero layers, and sections
+        function handleScrollParallax() {
+            const scrolled = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const heroContent = document.querySelector('.hero-content');
+            const allQuotes = document.querySelectorAll('.floating-quote');
 
-                    // Remove old quotes to prevent accumulation
-                    setTimeout(() => {
-                        if (newElement.parentNode) {
-                            newElement.parentNode.removeChild(newElement);
-                        }
-                    }, 60000);
-                }, 20000 + (index * 3000)); // Stagger new quote creation
+            // 3-Layer Hero Parallax
+            const bgLayer = document.querySelector('.hero-layer.background');
+            const couchLayer = document.querySelector('.hero-layer.couch');
+            const subjectLayer = document.querySelector('.hero-layer.subject');
+
+            if (bgLayer && couchLayer && subjectLayer) {
+                const windowHeight = window.innerHeight;
+                const scrollProgress = Math.min(1, scrolled / windowHeight);
+
+                // Background moves slowest (0.2x scroll speed)
+                bgLayer.style.transform = `translateY(${scrolled * 0.2}px) scale(1.1)`;
+
+                // Couch moves at medium speed (0.5x)
+                couchLayer.style.transform = `translateY(${scrolled * 0.5}px) scale(1.05)`;
+
+                // Subject zooms along z-axis (grows/moves toward user as you scroll)
+                const subjectScale = 1 + (scrollProgress * 0.5); // Scales from 1x to 1.5x
+                const subjectY = scrolled * 0.4;
+                subjectLayer.style.transform = `translateY(${subjectY}px) scale(${subjectScale})`;
+            }
+
+            // Fade out hero content as user scrolls
+            const heroOpacity = Math.max(0, 1 - (scrolled / windowHeight) * 1.5);
+            if (heroContent) {
+                heroContent.style.opacity = heroOpacity;
+            }
+
+            // Update each quote based on scroll position and parallax speed
+            allQuotes.forEach((quote) => {
+                const speed = parseFloat(quote.getAttribute('data-parallax-speed'));
+                const rotation = parseFloat(quote.getAttribute('data-rotation'));
+                const baseOpacity = parseFloat(quote.getAttribute('data-base-opacity'));
+
+                // Calculate parallax offset
+                const yOffset = -(scrolled * speed);
+
+                // Fade in quotes as hero fades out, respecting their base opacity
+                const fadeMultiplier = Math.min(1, (scrolled / windowHeight) * 2);
+                const quoteOpacity = baseOpacity * fadeMultiplier;
+
+                quote.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+                quote.style.opacity = quoteOpacity;
+            });
+
+            // Varied scroll speeds for book sections
+            const bookSections = document.querySelectorAll('.book-section-timeline');
+            bookSections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top + scrolled;
+                const sectionVisible = rect.top < windowHeight && rect.bottom > 0;
+
+                if (sectionVisible) {
+                    // Alternate speeds: odd sections slightly slower, even slightly faster
+                    const speed = index % 2 === 0 ? 0.05 : -0.05;
+                    const offset = (scrolled - sectionTop + windowHeight) * speed;
+                    section.style.transform = `translateY(${offset}px)`;
+                }
             });
         }
 
@@ -2075,7 +2127,7 @@
                                     <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Message (optional):</label>
                                     <textarea name="message" rows="3" style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem; resize: vertical;"></textarea>
                                 </div>
-                                <button type="submit" style="padding: 15px 30px; background: #4a7c59; color: white; border: none; border-radius: 4px; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">Reserve My Copy</button>
+                                <button type="submit" style="padding: 15px 30px; background: #4a7c59; color: white; border: none; border-radius: 4px; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">Snag My Copy</button>
                             </form>
                         </div>
                     </div>
@@ -2191,6 +2243,58 @@
         }
 
         // Initialize everything
+        // Smooth scroll with resistance
+        let currentScroll = window.pageYOffset;
+        let targetScroll = window.pageYOffset;
+        const scrollDamping = 0.7; // Scroll speed multiplier (0.7 = 70% speed)
+        const scrollSmooth = 0.1; // Smoothing factor (lower = smoother/more resistance)
+
+        function smoothScrollLoop() {
+            // Smooth interpolation
+            currentScroll += (targetScroll - currentScroll) * scrollSmooth;
+
+            // Apply the scroll
+            if (Math.abs(targetScroll - currentScroll) > 0.5) {
+                window.scrollTo(0, currentScroll);
+            }
+
+            requestAnimationFrame(smoothScrollLoop);
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            currentScroll = window.pageYOffset;
+            targetScroll = window.pageYOffset;
+            smoothScrollLoop();
+        });
+
+        // Capture wheel events
+        window.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            targetScroll += e.deltaY * scrollDamping;
+
+            // Clamp to valid range
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+        }, { passive: false });
+
+        // Capture touch for mobile
+        let touchStart = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStart = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            const touchY = e.touches[0].clientY;
+            const delta = (touchStart - touchY) * scrollDamping;
+            targetScroll += delta;
+
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+            touchStart = touchY;
+        }, { passive: true });
+
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize floating quotes
             initFloatingQuotes();
@@ -2227,7 +2331,7 @@
                             if (isVisible) {
                                 // Calculate scroll progress for this element
                                 const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                                const translateY = -20 + (scrollProgress * 20); // Moves from -20% to 0%
+                                const translateY = -10 + (scrollProgress * 15); // Moves from -10% to 5% to show full title first
 
                                 img.style.transform = `translateY(${translateY}%)`;
                             }
@@ -2239,49 +2343,52 @@
             initBookCoverScroll();
             window.addEventListener('resize', initBookCoverScroll);
 
-            // Parallax effect for book separator
-            const parallaxBook = document.getElementById('parallax-book');
-            const parallaxSeparator = document.getElementById('parallax-separator');
+            // Unified scroll handler for all parallax effects
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
 
-            if (parallaxBook && parallaxSeparator) {
-                window.addEventListener('scroll', () => {
-                    const scrolled = window.pageYOffset;
-                    const separatorTop = parallaxSeparator.offsetTop;
+                // Handle quote parallax and hero fade
+                handleScrollParallax();
+
+                // Multi-layer parallax effect for book separator - only when visible
+                const parallaxSeparator = document.getElementById('parallax-separator');
+                const separatorBg = document.querySelector('.separator-bg');
+                const separatorSubject = document.querySelector('.separator-subject');
+                const separatorBook = document.querySelector('.separator-book');
+                const separatorFront = document.querySelector('.separator-front');
+
+                if (parallaxSeparator && separatorBg && separatorSubject && separatorBook && separatorFront) {
+                    const rect = parallaxSeparator.getBoundingClientRect();
+                    const separatorTop = rect.top + scrolled;
                     const separatorHeight = parallaxSeparator.offsetHeight;
                     const windowHeight = window.innerHeight;
 
-                    // Calculate if separator is in viewport
-                    const separatorVisible = (scrolled + windowHeight > separatorTop) &&
-                                            (scrolled < separatorTop + separatorHeight);
+                    // Only activate when separator enters viewport
+                    const separatorInView = rect.top < windowHeight && rect.bottom > 0;
 
-                    if (separatorVisible) {
-                        // Calculate parallax offset with slower movement (0.5 speed)
-                        const relativeScroll = scrolled - separatorTop + windowHeight / 2;
-                        const yPos = relativeScroll * 0.5;
+                    if (separatorInView) {
+                        // Calculate progress from when it enters view (0) to when it exits (1)
+                        const viewProgress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + separatorHeight)));
 
-                        // Calculate object position to reveal more face as you scroll
-                        const scrollProgress = (scrolled - separatorTop + windowHeight) / (separatorHeight + windowHeight);
-                        const objectPositionY = 45 - (scrollProgress * 10); // Moves from 45% to 35% as you scroll
+                        // Background moves slowest
+                        const bgY = viewProgress * separatorHeight * 0.15;
+                        separatorBg.style.transform = `translateY(${bgY}px)`;
 
-                        // Apply transform with parallax effect and object position shift
-                        parallaxBook.style.transform = `translateY(${yPos}px) scale(1.1)`;
-                        parallaxBook.style.objectPosition = `center ${objectPositionY}%`;
+                        // Subject moves at medium-slow speed
+                        const subjectY = viewProgress * separatorHeight * 0.35;
+                        separatorSubject.style.transform = `translateY(${subjectY}px)`;
+
+                        // Book zooms along z-axis (grows as you scroll)
+                        const bookScale = 1 + (viewProgress * 0.5); // Scales from 1x to 1.5x
+                        const bookY = viewProgress * separatorHeight * 0.2;
+                        separatorBook.style.transform = `translateY(${bookY}px) scale(${bookScale})`;
+
+                        // Front elements move fastest
+                        const frontY = viewProgress * separatorHeight * 0.7;
+                        separatorFront.style.transform = `translateY(${frontY}px)`;
                     }
-
-                    // Handle scroll-tied quotes
-                    const scrollQuotes = document.querySelectorAll('.scroll-quote');
-                    scrollQuotes.forEach((quote, index) => {
-                        const scrollFactor = 0.1 + (index % 3) * 0.05; // Different scroll speeds
-                        const direction = index % 2 === 0 ? 1 : -1; // Alternate directions
-
-                        const translateY = scrolled * scrollFactor * direction;
-                        const translateX = scrolled * scrollFactor * 0.5 * direction;
-                        const rotation = scrolled * 0.02 * direction;
-
-                        quote.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotation}deg)`;
-                    });
-                });
-            }
+                }
+            }, { passive: true });
         });
     </script>
 </body>

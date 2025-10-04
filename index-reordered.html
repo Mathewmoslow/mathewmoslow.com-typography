@@ -1,0 +1,3311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience stories through words and music. Author of A Novel Divorce and Beyond The Reach Of Justice - where literature meets soundtrack.">
+    <title>Mathew Moslow - Books with Soundtracks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Georgia:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            max-width: 100vw;
+            width: 100%;
+        }
+
+        * {
+            max-width: 100%;
+        }
+
+        /* Unified Background - Typography Heavy Dark Theme */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                #0f0f0f 0%,
+                #1a1a1a 10%,
+                #1f1f1f 30%,
+                #1a1a1a 50%,
+                #161616 70%,
+                #0f0f0f 100%
+            );
+            z-index: -1;
+        }
+
+        /* All sections float on the background */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e8d5b7;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #e8d5b7;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(26, 26, 26, 0.98);
+                backdrop-filter: blur(20px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transform: translateY(-100%);
+                transition: transform 0.4s ease;
+                z-index: 999;
+                margin: 0;
+                padding: 0;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                list-style: none;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Hero Section with 3-Layer Parallax */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .hero-layer.background {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/bg.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .hero-layer.couch {
+            background-image: url('images/couch.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 2;
+        }
+
+        .hero-layer.subject {
+            background-image: url('images/subject.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 3;
+        }
+
+        /* Mobile separator hero adjustments */
+        @media (max-width: 768px) {
+            .section-separator {
+                height: 100vh !important;
+            }
+
+            .separator-layer {
+                background-position: center center;
+            }
+
+            .separator-layer.separator-subject {
+                background-size: auto 100%;
+                background-position: center center;
+            }
+
+            .separator-layer.separator-bg {
+                background-size: cover;
+            }
+
+            .separator-layer.separator-mug {
+                background-size: auto 80%;
+                background-position: 20% center;
+            }
+
+            .separator-layer.separator-pen {
+                background-size: auto 60%;
+                background-position: 80% center;
+            }
+
+            .journey-content-area {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .journey-image-wrapper {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 100%;
+                height: 250px;
+            }
+
+            .journey-section {
+                padding: 60px 20px;
+            }
+
+            .about-section {
+                padding: 60px 20px;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 6px 12px rgba(0,0,0,0.7);
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-family: 'Georgia', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            max-width: 600px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.7);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Typography-Heavy Parallax Quote System */
+        .quote-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-quote {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            white-space: nowrap;
+            pointer-events: none;
+            font-weight: 300;
+            will-change: transform, opacity;
+            transition: opacity 0.3s ease-out;
+        }
+
+        /* Quote sizes and styles based on z-depth */
+        .floating-quote {
+            /* Base styles - will be overridden by inline styles based on depth */
+        }
+
+        /* Books Section - Typography-Heavy Like About Section */
+        .books-section {
+            padding: 120px 20px 40px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .books-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 100px;
+            text-align: center;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Book Sections - Alternating Left/Right Like About Timeline */
+        .book-section-timeline {
+            position: relative;
+            margin-bottom: 150px;
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* Left side layout */
+        .book-section-timeline.left {
+            justify-content: flex-start;
+        }
+
+        .book-section-timeline.left .book-number {
+            order: 1;
+            margin-right: 60px;
+        }
+
+        .book-section-timeline.left .book-content-area {
+            order: 2;
+            text-align: left;
+            max-width: 800px;
+        }
+
+        /* Right side layout */
+        .book-section-timeline.right {
+            justify-content: flex-end;
+        }
+
+        .book-section-timeline.right .book-number {
+            order: 2;
+            margin-left: 60px;
+        }
+
+        .book-section-timeline.right .book-content-area {
+            order: 1;
+            text-align: right;
+            max-width: 800px;
+        }
+
+        .book-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a7c59;
+            min-width: 120px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .book-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .book-content-area {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .book-cover-wrapper {
+            flex: 0 0 280px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border: 3px solid #4a7c59;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-cover-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-cover-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.1s linear;
+            opacity: 1;
+        }
+
+        .book-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 500;
+            transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-subtitle {
+            color: #e8d5b7;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-synopsis {
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: transform 0.8s ease-out 0.5s, opacity 0.8s ease-out 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-synopsis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            transition: transform 0.8s ease-out 0.6s, opacity 0.8s ease-out 0.6s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .book-section-timeline.visible .book-meta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .book-meta {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .book-action {
+                width: 100%;
+                text-align: center;
+                padding: 16px 25px;
+                font-size: 1.1rem;
+            }
+
+            .book-content-area {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .book-cover-wrapper {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                aspect-ratio: 2/3;
+            }
+        }
+
+        .book-action {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4a7c59;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px;
+            font-family: 'Georgia', serif;
+        }
+
+        .book-action:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+
+        .book-action.secondary {
+            background: transparent;
+            color: #4a7c59;
+            border: 2px solid #4a7c59;
+        }
+
+        .book-action.secondary:hover {
+            background: #4a7c59;
+            color: white;
+        }
+
+        .book-action.tertiary {
+            background: transparent;
+            color: #e8d5b7;
+            border: 2px solid #e8d5b7;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+
+        .book-action.tertiary:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+        }
+
+        /* Cassette Tape Audio Player */
+        .cassette-container {
+            position: relative;
+            margin-top: 20px;
+            height: 0;
+            overflow: hidden;
+            transition: height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+
+        .cassette-container.active {
+            height: 180px;
+            opacity: 1;
+        }
+
+        .cassette-tape {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #4a7c59;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .cassette-label {
+            background: rgba(232, 213, 183, 0.1);
+            border: 1px solid rgba(232, 213, 183, 0.3);
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cassette-label h4 {
+            color: #4a7c59;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cassette-label p {
+            color: rgba(232, 213, 183, 0.7);
+            font-size: 0.75rem;
+        }
+
+        .cassette-reels {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .cassette-reel {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #4a7c59;
+            border-radius: 50%;
+            position: relative;
+            background: radial-gradient(circle, #2a2a2a 30%, #1a1a1a 70%);
+        }
+
+        .cassette-reel::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #4a7c59;
+            border-radius: 50%;
+        }
+
+        /* Add visible spokes to the reel */
+        .cassette-reel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 80%;
+            background: #e8d5b7;
+            transform: translate(-50%, -50%);
+            box-shadow:
+                0 0 0 2px #e8d5b7,
+                0 0 0 2px #e8d5b7;
+            transform-origin: center;
+        }
+
+        .cassette-reel.spinning {
+            animation: spinReel 3s linear infinite;
+        }
+
+        .cassette-reel.spinning::after {
+            animation: spinReel 3s linear infinite;
+        }
+
+        @keyframes spinReel {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .cassette-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .cassette-controls audio {
+            flex: 1;
+            height: 30px;
+        }
+
+        /* Mobile cassette controls - larger touch targets */
+        @media (max-width: 768px) {
+            .cassette-player {
+                padding: 20px;
+            }
+
+            .cassette-controls {
+                gap: 15px;
+            }
+
+            .cassette-controls audio {
+                height: 44px;
+            }
+
+            .cassette-reels {
+                margin-bottom: 20px;
+            }
+
+            .cassette-reel {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Soundtrack Section - Typography Heavy with Graphics */
+        .soundtrack-section {
+            min-height: 100vh;
+            padding: 40px 20px 80px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .soundtrack-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                rgba(74, 124, 89, 0.03) 0%,
+                transparent 25%,
+                rgba(232, 213, 183, 0.02) 50%,
+                transparent 75%,
+                rgba(74, 124, 89, 0.03) 100%
+            );
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+
+        .soundtrack-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .soundtrack-hero {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .soundtrack-main-title {
+            font-family: 'Georgia', serif;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            color: rgba(232, 213, 183, 0.4);
+            margin-bottom: 5px;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .soundtrack-sub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            color: #4a7c59;
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: 50px;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .soundtrack-description {
+            max-width: 750px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
+
+        .soundtrack-intro {
+            color: rgba(232, 213, 183, 0.75);
+            font-size: clamp(1rem, 1.7vw, 1.15rem);
+            line-height: 2;
+            margin-bottom: 30px;
+            font-family: 'Georgia', serif;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .soundtrack-intro.drop-cap {
+            position: relative;
+        }
+
+        .drop-cap-letter {
+            float: left;
+            font-size: 4.5em;
+            line-height: 0.85;
+            margin-right: 0.08em;
+            margin-top: 0.05em;
+            font-family: 'Playfair Display', serif;
+            color: #4a7c59;
+            font-weight: 400;
+        }
+
+        .soundtrack-intro.body-text {
+            text-indent: 2em;
+        }
+
+        .soundtrack-intro.confession {
+            font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+            color: rgba(232, 213, 183, 0.6);
+            font-style: italic;
+            margin-top: 35px;
+        }
+
+        .soundtrack-intro.invitation {
+            text-align: center;
+            color: #e8d5b7;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-top: 45px;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.02em;
+        }
+
+        .em-dash {
+            margin: 0 0.3em;
+            color: rgba(74, 124, 89, 0.5);
+        }
+
+        .soundtrack-intro em {
+            font-style: italic;
+            color: rgba(232, 213, 183, 0.95);
+        }
+
+        /* Decorative Elements */
+        .soundtrack-hero::after {
+            content: '♪ ♫ ♪';
+            position: absolute;
+            top: -40px;
+            right: 10%;
+            font-size: 3rem;
+            color: rgba(74, 124, 89, 0.2);
+            transform: rotate(15deg);
+            animation: floatAndScale 4s ease-in-out infinite;
+        }
+
+        .soundtrack-hero::before {
+            content: '♫ ♪ ♫';
+            position: absolute;
+            bottom: -30px;
+            left: 10%;
+            font-size: 2.5rem;
+            color: rgba(232, 213, 183, 0.2);
+            transform: rotate(-10deg);
+            animation: floatAndScale 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatAndScale {
+            0%, 100% {
+                transform: translateY(0px) scale(1) rotate(15deg);
+            }
+            25% {
+                transform: translateY(-8px) scale(1.1) rotate(12deg);
+            }
+            50% {
+                transform: translateY(-12px) scale(1.05) rotate(18deg);
+            }
+            75% {
+                transform: translateY(-6px) scale(1.08) rotate(14deg);
+            }
+        }
+
+        /* Section Separators with Multi-Layer Parallax */
+        .section-separator {
+            position: relative;
+            height: 100vh; /* Full viewport height to show complete image */
+            width: 100%;
+            max-width: 100vw;
+            overflow: hidden;
+            margin-top: 0;
+            margin-bottom: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .separator-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            will-change: transform;
+        }
+
+        .separator-layer.separator-bg {
+            background-image: url('images/separator-bg.png');
+            z-index: 1;
+        }
+
+        .separator-layer.separator-mug {
+            background-image: url('images/separator-mug.png');
+            z-index: 2;
+        }
+
+        .separator-layer.separator-subject {
+            background-image: url('images/separator-subject.png');
+            z-index: 3;
+        }
+
+        .separator-layer.separator-pen {
+            background-image: url('images/separator-pen.png');
+            z-index: 4;
+        }
+
+        @media (max-width: 768px) {
+            .section-separator {
+                height: 250px;
+                width: 100%;
+                overflow: hidden;
+            }
+            .separator-image {
+                object-position: center 48%;
+            }
+            .separator-layer {
+                /* Prevent horizontal scroll from parallax transforms on mobile */
+                max-width: 100%;
+                overflow: hidden;
+            }
+        }
+
+        /* Floating vinyl graphics */
+        .vinyl-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                rgba(74, 124, 89, 0.1) 0%,
+                rgba(74, 124, 89, 0.05) 30%,
+                transparent 70%
+            );
+            border: 2px solid rgba(74, 124, 89, 0.1);
+        }
+
+        .vinyl-decoration::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: rgba(232, 213, 183, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .vinyl-decoration.vinyl-1 {
+            top: 10%;
+            left: 5%;
+            animation: slowSpin 15s linear infinite;
+        }
+
+        .vinyl-decoration.vinyl-2 {
+            top: 20%;
+            right: 8%;
+            animation: slowSpin 20s linear infinite reverse;
+        }
+
+        .vinyl-decoration.vinyl-3 {
+            bottom: 15%;
+            left: 10%;
+            animation: slowSpin 18s linear infinite;
+        }
+
+        @keyframes slowSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+
+        .track-collection {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .track-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 124, 89, 0.2);
+        }
+
+        .track-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+            border-color: #e8d5b7;
+        }
+
+        .track-visual {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            flex-shrink: 0;
+        }
+
+        .album-cover {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 2;
+            transition: transform 0.6s ease;
+        }
+
+        .track-card:hover .album-cover {
+            transform: translateX(-50px) rotateY(-10deg);
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+        }
+
+        .vinyl-record {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #2a2a2a 30%, #1a1a1a 31%, #0a0a0a 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: transform 0.6s ease;
+        }
+
+        .track-card:hover .vinyl-record {
+            transform: translateX(120px) rotateZ(15deg);
+        }
+
+        .vinyl-record.spinning {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: translateX(120px) rotateZ(0deg); }
+            to { transform: translateX(120px) rotateZ(360deg); }
+        }
+
+        .vinyl-label {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at center, #4a7c59 0%, #3a6249 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 3;
+            position: relative;
+        }
+
+        .vinyl-grooves {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .vinyl-grooves::before,
+        .vinyl-grooves::after {
+            content: '';
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .vinyl-grooves::before {
+            width: 190px;
+            height: 190px;
+        }
+
+        .vinyl-grooves::after {
+            width: 150px;
+            height: 150px;
+        }
+
+        .track-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-left: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .track-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .track-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #4a7c59;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .play-btn:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+            transform: scale(1.1);
+        }
+
+        .play-btn.playing {
+            background: #8b4513;
+        }
+
+        /* Mobile soundtrack controls - larger touch targets */
+        @media (max-width: 768px) {
+            .play-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .track-info {
+                padding-left: 20px;
+            }
+
+            .track-title {
+                font-size: 1.4rem;
+            }
+
+            .track-description {
+                font-size: 0.95rem;
+            }
+
+            .track-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .track-info {
+                padding-left: 0;
+                padding-top: 20px;
+                align-items: center;
+            }
+
+            .vinyl-graphic {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* About Section - Exact Copy from Backup */
+        .about-section {
+            padding: 120px 20px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero-content {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .about-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .about-hero-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-statement {
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            line-height: 1.8;
+            color: rgba(232, 213, 183, 0.7);
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            position: relative;
+        }
+
+        .highlight {
+            position: relative;
+            color: #e8d5b7;
+            font-weight: 400;
+            font-style: italic;
+            display: inline-block;
+            border-bottom: 2px solid #4a7c59;
+            padding-bottom: 2px;
+        }
+
+        .highlight.visible::after {
+            width: 100%;
+        }
+
+        .journey-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .journey-section-timeline {
+            position: relative;
+            margin-bottom: 120px;
+            display: flex;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .journey-section-timeline.left {
+            justify-content: flex-start;
+        }
+
+        .journey-section-timeline.left .section-number {
+            order: 1;
+            margin-right: 60px;
+        }
+
+        .journey-section-timeline.left .section-content {
+            order: 2;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .journey-section-timeline.right {
+            justify-content: flex-end;
+        }
+
+        .journey-section-timeline.right .section-number {
+            order: 2;
+            margin-left: 60px;
+        }
+
+        .journey-section-timeline.right .section-content {
+            order: 1;
+            text-align: right;
+            max-width: 500px;
+        }
+
+        .section-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a7c59;
+            margin-right: 40px;
+            min-width: 60px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .section-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .section-content {
+            flex: 1;
+        }
+
+        .journey-section-timeline .section-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 8px;
+            transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .journey-section-timeline.visible .section-title {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-location {
+            font-size: 0.9rem;
+            color: #e8d5b7;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .journey-section-timeline.visible .section-location {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-description {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            transition: transform 0.8s ease-out 0.5s, opacity 0.8s ease-out 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .journey-section-timeline.visible .section-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Journey Section */
+        .journey-section {
+            padding: 120px 20px;
+            background: transparent;
+            position: relative;
+        }
+
+        .journey-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .journey-number {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            color: rgba(74, 124, 89, 0.3);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .journey-section-timeline.visible .journey-number {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .journey-content-area {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .journey-image-wrapper {
+            flex: 0 0 350px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border: 3px solid #4a7c59;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .journey-section-timeline.visible .journey-image-wrapper {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .journey-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 1;
+        }
+
+        .journey-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .journey-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: #e8d5b7;
+            margin-bottom: 20px;
+            transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .journey-section-timeline.visible .journey-title {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: transparent;
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            border-radius: 8px;
+            text-align: left;
+            border: 1px solid rgba(74, 124, 89, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #e8d5b7;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        /* Mobile form inputs - larger touch targets */
+        @media (max-width: 768px) {
+            .form-group input,
+            .form-group textarea {
+                padding: 18px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .form-submit {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c59;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-submit {
+            background: #4a7c59;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: #e8d5b7;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        /* Flipbook Styles */
+        #flipbook-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            width: 100%;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        #book {
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            max-width: 90vw;
+            max-height: 80vh;
+        }
+
+        .page {
+            background: #f4f0e6;
+            color: #1a1a1a;
+            padding: 30px;
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow: hidden;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .page p {
+            margin-bottom: 1em;
+        }
+
+        .page h2 {
+            color: #4a7c59;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .flipbook-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flipbook-btn {
+            padding: 12px 24px;
+            background: #4a7c59;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .flipbook-btn:hover:not(:disabled) {
+            background: #5a8c69;
+            transform: translateY(-2px);
+        }
+
+        .flipbook-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-counter {
+            color: #e8d5b7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            #flipbook-container {
+                padding: 10px;
+            }
+
+            .page {
+                padding: 20px;
+                font-size: 0.9rem;
+            }
+
+            #book {
+                max-width: 95vw;
+                max-height: 70vh;
+            }
+
+            .flipbook-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            #bookTitle {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            background: rgba(26, 26, 26, 0.98);
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            border: 1px solid rgba(74, 124, 89, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .book-section-timeline {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 80px;
+            }
+
+            .book-section-timeline.left,
+            .book-section-timeline.right {
+                justify-content: center;
+            }
+
+            .book-section-timeline.left .book-number,
+            .book-section-timeline.right .book-number {
+                order: 0;
+                margin: 0 0 30px 0;
+            }
+
+            .book-section-timeline.left .book-content-area,
+            .book-section-timeline.right .book-content-area {
+                order: 1;
+                text-align: center;
+                flex-direction: column;
+            }
+
+            .book-cover-wrapper {
+                flex: none;
+                width: 85%;
+                max-width: 400px;
+                height: 400px;
+                margin: 0 auto 30px;
+                overflow: hidden;
+                order: 1;
+            }
+
+            .book-content {
+                order: 2;
+            }
+
+            .book-cover-wrapper img {
+                object-fit: cover;
+                height: 120%;
+                transform: translateY(0);
+            }
+
+            .track-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .track-info {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+
+            .journey-section-timeline {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 80px;
+            }
+
+            .journey-section-timeline.left,
+            .journey-section-timeline.right {
+                justify-content: center;
+            }
+
+            .journey-section-timeline.left .section-number,
+            .journey-section-timeline.right .section-number {
+                order: 0;
+                margin: 0 0 30px 0;
+            }
+
+            .journey-section-timeline.left .section-content,
+            .journey-section-timeline.right .section-content {
+                order: 2;
+                text-align: center;
+            }
+
+            .journey-section-timeline.left .journey-content-area,
+            .journey-section-timeline.right .journey-content-area {
+                flex-direction: column;
+            }
+
+            .journey-section-timeline.left .journey-image-wrapper,
+            .journey-section-timeline.right .journey-image-wrapper {
+                order: 1;
+            }
+
+            .journey-section-timeline.left .journey-content,
+            .journey-section-timeline.right .journey-content {
+                order: 2;
+            }
+
+            .contact-form {
+                padding: 40px 20px;
+            }
+
+            .soundtrack-description div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
+            .soundtrack-description div[style*="border-left"] {
+                border-left: none !important;
+                border-top: 2px solid rgba(74, 124, 89, 0.3) !important;
+                padding-left: 0 !important;
+                padding-top: 40px !important;
+            }
+        }
+    </style>
+    <!-- StPageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+</head>
+<body>
+    <!-- Floating Typography Layer -->
+    <div class="quote-layer" id="quoteLayer">
+        <!-- Dynamic quotes will be inserted here -->
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">Mathew Moslow</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#books" onclick="closeMenu()">Books</a></li>
+                <li><a href="#soundtrack" onclick="closeMenu()">Soundtrack</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#journey" onclick="closeMenu()">Journey</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero: Book Cover Image with 4-Layer Parallax -->
+    <div class="section-separator" id="parallax-separator" style="margin-top: 0; margin-bottom: 0; height: 100vh;">
+        <div class="separator-layer separator-bg"></div>
+        <div class="separator-layer separator-mug"></div>
+        <div class="separator-layer separator-subject"></div>
+        <div class="separator-layer separator-pen"></div>
+    </div>
+
+    <!-- Books Section - Typography Heavy Timeline Style -->
+    <section class="books-section" id="books">
+        <div class="books-container">
+            <h2 class="section-title">Books</h2>
+
+            <!-- Book 1: A Novel Divorce - Left Side -->
+            <div class="book-section-timeline left">
+                <div class="book-number">01</div>
+                <div class="book-content-area">
+                    <div class="book-cover-wrapper">
+                        <img src="images/v1@3x.png" alt="A Novel Divorce Book Cover" loading="lazy">
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">A Novel Divorce</h3>
+                        <p class="book-subtitle">A Story of Conscious Uncoupling</p>
+                        <div class="book-synopsis">
+                            <p>The beginning of this story isn't the heartbreak, or the honeymoon, or even the aftermath of the sexual escapades that always seemed to become pure panic. This story begins in Montego Bay, Jamaica, where a boy learns to perform to survive. Until his performance becomes his identity and that identity becomes a prison, trapping him in a marriage that wasn't meant to be.</p>
+                            <p>What unfolds across these pages is not a guide to getting over the end of a relationship. It's one man's retelling of the coming apart and the putting back together. From ayahuasca ceremonies in jungle sweat lodges to nights spent prowling hookup apps, from barstools to breakdowns during naked yoga, he maps the clumsy beginning of his second life—and the strange cast of characters who help him shape it.</p>
+                        </div>
+                        <div class="book-meta">
+                            <a href="#" class="book-action">Get My Copy</a>
+                            <button class="book-action secondary" onclick="openPeek('divorce')">Sneak a Peek</button>
+                            <button class="book-action tertiary" onclick="toggleCassette('divorce')">Have a Listen</button>
+                        </div>
+
+                        <!-- Cassette Tape Player -->
+                        <div class="cassette-container" id="cassette-divorce">
+                            <div class="cassette-tape">
+                                <div class="cassette-label">
+                                    <h4>A Novel Divorce</h4>
+                                    <p>Audio Preview</p>
+                                </div>
+                                <div class="cassette-reels">
+                                    <div class="cassette-reel" id="reel1-divorce"></div>
+                                    <div class="cassette-reel" id="reel2-divorce"></div>
+                                </div>
+                                <div class="cassette-controls">
+                                    <audio id="audio-divorce" controls>
+                                        <source src="audio/noveldivorcesnippet.mp3" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2: Beyond The Reach Of Justice - Right Side -->
+            <div class="book-section-timeline right">
+                <div class="book-number">02</div>
+                <div class="book-content-area">
+                    <div class="book-content">
+                        <h3 class="book-title">Beyond The Reach Of Justice</h3>
+                        <p class="book-subtitle">A Dark Psychological Thriller</p>
+                        <div class="book-synopsis">
+                            <p><strong>In the shadow of Jamaica's colonial past, where ancestral estates whisper of old money and even older sins, Jonathan Blake watches his inheritance slip away.</strong></p>
+                            <p>A skilled nurse by day, Jonathan masks a mind haunted since his mother's tragic overdose—a death he blames on his father's cruelty. When Richard Blake disinherits his only son, the betrayal cuts deep. But when his father announces plans to transform their ancestral great house into a tacky all-inclusive resort—with the help of his young interior designer girlfriend, Anna Sutton—Jonathan's grief transforms into something far more dangerous: a meticulously plotted revenge.</p>
+                            <p>When his family's library of colonial-era law books gives Jonathan the answer to his problems, and armed with his medical expertise, he sets in motion a year-long countdown.</p>
+                        </div>
+                        <div class="book-meta">
+                            <button class="book-action" onclick="openReserveModal()">Snag My Copy</button>
+                            <button class="book-action secondary" onclick="openPeek('justice')">Sneak a Peek</button>
+                            <button class="book-action tertiary" onclick="toggleCassette('justice')">Have a Listen</button>
+                        </div>
+
+                        <!-- Cassette Tape Player -->
+                        <div class="cassette-container" id="cassette-justice">
+                            <div class="cassette-tape">
+                                <div class="cassette-label">
+                                    <h4>Beyond The Reach Of Justice</h4>
+                                    <p>Audio Preview</p>
+                                </div>
+                                <div class="cassette-reels">
+                                    <div class="cassette-reel" id="reel1-justice"></div>
+                                    <div class="cassette-reel" id="reel2-justice"></div>
+                                </div>
+                                <div class="cassette-controls">
+                                    <audio id="audio-justice" controls>
+                                        <source src="audio/chapter1blakehall.mp3" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-cover-wrapper">
+                        <img src="images/ayadv1@3x.png" alt="Beyond The Reach Of Justice Book Cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soundtrack Section -->
+    <section class="soundtrack-section" id="soundtrack">
+        <!-- Floating vinyl decorations -->
+        <div class="vinyl-decoration vinyl-1"></div>
+        <div class="vinyl-decoration vinyl-2"></div>
+        <div class="vinyl-decoration vinyl-3"></div>
+
+        <div class="soundtrack-container">
+            <div class="soundtrack-hero">
+                <h2 class="soundtrack-main-title" style="font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 400; color: rgba(232, 213, 183, 0.6); margin-bottom: 10px; letter-spacing: 3px; text-align: center; text-transform: uppercase;">A Book with a Soundtrack?</h2>
+                <h3 class="soundtrack-sub-title" style="font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; color: #4a7c59; margin-bottom: 80px; letter-spacing: 2px; text-align: center; font-style: italic;">How Novel!</h3>
+
+                <div class="soundtrack-description" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+                        <!-- Left Column -->
+                        <div style="position: relative;">
+                            <p class="soundtrack-intro drop-cap" style="font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.9; color: rgba(232, 213, 183, 0.95); margin-bottom: 40px;">
+                                <span class="drop-cap-letter" style="float: left; font-size: 5em; line-height: 0.8; margin-right: 10px; margin-top: 8px; font-family: 'Playfair Display', serif; color: #4a7c59;">I</span> didn't only write journal entries during my separation and divorce<span class="em-dash" style="margin: 0 0.3em;">—</span>I wrote full songs, I wrote poems and turned them into verses.
+                            </p>
+
+                            <p class="soundtrack-intro body-text" style="font-size: clamp(1rem, 2vw, 1.3rem); line-height: 2; color: rgba(232, 213, 183, 0.85); margin-bottom: 0;">
+                                With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and <em style="color: #e8d5b7; font-family: 'Playfair Display', serif; font-size: 1.1em;">I sang</em>. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form.
+                            </p>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div style="border-left: 2px solid rgba(74, 124, 89, 0.3); padding-left: 60px;">
+                            <p class="soundtrack-intro confession" style="font-size: clamp(1rem, 2vw, 1.3rem); line-height: 2; color: rgba(232, 213, 183, 0.75); font-style: italic; margin-bottom: 40px;">
+                                The bloopers<span class="em-dash" style="margin: 0 0.3em;">—</span>they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.
+                            </p>
+
+                            <p class="soundtrack-intro invitation" style="font-size: clamp(1.1rem, 2.3vw, 1.5rem); line-height: 1.8; color: #e8d5b7; text-align: left; margin: 0;">
+                                <em style="font-family: 'Playfair Display', serif;">Please enjoy this expression of emotion in music form.</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="track-collection">
+                <!-- Track 1 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="images/flgb2.jpeg" alt="Feels Like Goodbye">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">01</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Feels Like Goodbye</h3>
+                        <p class="track-description">This was the first song that came out of me during the divorce. I was trying to make sense of why we were tearing apart something that didn't feel broken—just wrong-shaped, maybe? Neither of us wanted to lose each other completely, but we both knew we couldn't stay married. We were figuring out how to keep all the good stuff, all the reasons we fell for each other in the first place, while letting go of this thing that was suffocating us both.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'audio/feelslikegoodbye.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="images/breathing2.jpeg" alt="While I'm Breathing">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">02</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">While I'm Breathing</h3>
+                        <p class="track-description">I was scrolling through Instagram and came across a post that absolutely struck me—like being hit sideways, and I guess that's what happened to the guy who originally posted it. I took his words and reimagined them somewhat, then spent about 24 hours straight writing and reworking the music, trying to sing and understand a genre I was completely unfamiliar with. But it had to sound like this. I was crazed, and this is the result.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'audio/whileimbreathing.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="images/wineandlines.png" alt="Fine Wine and Fine Lines">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">03</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Fine Wine and Fine Lines</h3>
+                        <p class="track-description">This started as a poem to my dog Amber, then evolved. It is actually the first time I played around with harmonies, I sang it only once but digitally created the harmonics and while it isn't perfect it's pretty cool. I contemplated not including it because it makes me happy cry. But things are great, and we will always have the memories, and we will always have Costa Rica. This song is a cheeky nod to aging gracefully and has a hidden message only my ex husband will understand :)</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'audio/finewineandfinelines.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="images/LMCOVER2.png" alt="Lovely Mess">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">04</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Lovely Mess</h3>
+                        <p class="track-description">This was inspired by women who are badass and go through divorce, raise kids, keep their heads up, but still long for their man. It's for the late-night booty callers, the ones who don't delete his number from their phone, the strong, confident, independent ones who still want someone to rub their back and tell them they're doing a good job. It was actually written originally to be an Evanescence-Nicki Minaj mashup and turned into this jam-rock track.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'audio/lovelymess.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 5 -->
+                <div class="track-card">
+                    <div class="track-visual">
+                        <div class="album-cover">
+                            <img src="images/flgb2.jpeg" alt="Feels Like Goodbye (Outro)">
+                        </div>
+                        <div class="vinyl-record">
+                            <div class="vinyl-label">
+                                <span class="track-number">05</span>
+                            </div>
+                            <div class="vinyl-grooves"></div>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Feels Like Goodbye (Outro)</h3>
+                        <p class="track-description">Because this song just needed more sadness.</p>
+                        <button class="play-btn" onclick="togglePlay(this, 'audio/feelslikegoodbyeoutro.mp3')">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Player (Hidden) -->
+            <audio id="audioPlayer" style="display: none;">
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+    </section>
+
+    <!-- About Section with Hero Layers -->
+    <section class="hero about-section" id="about">
+        <div class="hero-layer background"></div>
+        <div class="hero-layer couch"></div>
+        <div class="hero-layer subject"></div>
+        <div class="hero-content about-hero-content">
+            <h2 class="about-hero-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; color: white; margin-bottom: 30px; letter-spacing: 2px;">ABOUT MATHEW MOSLOW</h2>
+            <p class="about-statement" style="font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.8; color: rgba(232, 213, 183, 0.95); max-width: 800px; margin: 0 auto;">
+                <em>Mathew Moslow</em> writes from the intersection of
+                <span class="highlight">healing</span> and <span class="highlight">honesty</span>—where the
+                messy work of becoming human meets the courage to examine what we'd rather
+                leave unexamined.
+            </p>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="about-section" id="journey">
+        <div class="about-container">
+            <!-- Journey Sections - Alternating Left/Right Layout -->
+            <div class="journey-container">
+                <!-- Left Side -->
+                <div class="journey-section-timeline left">
+                    <div class="section-number">01</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Beaches of Jamaica</h3>
+                        <p class="section-location">MONTEGO BAY</p>
+                        <p class="section-description">
+                            Growing up gay in Montego Bay taught him early that survival sometimes means performing, but his work now centers on the radical act of showing up authentically—especially when it's uncomfortable.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="journey-section-timeline right">
+                    <div class="section-number">02</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Psychiatric Nursing</h3>
+                        <p class="section-location">HOSPITAL FLOORS</p>
+                        <p class="section-description">
+                            A psychiatric nurse in training and a seeker by nature, Mathew's journey from the beaches of Jamaica to the hospital floors of Florida reads like a masterclass in intentional transformation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Left Side -->
+                <div class="journey-section-timeline left">
+                    <div class="section-number">03</div>
+                    <div class="section-content">
+                        <h3 class="section-title">The Pressure Cooker Method</h3>
+                        <p class="section-location">A REVOLUTIONARY APPROACH</p>
+                        <p class="section-description">
+                            His approach to life's most difficult moments is refreshingly unconventional. When his marriage to Aaron began to unravel, rather than following the traditional script of bitter divorce proceedings, they chose what Mathew calls a "pressure cooker" method—confronting pain head-on, with therapeutic support, to transform heartbreak into something resembling wisdom.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="journey-section-timeline right">
+                    <div class="section-number">04</div>
+                    <div class="section-content">
+                        <h3 class="section-title">Author & Truth-Teller</h3>
+                        <p class="section-location">PRESENT DAY • FLORIDA</p>
+                        <p class="section-description">
+                            Currently working on his second book, "Beyond The Reach Of Justice"—a thriller about a disinherited nurse who turns to crime—Mathew demonstrates the range that comes from someone unafraid to explore the darker corners of human motivation, whether in fiction or his own life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Journey Section -->
+    <section class="journey-section" id="journey">
+        <div class="journey-container">
+            <h2 class="section-title">The Visual Journey</h2>
+
+            <!-- Journey 1: The Spark -->
+            <div class="journey-section-timeline left">
+                <div class="journey-number">01</div>
+                <div class="journey-content-area">
+                    <div class="journey-image-wrapper">
+                        <img src="images/journey/spark.png" alt="The Spark - Writing Process" loading="lazy">
+                    </div>
+                    <div class="journey-content">
+                        <h3 class="journey-title">The Spark</h3>
+                        <p class="section-description">
+                            Every story begins with a moment of recognition—that split second when you realize your life has become something worth examining. For me, it wasn't dramatic. I was sitting in my kitchen, coffee growing cold, when I understood that the performance I'd been giving for years wasn't sustainable anymore.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Journey 2: The Writing Process -->
+            <div class="journey-section-timeline right">
+                <div class="journey-number">02</div>
+                <div class="journey-content-area">
+                    <div class="journey-content">
+                        <h3 class="journey-title">The Writing Process</h3>
+                        <p class="section-description">
+                            Writing became my laboratory. Each morning, I'd sit with my laptop and excavate another layer of truth. Some days, the words flowed like confession. Others, I had to drag them out, bloody and reluctant. But slowly, the story of who I really was began to emerge from beneath decades of careful construction.
+                        </p>
+                    </div>
+                    <div class="journey-image-wrapper">
+                        <img src="images/journey/newprocess.png" alt="The Writing Process" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Journey 3: Behind the Pages -->
+            <div class="journey-section-timeline left">
+                <div class="journey-number">03</div>
+                <div class="journey-content-area">
+                    <div class="journey-image-wrapper">
+                        <img src="images/journey/behindthepages2.png" alt="Behind the Pages" loading="lazy">
+                    </div>
+                    <div class="journey-content">
+                        <h3 class="journey-title">Behind the Pages</h3>
+                        <p class="section-description">
+                            What you don't see in the final pages are the 3 AM rewrites, the chapters I deleted because they were too raw, too honest, too real. You don't see the conversations with friends who helped me understand that vulnerability isn't weakness—it's the most courageous thing we can offer each other.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Journey 4: Creating the Soundtrack -->
+            <div class="journey-section-timeline right">
+                <div class="journey-number">04</div>
+                <div class="journey-content-area">
+                    <div class="journey-content">
+                        <h3 class="journey-title">Creating the Soundtrack</h3>
+                        <p class="section-description">
+                            Music became another language for things I couldn't quite capture in prose. Late nights in makeshift studios, learning to sing my own pain, discovering that auto-tune can't fix a broken heart but it can help you find your voice anyway. Each song became a chapter I couldn't write any other way.
+                        </p>
+                    </div>
+                    <div class="journey-image-wrapper">
+                        <img src="images/journey/studio.png" alt="Creating the Soundtrack" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="contact-subtitle">Have thoughts on the books? Questions about the journey? I'd love to hear from you.</p>
+
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xeogwwbp" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal for previews -->
+    <div id="previewModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="flipbook-container">
+            <h2 id="bookTitle" style="color: #4a7c59; font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center;">Sneak Peek</h2>
+            <div id="book"></div>
+            <div class="flipbook-controls">
+                <button class="flipbook-btn" id="prevBtn" onclick="flipPrevPage()">← Previous</button>
+                <span class="page-counter" id="pageCounter">Page 1</span>
+                <button class="flipbook-btn" id="nextBtn" onclick="flipNextPage()">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== VERBOSE DEBUGGING SYSTEM ==========
+        console.log('%c========== SITE AUDIT START ==========', 'background: #4a7c59; color: white; font-size: 16px; padding: 10px;');
+
+        // Check all hero image layers
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('%c[AUDIT] Checking Hero Image Layers', 'background: #e8d5b7; color: black; font-weight: bold; padding: 5px;');
+
+            const bgLayer = document.querySelector('.hero-layer.background');
+            const couchLayer = document.querySelector('.hero-layer.couch');
+            const subjectLayer = document.querySelector('.hero-layer.subject');
+
+            console.log('[HERO LAYERS] Background layer found:', bgLayer);
+            console.log('[HERO LAYERS] Couch layer found:', couchLayer);
+            console.log('[HERO LAYERS] Subject layer found:', subjectLayer);
+
+            if (bgLayer) {
+                const bgImage = window.getComputedStyle(bgLayer).backgroundImage;
+                console.log('[HERO LAYERS] Background image URL:', bgImage);
+            }
+            if (couchLayer) {
+                const couchImage = window.getComputedStyle(couchLayer).backgroundImage;
+                console.log('[HERO LAYERS] Couch image URL:', couchImage);
+            }
+            if (subjectLayer) {
+                const subjectImage = window.getComputedStyle(subjectLayer).backgroundImage;
+                console.log('[HERO LAYERS] Subject image URL:', subjectImage);
+            }
+
+            // Check About section
+            console.log('%c[AUDIT] Checking About Section', 'background: #e8d5b7; color: black; font-weight: bold; padding: 5px;');
+            const aboutSection = document.getElementById('about');
+            const aboutTitle = document.querySelector('.about-hero-title');
+            const aboutStatement = document.querySelector('.about-statement');
+
+            console.log('[ABOUT] About section found:', aboutSection);
+            console.log('[ABOUT] About title element:', aboutTitle);
+            console.log('[ABOUT] About title text:', aboutTitle?.textContent);
+            console.log('[ABOUT] About statement element:', aboutStatement);
+            console.log('[ABOUT] About statement text:', aboutStatement?.textContent);
+
+            // Check all sections exist
+            console.log('%c[AUDIT] Checking All Sections', 'background: #e8d5b7; color: black; font-weight: bold; padding: 5px;');
+            const sections = {
+                'parallax-separator': document.getElementById('parallax-separator'),
+                'books': document.getElementById('books'),
+                'soundtrack': document.getElementById('soundtrack'),
+                'about': document.getElementById('about'),
+                'journey': document.getElementById('journey'),
+                'contact': document.getElementById('contact')
+            };
+
+            Object.entries(sections).forEach(([id, el]) => {
+                console.log(`[SECTIONS] ${id}:`, el ? '✓ FOUND' : '✗ MISSING');
+            });
+
+            console.log('%c========== SITE AUDIT END ==========', 'background: #4a7c59; color: white; font-size: 16px; padding: 10px;');
+        });
+
+        // Typography-Heavy Floating Quote System
+        const quotes = [
+            { text: "complete and total peace", size: "medium" },
+            { text: "a divorce that refuses to conform to scripts", size: "large" },
+            { text: "pressure cooker method", size: "small" },
+            { text: "transformation as ongoing practice", size: "medium" },
+            { text: "Love is a living thing, fluid and ever-adapting", size: "large" },
+            { text: "What if divorce could be an act of love?", size: "medium" },
+            { text: "the work of showing up fully for his life", size: "small" },
+            { text: "genuine transformation in public view", size: "medium" },
+            { text: "not your therapist's divorce story", size: "small" },
+            { text: "a manifesto for a new way of seeing how love evolves", size: "large" },
+            { text: "the messy middle", size: "small" },
+            { text: "voraciously curious", size: "medium" },
+            { text: "controlled burn, clearing ground for something new", size: "large" },
+            { text: "dramatic molting, painful yet necessary", size: "medium" },
+            { text: "the work of showing up fully", size: "small" },
+            { text: "intentional dissolution", size: "medium" },
+            { text: "what if ending could be a beginning?", size: "medium" },
+            { text: "stories we tell about separation", size: "small" },
+            { text: "comfort isn't the goal, transformation is", size: "large" }
+        ];
+
+        function createFloatingQuote(quote, index) {
+            const element = document.createElement('div');
+            element.className = `floating-quote`;
+
+            // Calculate total document height for positioning
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.clientHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight
+            );
+
+            // Spread quotes across entire document height
+            const topPosition = Math.random() * documentHeight;
+            const left = 5 + Math.random() * 90; // 5% to 95%
+
+            element.style.top = `${topPosition}px`;
+            element.style.left = `${left}%`;
+
+            // Create z-depth value (0 = far back, 100 = close to viewer)
+            const zDepth = Math.random() * 100;
+            element.setAttribute('data-z-depth', zDepth.toFixed(2));
+
+            // Base font size based on z-depth
+            const baseFontSize = 0.4 + (zDepth / 100) * 3.6;
+
+            // Opacity based on depth
+            const baseOpacity = 0.05 + (zDepth / 100) * 0.25;
+            element.setAttribute('data-base-opacity', baseOpacity.toFixed(2));
+
+            // Blur based on depth
+            const blurAmount = 3 - (zDepth / 100) * 2.5;
+            if (blurAmount > 0.5) {
+                element.style.filter = `blur(${blurAmount}px)`;
+            }
+
+            // Font variations
+            const fonts = ['Playfair Display', 'Georgia', 'serif'];
+            const fontWeights = [300, 400, 500];
+
+            // Stylize each word individually
+            const words = quote.text.split(' ');
+            const styledHTML = words.map((word, wordIndex) => {
+                // Random variations for each word
+                const wordSizeVariation = 0.5 + (Math.random() * 2); // 0.5x to 2.5x for dramatic variation
+                const wordOpacityVariation = 0.4 + (Math.random() * 0.6); // 0.4 to 1.0
+                const wordFont = fonts[Math.floor(Math.random() * fonts.length)];
+                const wordWeight = fontWeights[Math.floor(Math.random() * fontWeights.length)];
+
+                // Emphasize keywords (longer words or certain positions)
+                const isKeyword = word.length > 6 || wordIndex === 0 || wordIndex === words.length - 1;
+                const emphasisMultiplier = isKeyword ? 1.8 : 1;
+
+                const finalSize = baseFontSize * wordSizeVariation * emphasisMultiplier;
+                const finalOpacity = baseOpacity * wordOpacityVariation;
+
+                // Color variation - gold and green
+                const colorChoice = Math.random();
+                let color;
+                if (colorChoice < 0.5) {
+                    color = `rgba(232, 213, 183, ${finalOpacity})`; // Gold
+                } else {
+                    color = `rgba(74, 124, 89, ${finalOpacity})`; // Green
+                }
+
+                // Random chance to add brackets around word
+                const useBrackets = isKeyword && Math.random() < 0.3;
+                const displayWord = useBrackets ? `[${word}]` : word;
+
+                // Mix of effects: some words get transforms, some don't
+                const effects = [];
+                if (Math.random() < 0.3) effects.push(`scale(${0.9 + Math.random() * 0.4})`); // Random scale
+                if (Math.random() < 0.2) effects.push(`rotate(${(Math.random() - 0.5) * 10}deg)`); // Random rotation
+
+                const transform = effects.length > 0 ? `transform: ${effects.join(' ')};` : '';
+                const transition = Math.random() < 0.5 ? 'transition: all 0.3s ease;' : '';
+
+                return `<span style="display: inline-block; font-size: ${finalSize}rem; font-family: '${wordFont}', serif; font-weight: ${wordWeight}; opacity: ${wordOpacityVariation}; color: ${color}; ${transform} ${transition}">${displayWord}</span>`;
+            }).join(' ');
+
+            element.innerHTML = styledHTML;
+
+            // Overall text properties
+            if (zDepth > 66) {
+                element.style.textShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            }
+
+            // Parallax speed
+            const parallaxSpeed = 0.05 + (zDepth / 100) * 0.55;
+            element.setAttribute('data-parallax-speed', parallaxSpeed.toFixed(2));
+
+            // Random rotation
+            const rotation = (Math.random() - 0.5) * 15;
+            element.setAttribute('data-rotation', rotation);
+
+            // Start with opacity 0
+            element.style.opacity = '0';
+
+            return element;
+        }
+
+        // No animations needed - all handled by scroll event
+
+        // Initialize floating quotes - repeat each quote multiple times for density
+        function initFloatingQuotes() {
+            const quoteLayer = document.getElementById('quoteLayer');
+            const repetitions = 5; // Each quote appears 5 times at different positions/depths
+
+            quotes.forEach((quote, index) => {
+                for (let i = 0; i < repetitions; i++) {
+                    const element = createFloatingQuote(quote, index);
+                    quoteLayer.appendChild(element);
+                }
+            });
+        }
+
+        // Handle scroll-based parallax for quotes, hero layers, and sections
+        function handleScrollParallax() {
+            const scrolled = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const heroContent = document.querySelector('.hero-content');
+            const allQuotes = document.querySelectorAll('.floating-quote');
+
+            // 3-Layer Hero Parallax (About Section)
+            const aboutSection = document.getElementById('about');
+            const bgLayer = document.querySelector('.hero-layer.background');
+            const couchLayer = document.querySelector('.hero-layer.couch');
+            const subjectLayer = document.querySelector('.hero-layer.subject');
+
+            if (aboutSection && bgLayer && couchLayer && subjectLayer) {
+                const windowHeight = window.innerHeight;
+                const rect = aboutSection.getBoundingClientRect();
+
+                // Only apply parallax when About section is actually in viewport (top has crossed into view)
+                if (rect.top <= windowHeight * 0.8 && rect.bottom > 0) {
+                    // Calculate scroll relative to when section enters viewport
+                    const sectionScroll = Math.max(0, (windowHeight * 0.8) - rect.top);
+                    const scrollProgress = Math.min(1, sectionScroll / windowHeight);
+
+                    // Background moves slowest (0.2x scroll speed)
+                    bgLayer.style.transform = `translateY(${sectionScroll * 0.2}px) scale(1.1)`;
+
+                    // Couch moves at medium speed (0.5x)
+                    couchLayer.style.transform = `translateY(${sectionScroll * 0.5}px) scale(1.05)`;
+
+                    // Subject zooms along z-axis (grows/moves toward user as you scroll)
+                    const subjectScale = 1 + (scrollProgress * 0.5); // Scales from 1x to 1.5x
+                    const subjectY = sectionScroll * 0.4;
+                    subjectLayer.style.transform = `translateY(${subjectY}px) scale(${subjectScale})`;
+                }
+            }
+
+            // Fade out hero content as user scrolls (but NOT about-hero-content)
+            const heroOpacity = Math.max(0, 1 - (scrolled / windowHeight) * 1.5);
+            if (heroContent && !heroContent.classList.contains('about-hero-content')) {
+                heroContent.style.opacity = heroOpacity;
+            }
+
+            // Update each quote based on scroll position and parallax speed
+            allQuotes.forEach((quote) => {
+                const speed = parseFloat(quote.getAttribute('data-parallax-speed'));
+                const rotation = parseFloat(quote.getAttribute('data-rotation'));
+                const baseOpacity = parseFloat(quote.getAttribute('data-base-opacity'));
+
+                // Calculate parallax offset
+                const yOffset = -(scrolled * speed);
+
+                // Fade in quotes as hero fades out, respecting their base opacity
+                const fadeMultiplier = Math.min(1, (scrolled / windowHeight) * 2);
+                const quoteOpacity = baseOpacity * fadeMultiplier;
+
+                quote.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+                quote.style.opacity = quoteOpacity;
+            });
+
+            // Varied scroll speeds for book sections
+            const bookSections = document.querySelectorAll('.book-section-timeline');
+            bookSections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top + scrolled;
+                const sectionVisible = rect.top < windowHeight && rect.bottom > 0;
+
+                if (sectionVisible) {
+                    // Alternate speeds: odd sections slightly slower, even slightly faster
+                    const speed = index % 2 === 0 ? 0.05 : -0.05;
+                    const offset = (scrolled - sectionTop + windowHeight) * speed;
+                    section.style.transform = `translateY(${offset}px)`;
+                }
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    if (entry.target.classList.contains('journey-section-timeline') ||
+                        entry.target.classList.contains('book-section-timeline')) {
+                        const number = entry.target.querySelector('.section-number, .book-number');
+                        const title = entry.target.querySelector('.section-title, .book-title');
+                        const location = entry.target.querySelector('.section-location, .book-subtitle');
+
+                        setTimeout(() => {
+                            if (number) number.classList.add('visible');
+                        }, 100);
+
+                        setTimeout(() => {
+                            if (title) title.classList.add('visible');
+                        }, 300);
+
+                        setTimeout(() => {
+                            if (location) location.classList.add('visible');
+                        }, 500);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Music Player Functions
+        let currentAudio = null;
+        // Global Audio Manager - handles all audio playback across the site
+        const AudioManager = {
+            currentAudio: null,
+            currentButton: null,
+            currentVinyl: null,
+
+            stopAll: function() {
+                // Stop soundtrack player
+                const audioPlayer = document.getElementById('audioPlayer');
+                if (audioPlayer && !audioPlayer.paused) {
+                    audioPlayer.pause();
+                    audioPlayer.currentTime = 0;
+                }
+
+                // Stop any audio preview modals
+                const allAudioElements = document.querySelectorAll('audio');
+                allAudioElements.forEach(audio => {
+                    if (!audio.paused) {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                });
+
+                // Reset UI states
+                if (this.currentButton) {
+                    this.currentButton.classList.remove('playing');
+                    const playIcon = this.currentButton.querySelector('.play-icon');
+                    if (playIcon) {
+                        playIcon.textContent = '▶';
+                    }
+                }
+                if (this.currentVinyl) {
+                    this.currentVinyl.classList.remove('spinning');
+                }
+
+                this.currentAudio = null;
+                this.currentButton = null;
+                this.currentVinyl = null;
+            },
+
+            play: function(audio, button, vinyl) {
+                // Stop everything else first
+                this.stopAll();
+
+                // Play new audio
+                this.currentAudio = audio;
+                this.currentButton = button;
+                this.currentVinyl = vinyl;
+
+                audio.play();
+            }
+        };
+
+        let currentButton = null;
+        let currentVinyl = null;
+
+        function togglePlay(button, audioSrc) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const vinyl = button.closest('.track-card').querySelector('.vinyl-record');
+            const trackCard = button.closest('.track-card');
+            const trackTitle = trackCard.querySelector('.track-title')?.textContent || 'A Novel Divorce Soundtrack';
+
+            if (currentButton === button && !audioPlayer.paused) {
+                audioPlayer.pause();
+                button.classList.remove('playing');
+                button.querySelector('.play-icon').textContent = '▶';
+                vinyl.classList.remove('spinning');
+                AudioManager.stopAll();
+
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.playbackState = 'paused';
+                }
+            } else {
+                // Use AudioManager to stop everything and play new track
+                AudioManager.stopAll();
+
+                audioPlayer.src = audioSrc;
+
+                // Set up MediaSession API for system-level controls
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: trackTitle,
+                        artist: 'Mathew Moslow',
+                        album: 'A Novel Divorce - Soundtrack',
+                        artwork: [
+                            { src: 'images/v1@3x.png', sizes: '512x512', type: 'image/png' }
+                        ]
+                    });
+
+                    navigator.mediaSession.setActionHandler('play', () => {
+                        audioPlayer.play();
+                    });
+
+                    navigator.mediaSession.setActionHandler('pause', () => {
+                        audioPlayer.pause();
+                    });
+
+                    navigator.mediaSession.setActionHandler('seekbackward', () => {
+                        audioPlayer.currentTime = Math.max(audioPlayer.currentTime - 10, 0);
+                    });
+
+                    navigator.mediaSession.setActionHandler('seekforward', () => {
+                        audioPlayer.currentTime = Math.min(audioPlayer.currentTime + 10, audioPlayer.duration);
+                    });
+
+                    navigator.mediaSession.setActionHandler('seekto', (details) => {
+                        if (details.seekTime) {
+                            audioPlayer.currentTime = details.seekTime;
+                        }
+                    });
+
+                    navigator.mediaSession.playbackState = 'playing';
+                }
+
+                AudioManager.play(audioPlayer, button, vinyl);
+                button.classList.add('playing');
+                button.querySelector('.play-icon').textContent = '⏸';
+                vinyl.classList.add('spinning');
+
+                currentButton = button;
+                currentVinyl = vinyl;
+            }
+
+            audioPlayer.onended = function() {
+                button.classList.remove('playing');
+                button.querySelector('.play-icon').textContent = '▶';
+                vinyl.classList.remove('spinning');
+                currentButton = null;
+                currentVinyl = null;
+                AudioManager.currentAudio = null;
+                AudioManager.currentButton = null;
+                AudioManager.currentVinyl = null;
+
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.playbackState = 'none';
+                }
+            };
+        }
+
+        // Reserve Modal Function
+        function openReserveModal() {
+            const modal = document.getElementById('reserveModal');
+            if (!modal) {
+                // Create modal if it doesn't exist
+                const modalHTML = `
+                    <div id="reserveModal" class="modal-overlay" onclick="if(event.target === this) closeReserveModal()">
+                        <div class="modal-content" style="max-width: 500px;">
+                            <button class="modal-close" onclick="closeReserveModal()" type="button">×</button>
+                            <h2 style="color: #4a7c59; margin-bottom: 30px; font-family: 'Playfair Display', serif; text-align: center;">Reserve Your Copy</h2>
+                            <p style="margin-bottom: 30px; text-align: center; color: rgba(232, 213, 183, 0.8);">Be among the first to receive <em>Beyond The Reach Of Justice</em> when it's released.</p>
+                            <form action="https://formspree.io/f/xwpojjdg" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Your Name:</label>
+                                    <input type="text" name="name" required style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Your Email:</label>
+                                    <input type="email" name="email" required style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Format Preference (optional):</label>
+                                    <select name="format" style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem;">
+                                        <option value="">Select format</option>
+                                        <option value="hardcover">Hardcover</option>
+                                        <option value="paperback">Paperback</option>
+                                        <option value="ebook">eBook</option>
+                                        <option value="audiobook">Audiobook</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: #e8d5b7; font-size: 0.9rem; font-weight: 500;">Message (optional):</label>
+                                    <textarea name="message" rows="3" style="padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(74, 124, 89, 0.3); border-radius: 4px; color: white; font-size: 1rem; resize: vertical;"></textarea>
+                                </div>
+                                <button type="submit" style="padding: 15px 30px; background: #4a7c59; color: white; border: none; border-radius: 4px; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">Snag My Copy</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+            }
+            document.getElementById('reserveModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReserveModal() {
+            const modal = document.getElementById('reserveModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Utility Functions - StPageFlip Integration
+        let pageFlip = null;
+
+        async function openPeek(bookType) {
+            const modal = document.getElementById('previewModal');
+            const bookContainer = document.getElementById('book');
+            const bookTitle = document.getElementById('bookTitle');
+
+            let title = '';
+            let peekText = '';
+
+            console.log('[PAGE TURNER] Opening peek for:', bookType);
+
+            if (bookType === 'divorce') {
+                title = 'A Novel Divorce';
+                try {
+                    const response = await fetch('src/novel-divorce-peek.txt');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    peekText = await response.text();
+                    console.log('[PAGE TURNER] Loaded divorce content, length:', peekText.length);
+                } catch (error) {
+                    console.error('[PAGE TURNER] Error loading divorce content:', error);
+                    peekText = 'Content not available. Error: ' + error.message;
+                }
+            } else if (bookType === 'justice') {
+                title = 'Beyond The Reach Of Justice';
+                try {
+                    const response = await fetch('src/beyond-reach-peek.txt');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    peekText = await response.text();
+                    console.log('[PAGE TURNER] Loaded justice content, length:', peekText.length);
+                } catch (error) {
+                    console.error('[PAGE TURNER] Error loading justice content:', error);
+                    peekText = 'Content not available. Error: ' + error.message;
+                }
+            }
+
+            // Update title
+            bookTitle.textContent = `${title} - Sneak Peek`;
+
+            // Clear existing book
+            bookContainer.innerHTML = '';
+
+            // Split content into pages - break long paragraphs if needed
+            const paragraphs = peekText.split('\n\n').filter(p => p.trim());
+            const pages = [];
+            let currentPageContent = '';
+            let wordCount = 0;
+            const wordsPerPage = 250; // Words that fit comfortably on one page
+
+            for (let i = 0; i < paragraphs.length; i++) {
+                const para = paragraphs[i];
+                const paraWords = para.split(/\s+/).length;
+
+                // If a single paragraph is too long, split it by sentences
+                if (paraWords > wordsPerPage) {
+                    // Finish current page if there's content
+                    if (currentPageContent) {
+                        pages.push(currentPageContent);
+                        currentPageContent = '';
+                        wordCount = 0;
+                    }
+
+                    // Split long paragraph into chunks
+                    const sentences = para.match(/[^.!?]+[.!?]+/g) || [para];
+                    for (let j = 0; j < sentences.length; j++) {
+                        const sentence = sentences[j];
+                        const sentenceWords = sentence.split(/\s+/).length;
+
+                        if (wordCount + sentenceWords > wordsPerPage && currentPageContent) {
+                            pages.push(currentPageContent);
+                            currentPageContent = sentence;
+                            wordCount = sentenceWords;
+                        } else {
+                            currentPageContent += (currentPageContent ? ' ' : '') + sentence;
+                            wordCount += sentenceWords;
+                        }
+                    }
+                } else {
+                    // Normal paragraph handling
+                    if (wordCount + paraWords > wordsPerPage && currentPageContent) {
+                        pages.push(currentPageContent);
+                        currentPageContent = para;
+                        wordCount = paraWords;
+                    } else {
+                        currentPageContent += (currentPageContent ? '\n\n' : '') + para;
+                        wordCount += paraWords;
+                    }
+                }
+            }
+
+            if (currentPageContent) {
+                pages.push(currentPageContent);
+            }
+
+            console.log('[PAGE TURNER] Created', pages.length, 'pages');
+
+            // Create page elements
+            pages.forEach((pageContent, index) => {
+                const pageDiv = document.createElement('div');
+                pageDiv.className = 'page';
+                pageDiv.innerHTML = pageContent.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
+                bookContainer.appendChild(pageDiv);
+            });
+
+            // Initialize StPageFlip with responsive sizing
+            const isMobile = window.innerWidth <= 768;
+            const bookWidth = isMobile ? Math.min(window.innerWidth * 0.9, 400) : Math.min(window.innerWidth * 0.4, 550);
+            const bookHeight = isMobile ? Math.min(window.innerHeight * 0.6, 600) : Math.min(window.innerHeight * 0.7, 733);
+
+            pageFlip = new St.PageFlip(bookContainer, {
+                width: bookWidth,
+                height: bookHeight,
+                size: 'fixed',
+                minWidth: 315,
+                maxWidth: 1000,
+                minHeight: 420,
+                maxHeight: 1350,
+                showCover: true,
+                mobileScrollSupport: false
+            });
+
+            pageFlip.loadFromHTML(document.querySelectorAll('#book .page'));
+
+            // Update page counter on flip
+            pageFlip.on('flip', (e) => {
+                updatePageCounter();
+            });
+
+            updatePageCounter();
+            modal.style.display = 'block';
+        }
+
+        function flipPrevPage() {
+            if (pageFlip) {
+                pageFlip.flipPrev();
+            }
+        }
+
+        function flipNextPage() {
+            if (pageFlip) {
+                pageFlip.flipNext();
+            }
+        }
+
+        function updatePageCounter() {
+            if (pageFlip) {
+                const currentPage = pageFlip.getCurrentPageIndex();
+                const totalPages = pageFlip.getPageCount();
+                document.getElementById('pageCounter').textContent = `Page ${currentPage + 1} of ${totalPages}`;
+
+                // Update button states
+                document.getElementById('prevBtn').disabled = currentPage === 0;
+                document.getElementById('nextBtn').disabled = currentPage >= totalPages - 1;
+            }
+        }
+
+        function toggleCassette(bookType) {
+            const cassetteContainer = document.getElementById(`cassette-${bookType}`);
+            const audio = document.getElementById(`audio-${bookType}`);
+            const reel1 = document.getElementById(`reel1-${bookType}`);
+            const reel2 = document.getElementById(`reel2-${bookType}`);
+
+            // Close other cassettes
+            const allCassettes = document.querySelectorAll('.cassette-container');
+            allCassettes.forEach(cassette => {
+                if (cassette.id !== `cassette-${bookType}`) {
+                    cassette.classList.remove('active');
+                    const otherAudio = cassette.querySelector('audio');
+                    if (otherAudio) {
+                        otherAudio.pause();
+                        otherAudio.currentTime = 0;
+                    }
+                    const otherReels = cassette.querySelectorAll('.cassette-reel');
+                    otherReels.forEach(reel => reel.classList.remove('spinning'));
+                }
+            });
+
+            // Stop soundtrack audio
+            AudioManager.stopAll();
+
+            // Toggle current cassette
+            const isActive = cassetteContainer.classList.contains('active');
+
+            if (isActive) {
+                cassetteContainer.classList.remove('active');
+                audio.pause();
+                audio.currentTime = 0;
+                reel1.classList.remove('spinning');
+                reel2.classList.remove('spinning');
+            } else {
+                cassetteContainer.classList.add('active');
+
+                // Set up MediaSession API for system-level controls
+                if ('mediaSession' in navigator) {
+                    const metadata = bookType === 'divorce'
+                        ? {
+                            title: 'A Novel Divorce - Audio Preview',
+                            artist: 'Mathew Moslow',
+                            album: 'A Novel Divorce',
+                            artwork: [
+                                { src: 'images/v1@3x.png', sizes: '512x512', type: 'image/png' }
+                            ]
+                        }
+                        : {
+                            title: 'Beyond The Reach Of Justice - Audio Preview',
+                            artist: 'Mathew Moslow',
+                            album: 'Beyond The Reach Of Justice',
+                            artwork: [
+                                { src: 'images/ayadv1@3x.png', sizes: '512x512', type: 'image/png' }
+                            ]
+                        };
+
+                    navigator.mediaSession.metadata = new MediaMetadata(metadata);
+
+                    // Set up action handlers
+                    navigator.mediaSession.setActionHandler('play', () => {
+                        audio.play();
+                    });
+
+                    navigator.mediaSession.setActionHandler('pause', () => {
+                        audio.pause();
+                    });
+
+                    navigator.mediaSession.setActionHandler('seekbackward', () => {
+                        audio.currentTime = Math.max(audio.currentTime - 10, 0);
+                    });
+
+                    navigator.mediaSession.setActionHandler('seekforward', () => {
+                        audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+                    });
+
+                    navigator.mediaSession.setActionHandler('seekto', (details) => {
+                        if (details.seekTime) {
+                            audio.currentTime = details.seekTime;
+                        }
+                    });
+                }
+
+                // Play audio after a short delay for animation
+                setTimeout(() => {
+                    audio.play().catch(error => {
+                        console.log('Autoplay prevented');
+                    });
+                    reel1.classList.add('spinning');
+                    reel2.classList.add('spinning');
+                }, 300);
+
+                // Set up event listeners
+                audio.onplay = function() {
+                    reel1.classList.add('spinning');
+                    reel2.classList.add('spinning');
+                    AudioManager.currentAudio = audio;
+
+                    // Update playback state for MediaSession
+                    if ('mediaSession' in navigator) {
+                        navigator.mediaSession.playbackState = 'playing';
+                    }
+                };
+
+                audio.onpause = function() {
+                    reel1.classList.remove('spinning');
+                    reel2.classList.remove('spinning');
+
+                    // Update playback state for MediaSession
+                    if ('mediaSession' in navigator) {
+                        navigator.mediaSession.playbackState = 'paused';
+                    }
+                };
+
+                audio.onended = function() {
+                    reel1.classList.remove('spinning');
+                    reel2.classList.remove('spinning');
+                    AudioManager.currentAudio = null;
+
+                    // Update playback state for MediaSession
+                    if ('mediaSession' in navigator) {
+                        navigator.mediaSession.playbackState = 'none';
+                    }
+                };
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('previewModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Contact Form Handler
+        function handleContactForm() {
+            // Form now submits directly to Formspree
+            // No preventDefault needed - let the form submit naturally
+        }
+
+        // Hamburger Menu Functions
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Initialize everything
+        // Smooth scroll with resistance - ONLY for desktop (not touch devices)
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let currentScroll = window.pageYOffset;
+        let targetScroll = window.pageYOffset;
+        let scrollVelocity = 0;
+        const scrollDamping = 0.7; // Scroll speed multiplier (0.7 = 70% speed)
+        const scrollSmooth = 0.1; // Smoothing factor (lower = smoother/more resistance)
+
+        function smoothScrollLoop() {
+            // Calculate difference
+            const diff = targetScroll - currentScroll;
+
+            // Smooth interpolation with easing
+            currentScroll += diff * scrollSmooth;
+
+            // Apply the scroll
+            if (Math.abs(diff) > 0.5) {
+                window.scrollTo(0, currentScroll);
+            }
+
+            requestAnimationFrame(smoothScrollLoop);
+        }
+
+        // Initialize on load - ONLY if not a touch device
+        if (!isTouchDevice) {
+            window.addEventListener('load', () => {
+                currentScroll = window.pageYOffset;
+                targetScroll = window.pageYOffset;
+                smoothScrollLoop();
+            });
+
+            // Capture wheel events - ONLY for desktop
+            window.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                targetScroll += e.deltaY * scrollDamping;
+
+                // Clamp to valid range
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+            }, { passive: false });
+        }
+
+        // For mobile: use native scroll with parallax
+        if (isTouchDevice) {
+            window.addEventListener('scroll', handleScrollParallax, { passive: true });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize floating quotes
+            initFloatingQuotes();
+
+            // Observe elements for animation
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const bookSections = document.querySelectorAll('.book-section-timeline');
+            const aboutTitle = document.querySelector('.about-hero-title');
+            const highlight = document.querySelector('.highlight');
+            const journeySections = document.querySelectorAll('.journey-section-timeline');
+            const bookCovers = document.querySelectorAll('.book-cover-wrapper');
+
+            sectionTitles.forEach(title => observer.observe(title));
+            bookSections.forEach(section => observer.observe(section));
+            if (aboutTitle) observer.observe(aboutTitle);
+            if (highlight) observer.observe(highlight);
+            journeySections.forEach(section => observer.observe(section));
+            bookCovers.forEach(cover => observer.observe(cover));
+
+            handleContactForm();
+
+            // Mobile book cover scroll effect
+            function initBookCoverScroll() {
+                if (window.innerWidth <= 768) {
+                    const bookCovers = document.querySelectorAll('.book-cover-wrapper img');
+
+                    bookCovers.forEach(img => {
+                        const wrapper = img.parentElement;
+
+                        window.addEventListener('scroll', () => {
+                            const rect = wrapper.getBoundingClientRect();
+                            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                            if (isVisible) {
+                                // Calculate scroll progress for this element
+                                const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                                const translateY = -10 + (scrollProgress * 15); // Moves from -10% to 5% to show full title first
+
+                                img.style.transform = `translateY(${translateY}%)`;
+                            }
+                        });
+                    });
+                }
+            }
+
+            initBookCoverScroll();
+            window.addEventListener('resize', initBookCoverScroll);
+
+            // Unified scroll handler for all parallax effects
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+
+                // Handle quote parallax and hero fade
+                handleScrollParallax();
+
+                // 2-layer parallax with subject zoom/blur effect
+                const parallaxSeparator = document.getElementById('parallax-separator');
+                const separatorBg = document.querySelector('.separator-bg');
+                const separatorMug = document.querySelector('.separator-mug');
+                const separatorSubject = document.querySelector('.separator-subject');
+                const separatorPen = document.querySelector('.separator-pen');
+
+                if (parallaxSeparator && separatorBg && separatorMug && separatorSubject && separatorPen) {
+                    const windowHeight = window.innerHeight;
+                    const scrollProgress = Math.min(1, currentScroll / windowHeight);
+
+                    console.log('SEPARATOR DEBUG:', {
+                        currentScroll,
+                        windowHeight,
+                        scrollProgress,
+                        layers: '4 layers active'
+                    });
+
+                    // Background moves slowest (0.2x scroll speed)
+                    separatorBg.style.transform = `translateY(${currentScroll * 0.2}px) scale(1.1)`;
+
+                    // Mug moves horizontally left and slightly down
+                    const mugX = -(scrollProgress * 100); // Moves left
+                    const mugY = currentScroll * 0.3;
+                    separatorMug.style.transform = `translate(${mugX}px, ${mugY}px) scale(1.05)`;
+
+                    // Subject zooms along z-axis (grows/moves toward user as you scroll)
+                    const subjectScale = 1 + (scrollProgress * 0.5); // Scales from 1x to 1.5x
+                    const subjectY = currentScroll * 0.4;
+                    separatorSubject.style.transform = `translateY(${subjectY}px) scale(${subjectScale})`;
+
+                    // Pen moves horizontally right and down faster
+                    const penX = scrollProgress * 120; // Moves right
+                    const penY = currentScroll * 0.6;
+                    separatorPen.style.transform = `translate(${penX}px, ${penY}px)`;
+                }
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>
