@@ -2900,6 +2900,7 @@
 
         // Utility Functions - StPageFlip Integration
         let pageFlip = null;
+        const isMobileDevice = window.innerWidth <= 768;
 
         async function openPeek(bookType) {
             const modal = document.getElementById('previewModal');
@@ -2909,7 +2910,7 @@
             let title = '';
             let peekText = '';
 
-            console.log('[PAGE TURNER] Opening peek for:', bookType);
+            console.log('[PAGE TURNER] Opening peek for:', bookType, 'Mobile:', isMobileDevice);
 
             if (bookType === 'divorce') {
                 title = 'A Novel Divorce';
@@ -2937,6 +2938,43 @@
                     console.error('[PAGE TURNER] Error loading justice content:', error);
                     peekText = 'Content not available. Error: ' + error.message;
                 }
+            }
+
+            bookTitle.textContent = title + ' - Sneak Peek';
+
+            // Mobile: Use scrollable single-page reader
+            if (isMobileDevice) {
+                bookContainer.innerHTML = '';
+                bookContainer.style.width = '100%';
+                bookContainer.style.height = 'auto';
+                bookContainer.style.maxHeight = '70vh';
+                bookContainer.style.overflowY = 'auto';
+                bookContainer.style.overflowX = 'hidden';
+                bookContainer.style.padding = '20px';
+                bookContainer.style.background = 'rgba(232, 213, 183, 0.05)';
+                bookContainer.style.borderRadius = '8px';
+                bookContainer.style.WebkitOverflowScrolling = 'touch';
+
+                const content = document.createElement('div');
+                content.style.color = '#1a1a1a';
+                content.style.lineHeight = '1.8';
+                content.style.fontSize = '1rem';
+                content.style.fontFamily = 'Georgia, serif';
+
+                // Format text with paragraphs
+                const paragraphs = peekText.split('\n\n').filter(p => p.trim());
+                content.innerHTML = paragraphs.map(p => `<p style="margin-bottom: 1.5em;">${p}</p>`).join('');
+
+                bookContainer.appendChild(content);
+
+                // Hide flip buttons, show close only
+                document.getElementById('prevBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('pageCounter').style.display = 'none';
+
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                return;
             }
 
             // Update title
@@ -3186,13 +3224,38 @@
         }
 
         function closeModal() {
-            document.getElementById('previewModal').style.display = 'none';
+            const modal = document.getElementById('previewModal');
+            const bookContainer = document.getElementById('book');
+
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+
+            // Reset book container
+            bookContainer.innerHTML = '';
+            bookContainer.style.cssText = '';
+
+            // Reset button visibility
+            if (document.getElementById('prevBtn')) {
+                document.getElementById('prevBtn').style.display = '';
+            }
+            if (document.getElementById('nextBtn')) {
+                document.getElementById('nextBtn').style.display = '';
+            }
+            if (document.getElementById('pageCounter')) {
+                document.getElementById('pageCounter').style.display = '';
+            }
+
+            // Destroy pageFlip instance if exists
+            if (pageFlip) {
+                pageFlip.destroy();
+                pageFlip = null;
+            }
         }
 
         window.onclick = function(event) {
             const modal = document.getElementById('previewModal');
             if (event.target == modal) {
-                modal.style.display = 'none';
+                closeModal();
             }
         }
 
