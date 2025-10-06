@@ -1931,11 +1931,88 @@
                 padding-top: 40px !important;
             }
         }
+        /* ========== SMOOTH SECTION TRANSITIONS ========== */
+        #stage-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: #0b0b0b;
+            transition: background-color .8s ease-out;
+        }
+
+        .vignette {
+            position: fixed;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .vignette.top {
+            top: 0;
+            height: clamp(48px, 12vh, 220px);
+            background: rgba(0,0,0,.75);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        .vignette.bottom {
+            bottom: 0;
+            height: clamp(48px, 12vh, 220px);
+            background: rgba(0,0,0,.75);
+            mask-image: linear-gradient(to top, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
+        }
+
+        [data-soft-panel] {
+            will-change: opacity, transform;
+            isolation: isolate;
+        }
+
+        /* Modern scroll-driven animations (fallback handled in JS) */
+        @supports (animation-timeline: view()) {
+            [data-soft-panel] {
+                animation: softSectionFade linear both;
+                animation-timeline: view();
+                animation-range: entry 15% cover 70%;
+            }
+
+            @keyframes softSectionFade {
+                0%, 100% {
+                    opacity: .18;
+                    transform: translateY(1.25rem);
+                }
+                35%, 65% {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+        }
+
+        /* Accessibility: Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .01ms !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Fallback for browsers without scroll-driven animations */
+        html.no-anim [data-soft-panel] {
+            opacity: 1 !important;
+            transform: none !important;
+        }
     </style>
     <!-- StPageFlip Library -->
     <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
 </head>
 <body>
+    <!-- Fixed Background Stage for Smooth Transitions -->
+    <div id="stage-bg" aria-hidden="true"></div>
+    <div class="vignette top" aria-hidden="true"></div>
+    <div class="vignette bottom" aria-hidden="true"></div>
+
     <!-- Floating Typography Layer -->
     <div class="quote-layer" id="quoteLayer">
         <!-- Dynamic quotes will be inserted here -->
@@ -1964,7 +2041,7 @@
     <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
 
     <!-- Hero: Book Cover Image with 4-Layer Parallax -->
-    <div class="section-separator" id="parallax-separator" style="margin-top: 0; margin-bottom: 0; height: 100vh;">
+    <div class="section-separator" id="parallax-separator" data-bg="#0b0b0b" style="margin-top: 0; margin-bottom: 0; height: 100vh;">
         <div class="separator-layer separator-bg"></div>
         <div class="separator-layer separator-mug"></div>
         <div class="separator-layer separator-subject"></div>
@@ -1972,7 +2049,7 @@
     </div>
 
     <!-- Books Section - Typography Heavy Timeline Style -->
-    <section class="books-section" id="books">
+    <section class="books-section" id="books" data-bg="#0b0b0b">
         <div class="books-container">
             <h2 class="section-title">Books</h2>
 
@@ -2064,7 +2141,7 @@
     </section>
 
     <!-- Soundtrack Section -->
-    <section class="soundtrack-section" id="soundtrack">
+    <section class="soundtrack-section" id="soundtrack" data-bg="#101512">
         <!-- Floating vinyl decorations -->
         <div class="vinyl-decoration vinyl-1"></div>
         <div class="vinyl-decoration vinyl-2"></div>
@@ -2222,7 +2299,7 @@
     </section>
 
     <!-- About Section with Hero Layers -->
-    <section class="hero about-section" id="about">
+    <section class="hero about-section" id="about" data-bg="#0f0f0f">
         <div class="hero-layer background"></div>
         <div class="hero-layer couch"></div>
         <div class="hero-layer subject"></div>
@@ -2238,7 +2315,7 @@
     </section>
 
     <!-- Journey Section -->
-    <section class="about-section" id="journey">
+    <section class="about-section" id="about-content" data-bg="#0f0f0f">
         <div class="about-container">
             <!-- Journey Sections - Alternating Left/Right Layout -->
             <div class="journey-container">
@@ -2294,7 +2371,7 @@
     </section>
 
     <!-- Visual Journey Section -->
-    <section class="journey-section" id="journey">
+    <section class="journey-section" id="visual-journey" data-bg="#101512">
         <div class="journey-container">
             <h2 class="section-title">The Visual Journey</h2>
 
@@ -2365,7 +2442,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section" id="contact">
+    <section class="contact-section" id="contact" data-bg="#0b0b0b">
         <div class="contact-container">
             <h2 class="section-title">Get in Touch</h2>
             <p class="contact-subtitle">Have thoughts on the books? Questions about the journey? I'd love to hear from you.</p>
@@ -3308,53 +3385,9 @@
             document.body.style.overflow = '';
         }
 
-        // Initialize everything
-        // Smooth scroll with resistance - ONLY for desktop (not touch devices)
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        let currentScroll = window.pageYOffset;
-        let targetScroll = window.pageYOffset;
-        let scrollVelocity = 0;
-        const scrollDamping = 0.7; // Scroll speed multiplier (0.7 = 70% speed)
-        const scrollSmooth = 0.1; // Smoothing factor (lower = smoother/more resistance)
-
-        function smoothScrollLoop() {
-            // Calculate difference
-            const diff = targetScroll - currentScroll;
-
-            // Smooth interpolation with easing
-            currentScroll += diff * scrollSmooth;
-
-            // Apply the scroll
-            if (Math.abs(diff) > 0.5) {
-                window.scrollTo(0, currentScroll);
-            }
-
-            requestAnimationFrame(smoothScrollLoop);
-        }
-
-        // Initialize on load - ONLY if not a touch device
-        if (!isTouchDevice) {
-            window.addEventListener('load', () => {
-                currentScroll = window.pageYOffset;
-                targetScroll = window.pageYOffset;
-                smoothScrollLoop();
-            });
-
-            // Capture wheel events - ONLY for desktop
-            window.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                targetScroll += e.deltaY * scrollDamping;
-
-                // Clamp to valid range
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-            }, { passive: false });
-        }
-
-        // For mobile: use native scroll with parallax
-        if (isTouchDevice) {
-            window.addEventListener('scroll', handleScrollParallax, { passive: true });
-        }
+        // Initialize parallax on scroll (Lenis handles smooth scrolling)
+        // Parallax will be managed by existing handleScrollParallax function
+        window.addEventListener('scroll', handleScrollParallax, { passive: true });
 
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize floating quotes
@@ -3449,6 +3482,109 @@
                 }
             }, { passive: true });
         });
+    </script>
+
+    <!-- Smooth Scroll Libraries -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1/bundled/lenis.min.js"></script>
+
+    <!-- Smooth Transitions Activation -->
+    <script>
+    (function() {
+        let enhanced = false;
+        const htmlEl = document.documentElement;
+        const ENHANCE_TIMEOUT = setTimeout(() => {
+            if (!enhanced) htmlEl.classList.add('no-anim');
+        }, 2000);
+
+        // Check for reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            htmlEl.classList.add('no-anim');
+            clearTimeout(ENHANCE_TIMEOUT);
+            return;
+        }
+
+        // Wait for libraries to load
+        window.addEventListener('load', function() {
+            // Mark all sections for soft transitions
+            const panels = Array.from(document.querySelectorAll('section[id], .section-separator'));
+            panels.forEach(p => p.setAttribute('data-soft-panel', ''));
+
+            const stage = document.getElementById('stage-bg');
+            const getBG = el => el.getAttribute('data-bg') || getComputedStyle(el).backgroundColor || '#0b0b0b';
+
+            // Only proceed if GSAP and Lenis loaded
+            if (!window.gsap || !window.ScrollTrigger || !window.Lenis) {
+                console.warn('[SMOOTH SCROLL] Libraries not loaded, using fallback');
+                htmlEl.classList.add('no-anim');
+                clearTimeout(ENHANCE_TIMEOUT);
+                return;
+            }
+
+            const gs = window.gsap;
+            const ST = window.ScrollTrigger;
+            gs.registerPlugin(ST);
+
+            // Initialize Lenis smooth scroll (will handle both desktop and mobile)
+            const lenis = new window.Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                smoothTouch: false, // Keep native touch scrolling on mobile
+                touchMultiplier: 2,
+                infinite: false,
+            });
+
+            // Connect Lenis to GSAP ScrollTrigger
+            lenis.on('scroll', () => ST.update());
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // Crossfade between sections
+            panels.forEach((p, i) => {
+                const n = panels[i + 1];
+                if (!n) return;
+
+                gs.timeline({
+                    scrollTrigger: {
+                        trigger: n,
+                        start: 'top 80%',
+                        end: 'top 35%',
+                        scrub: true
+                    }
+                })
+                .to(p, { opacity: 0, y: -30, ease: 'none' }, 0)
+                .from(n, { opacity: 0, y: 30, ease: 'none' }, 0);
+            });
+
+            // Background color transitions
+            panels.forEach(p => {
+                const c = getBG(p);
+                ST.create({
+                    trigger: p,
+                    start: 'top center',
+                    end: 'bottom center',
+                    onEnter: () => gs.to('#stage-bg', { backgroundColor: c, duration: .8, ease: 'sine.out' }),
+                    onEnterBack: () => gs.to('#stage-bg', { backgroundColor: c, duration: .8, ease: 'sine.out' })
+                });
+            });
+
+            // Refresh after everything loads
+            window.addEventListener('load', () => ST.refresh());
+
+            enhanced = true;
+            clearTimeout(ENHANCE_TIMEOUT);
+            console.log('[SMOOTH SCROLL] Enhanced transitions active');
+        });
+    })();
     </script>
 </body>
 </html>
