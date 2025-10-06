@@ -1947,49 +1947,34 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            z-index: -1;
+            z-index: 0;
+        }
+
+        /* Darkening overlay on hero that fades in as you scroll */
+        .section-separator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 2;
+            pointer-events: none;
         }
 
         /* Add spacing between sections for smoother transitions */
         section[id] {
             margin-top: 120px;
             margin-bottom: 120px;
+            position: relative;
+            z-index: 10; /* Above hero and overlay */
         }
 
         /* First section (books) needs top margin to clear hero */
         #books {
             margin-top: 100vh; /* Start after hero */
             padding-top: 80px;
-        }
-
-        /* Give sections solid background so they scroll over hero cleanly */
-        section[id] {
-            background: #0b0b0b;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Fade out top and bottom edges of sections for softer transitions */
-        section[id]::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(to bottom, transparent, #0b0b0b);
-            pointer-events: none;
-        }
-
-        section[id]::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(to top, transparent, #0b0b0b);
-            pointer-events: none;
         }
 
         [data-soft-panel] {
@@ -3617,6 +3602,21 @@
                     }
                 });
             });
+
+            // Fade in dark overlay on hero as you scroll (darkens hero, not content)
+            const heroOverlay = document.querySelector('.section-separator::after') ||
+                                document.querySelector('.section-separator');
+            if (heroOverlay) {
+                gs.to('.section-separator::after', {
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    ease: 'none',
+                    scrollTrigger: {
+                        start: 0,
+                        end: () => window.innerHeight,
+                        scrub: true
+                    }
+                });
+            }
 
             // Refresh after everything loads
             window.addEventListener('load', () => ST.refresh());
