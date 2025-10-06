@@ -1975,7 +1975,7 @@
 
             @keyframes softSectionFade {
                 0%, 100% {
-                    opacity: .18;
+                    opacity: 1;
                     transform: translateY(1.25rem);
                 }
                 35%, 65% {
@@ -3542,22 +3542,7 @@
             }
             requestAnimationFrame(raf);
 
-            // Crossfade between sections
-            panels.forEach((p, i) => {
-                const n = panels[i + 1];
-                if (!n) return;
-
-                gs.timeline({
-                    scrollTrigger: {
-                        trigger: n,
-                        start: 'top 80%',
-                        end: 'top 35%',
-                        scrub: true
-                    }
-                })
-                .to(p, { opacity: 0, y: -30, ease: 'none' }, 0)
-                .from(n, { opacity: 0, y: 30, ease: 'none' }, 0);
-            });
+            // Content sections stay at full opacity - no crossfade needed
 
             // Background color transitions
             panels.forEach(p => {
