@@ -1915,6 +1915,13 @@
             }
         }
         /* ========== SMOOTH SECTION TRANSITIONS ========== */
+        /* Z-Index Stack:
+           -1: #stage-bg (background color)
+            1: .section-separator (hero image)
+            5: #hero-overlay (darkening layer)
+           10: section[id] (content sections)
+        */
+
         #stage-bg {
             position: fixed;
             inset: 0;
@@ -1930,19 +1937,18 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            z-index: 0;
+            z-index: 1;
         }
 
-        /* Darkening overlay on hero that fades in as you scroll */
-        .section-separator::after {
-            content: '';
-            position: absolute;
+        /* Darkening overlay sits between hero and content */
+        #hero-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: rgba(0, 0, 0, 0);
-            z-index: 2;
+            z-index: 5;
             pointer-events: none;
         }
 
@@ -2006,6 +2012,9 @@
 <body>
     <!-- Fixed Background Stage for Smooth Transitions -->
     <div id="stage-bg" aria-hidden="true"></div>
+
+    <!-- Darkening Overlay Between Hero and Content -->
+    <div id="hero-overlay" aria-hidden="true"></div>
 
     <!-- Floating Typography Layer -->
     <div class="quote-layer" id="quoteLayer">
@@ -3572,11 +3581,10 @@
             });
 
             // Fade in dark overlay on hero as you scroll (darkens hero, not content)
-            const heroOverlay = document.querySelector('.section-separator::after') ||
-                                document.querySelector('.section-separator');
+            const heroOverlay = document.getElementById('hero-overlay');
             if (heroOverlay) {
-                gs.to('.section-separator::after', {
-                    background: 'rgba(0, 0, 0, 0.7)',
+                gs.to('#hero-overlay', {
+                    background: 'rgba(0, 0, 0, 0.85)',
                     ease: 'none',
                     scrollTrigger: {
                         start: 0,
