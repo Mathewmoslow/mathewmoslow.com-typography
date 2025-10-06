@@ -1940,28 +1940,38 @@
             transition: background-color .8s ease-out;
         }
 
-        .vignette {
-            position: fixed;
-            left: 0;
-            right: 0;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .vignette.top {
+        /* Hero section stays fixed while content scrolls over it */
+        .section-separator {
+            position: fixed !important;
             top: 0;
-            height: clamp(48px, 12vh, 220px);
-            background: rgba(0,0,0,.75);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
         }
 
-        .vignette.bottom {
-            bottom: 0;
-            height: clamp(48px, 12vh, 220px);
-            background: rgba(0,0,0,.75);
-            mask-image: linear-gradient(to top, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
+        /* Add spacing between sections for smoother transitions */
+        section[id] {
+            margin-top: 120px;
+            margin-bottom: 120px;
+        }
+
+        /* First section (books) needs top margin to clear hero */
+        #books {
+            margin-top: 100vh; /* Start after hero */
+            padding-top: 80px;
+        }
+
+        /* Give sections background so they scroll over hero cleanly */
+        section[id] {
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(11, 11, 11, 0.95) 10%,
+                rgba(11, 11, 11, 1) 20%,
+                rgba(11, 11, 11, 1) 80%,
+                rgba(11, 11, 11, 0.95) 90%,
+                transparent 100%
+            );
         }
 
         [data-soft-panel] {
@@ -2010,8 +2020,6 @@
 <body>
     <!-- Fixed Background Stage for Smooth Transitions -->
     <div id="stage-bg" aria-hidden="true"></div>
-    <div class="vignette top" aria-hidden="true"></div>
-    <div class="vignette bottom" aria-hidden="true"></div>
 
     <!-- Floating Typography Layer -->
     <div class="quote-layer" id="quoteLayer">
@@ -3574,6 +3582,21 @@
                     end: 'bottom center',
                     onEnter: () => gs.to('#stage-bg', { backgroundColor: c, duration: .8, ease: 'sine.out' }),
                     onEnterBack: () => gs.to('#stage-bg', { backgroundColor: c, duration: .8, ease: 'sine.out' })
+                });
+            });
+
+            // Slow parallax for hero image layers
+            const heroLayers = document.querySelectorAll('.separator-layer');
+            heroLayers.forEach((layer, index) => {
+                const speed = 0.15 + (index * 0.1); // Each layer moves at different slow speed
+                gs.to(layer, {
+                    y: () => window.innerHeight * speed,
+                    ease: 'none',
+                    scrollTrigger: {
+                        start: 0,
+                        end: 'max',
+                        scrub: 0.5
+                    }
                 });
             });
 
