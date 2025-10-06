@@ -1962,16 +1962,34 @@
             padding-top: 80px;
         }
 
-        /* Give sections background so they scroll over hero cleanly */
+        /* Give sections solid background so they scroll over hero cleanly */
         section[id] {
-            background: linear-gradient(to bottom,
-                transparent 0%,
-                rgba(11, 11, 11, 0.95) 10%,
-                rgba(11, 11, 11, 1) 20%,
-                rgba(11, 11, 11, 1) 80%,
-                rgba(11, 11, 11, 0.95) 90%,
-                transparent 100%
-            );
+            background: #0b0b0b;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fade out top and bottom edges of sections for softer transitions */
+        section[id]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #0b0b0b);
+            pointer-events: none;
+        }
+
+        section[id]::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, transparent, #0b0b0b);
+            pointer-events: none;
         }
 
         [data-soft-panel] {
