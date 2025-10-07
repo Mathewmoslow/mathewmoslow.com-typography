@@ -347,12 +347,12 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 100px;
+            color: #e8d5b7;
+            margin-bottom: 120px;
             text-align: center;
             transition: transform 0.8s ease-out, opacity 0.8s ease-out;
             opacity: 0;
@@ -469,10 +469,12 @@
 
         .book-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: white;
-            margin-bottom: 8px;
-            font-weight: 500;
+            font-size: 2.5rem;
+            color: #e8d5b7;
+            margin-bottom: 12px;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.01em;
             transition: transform 0.8s ease-out 0.3s, opacity 0.8s ease-out 0.3s;
             opacity: 0;
             transform: translateY(20px);
@@ -484,12 +486,12 @@
         }
 
         .book-subtitle {
-            color: #e8d5b7;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            font-weight: 500;
+            color: rgba(232, 213, 183, 0.6);
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.2em;
             transition: transform 0.8s ease-out 0.4s, opacity 0.8s ease-out 0.4s;
             opacity: 0;
             transform: translateY(20px);
@@ -606,14 +608,14 @@
         .cassette-container {
             position: relative;
             margin-top: 20px;
-            height: 0;
+            max-height: 0;
             overflow: hidden;
-            transition: height 0.5s ease-out, opacity 0.5s ease-out;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
             opacity: 0;
         }
 
         .cassette-container.active {
-            height: 180px;
+            max-height: 500px;
             opacity: 1;
         }
 
@@ -876,10 +878,10 @@
         .soundtrack-hero::after {
             content: '♪ ♫ ♪';
             position: absolute;
-            top: -40px;
-            right: 10%;
-            font-size: 3rem;
-            color: rgba(74, 124, 89, 0.2);
+            top: -80px;
+            right: 5%;
+            font-size: 8rem;
+            color: rgba(74, 124, 89, 0.4);
             transform: rotate(15deg);
             animation: floatAndScale 4s ease-in-out infinite;
         }
@@ -887,10 +889,10 @@
         .soundtrack-hero::before {
             content: '♫ ♪ ♫';
             position: absolute;
-            bottom: -30px;
-            left: 10%;
-            font-size: 2.5rem;
-            color: rgba(232, 213, 183, 0.2);
+            bottom: -80px;
+            left: 5%;
+            font-size: 7rem;
+            color: rgba(232, 213, 183, 0.4);
             transform: rotate(-10deg);
             animation: floatAndScale 5s ease-in-out infinite reverse;
         }
@@ -1966,6 +1968,17 @@
             padding-top: 80px;
         }
 
+        /* Soundtrack section butts up against About section */
+        #soundtrack {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* About section has no top margin to connect with soundtrack */
+        #about {
+            margin-top: 0;
+        }
+
         [data-soft-panel] {
             will-change: opacity, transform;
             isolation: isolate;
@@ -2152,30 +2165,30 @@
 
         <div class="soundtrack-container">
             <div class="soundtrack-hero">
-                <h2 class="soundtrack-main-title" style="font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 400; color: rgba(232, 213, 183, 0.6); margin-bottom: 10px; letter-spacing: 3px; text-align: center; text-transform: uppercase;">A Book with a Soundtrack?</h2>
-                <h3 class="soundtrack-sub-title" style="font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; color: #4a7c59; margin-bottom: 80px; letter-spacing: 2px; text-align: center; font-style: italic;">How Novel!</h3>
+                <h2 class="soundtrack-main-title" style="font-family: 'Playfair Display', serif; font-size: clamp(0.75rem, 1.5vw, 0.95rem); font-weight: 300; color: rgba(232, 213, 183, 0.5); margin-bottom: 15px; letter-spacing: 0.25em; text-align: center; text-transform: uppercase;">A Book with a Soundtrack?</h2>
+                <h3 class="soundtrack-sub-title" style="font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 300; color: #4a7c59; margin-bottom: 90px; letter-spacing: -0.02em; text-align: center; font-style: italic; line-height: 1.1;">How Novel!</h3>
 
                 <div class="soundtrack-description" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
                         <!-- Left Column -->
                         <div style="position: relative;">
-                            <p class="soundtrack-intro drop-cap" style="font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.9; color: rgba(232, 213, 183, 0.95); margin-bottom: 40px;">
-                                <span class="drop-cap-letter" style="float: left; font-size: 5em; line-height: 0.8; margin-right: 10px; margin-top: 8px; font-family: 'Playfair Display', serif; color: #4a7c59;">I</span> didn't only write journal entries during my separation and divorce<span class="em-dash" style="margin: 0 0.3em;">—</span>I wrote full songs, I wrote poems and turned them into verses.
+                            <p class="soundtrack-intro drop-cap" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); margin-bottom: 40px;">
+                                <span class="drop-cap-letter" style="float: left; font-size: 5em; line-height: 0.8; margin-right: 10px; margin-top: 8px; font-family: 'Playfair Display', serif; color: #4a7c59;">I</span> didn't only write journal entries during my separation and divorce—I wrote full songs, I wrote poems and turned them into verses.
                             </p>
 
-                            <p class="soundtrack-intro body-text" style="font-size: clamp(1rem, 2vw, 1.3rem); line-height: 2; color: rgba(232, 213, 183, 0.85); margin-bottom: 0;">
-                                With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and <em style="color: #e8d5b7; font-family: 'Playfair Display', serif; font-size: 1.1em;">I sang</em>. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form.
+                            <p class="soundtrack-intro body-text" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); margin-bottom: 0;">
+                                With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and I sang. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form.
                             </p>
                         </div>
 
                         <!-- Right Column -->
                         <div style="border-left: 2px solid rgba(74, 124, 89, 0.3); padding-left: 60px;">
-                            <p class="soundtrack-intro confession" style="font-size: clamp(1rem, 2vw, 1.3rem); line-height: 2; color: rgba(232, 213, 183, 0.75); font-style: italic; margin-bottom: 40px;">
-                                The bloopers<span class="em-dash" style="margin: 0 0.3em;">—</span>they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.
+                            <p class="soundtrack-intro confession" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); margin-bottom: 40px;">
+                                The bloopers—they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.
                             </p>
 
-                            <p class="soundtrack-intro invitation" style="font-size: clamp(1.1rem, 2.3vw, 1.5rem); line-height: 1.8; color: #e8d5b7; text-align: left; margin: 0;">
-                                <em style="font-family: 'Playfair Display', serif;">Please enjoy this expression of emotion in music form.</em>
+                            <p class="soundtrack-intro invitation" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); text-align: left; margin: 0;">
+                                Please enjoy this expression of emotion in music form.
                             </p>
                         </div>
                     </div>
@@ -2307,8 +2320,8 @@
         <div class="hero-layer couch"></div>
         <div class="hero-layer subject"></div>
         <div class="hero-content about-hero-content">
-            <h2 class="about-hero-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; color: white; margin-bottom: 30px; letter-spacing: 2px;">ABOUT MATHEW MOSLOW</h2>
-            <p class="about-statement" style="font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.8; color: rgba(232, 213, 183, 0.95); max-width: 800px; margin: 0 auto;">
+            <h2 class="about-hero-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; color: #e8d5b7; margin-bottom: 40px; letter-spacing: 0.15em; text-transform: uppercase;">About Mathew Moslow</h2>
+            <p class="about-statement" style="font-family: 'Georgia', serif; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.9; color: rgba(232, 213, 183, 0.85); max-width: 900px; margin: 0 auto; font-weight: 300;">
                 <em>Mathew Moslow</em> writes from the intersection of
                 <span class="highlight">healing</span> and <span class="highlight">honesty</span>—where the
                 messy work of becoming human meets the courage to examine what we'd rather
