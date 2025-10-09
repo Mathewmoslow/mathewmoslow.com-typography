@@ -7,7 +7,26 @@
     <title>Mathew Moslow - Books with Soundtracks</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Georgia:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Fonts */
+        @font-face {
+            font-family: 'La Roue';
+            src: url('fonts/laroue-regular-webfont.woff2') format('woff2'),
+                 url('fonts/laroue-regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Adventures Unlimited';
+            src: local('Adventures Unlimited'), local('AdventuresUnlimited');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
     <style>
         * {
             margin: 0;
@@ -22,7 +41,7 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', 'Garamond', serif;
             background: #1a1a1a;
             min-height: 100vh;
             overflow-x: hidden;
@@ -291,7 +310,7 @@
         }
 
         .hero p {
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', 'Garamond', serif;
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: rgba(255, 255, 255, 0.95);
             text-align: center;
@@ -346,7 +365,7 @@
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'La Roue', 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 300;
             letter-spacing: 0.2em;
@@ -570,7 +589,7 @@
             cursor: pointer;
             font-size: 1rem;
             border-radius: 4px;
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', serif;
         }
 
         .book-action:hover {
@@ -792,7 +811,7 @@
         }
 
         .soundtrack-main-title {
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', serif;
             font-size: clamp(1rem, 1.5vw, 1.2rem);
             color: rgba(232, 213, 183, 0.4);
             margin-bottom: 5px;
@@ -824,7 +843,7 @@
             font-size: clamp(1rem, 1.7vw, 1.15rem);
             line-height: 2;
             margin-bottom: 30px;
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', serif;
             font-weight: 300;
             letter-spacing: 0.01em;
         }
@@ -1287,7 +1306,7 @@
             padding: 0 20px;
             font-weight: 300;
             letter-spacing: 0.02em;
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', serif;
             text-align: center;
             position: relative;
         }
@@ -1304,6 +1323,52 @@
 
         .highlight.visible::after {
             width: 100%;
+        }
+
+        /* Biography Narrative - Flowing Editorial Style */
+        .bio-narrative {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .bio-paragraph {
+            font-family: 'Garamond', 'Georgia', serif;
+            font-size: clamp(1.15rem, 2vw, 1.4rem);
+            line-height: 2;
+            color: rgba(232, 213, 183, 0.9);
+            margin-bottom: 0;
+            text-align: justify;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .bio-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #4a7c59, transparent);
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .bio-divider::before {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #4a7c59;
+            font-size: 0.8rem;
+            background: #0f0f0f;
+            padding: 0 10px;
+        }
+
+        .book-mention {
+            font-family: 'Adventures Unlimited', cursive;
+            font-style: normal;
+            color: #e8d5b7;
+            font-size: 1.15em;
+            letter-spacing: 0.02em;
         }
 
         .journey-container {
@@ -1550,7 +1615,7 @@
             border-radius: 4px;
             color: white;
             font-size: 1rem;
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', serif;
         }
 
         /* Mobile form inputs - larger touch targets */
@@ -1638,7 +1703,7 @@
             background: #f4f0e6;
             color: #1a1a1a;
             padding: 30px;
-            font-family: 'Georgia', serif;
+            font-family: 'Garamond', 'Garamond', serif;
             font-size: 0.95rem;
             line-height: 1.6;
             overflow: hidden;
@@ -2165,8 +2230,8 @@
 
         <div class="soundtrack-container">
             <div class="soundtrack-hero">
-                <h2 class="soundtrack-main-title" style="font-family: 'Playfair Display', serif; font-size: clamp(0.75rem, 1.5vw, 0.95rem); font-weight: 300; color: rgba(232, 213, 183, 0.5); margin-bottom: 15px; letter-spacing: 0.25em; text-align: center; text-transform: uppercase;">A Book with a Soundtrack?</h2>
-                <h3 class="soundtrack-sub-title" style="font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 300; color: #4a7c59; margin-bottom: 90px; letter-spacing: -0.02em; text-align: center; font-style: italic; line-height: 1.1;">How Novel!</h3>
+                <h2 class="soundtrack-main-title" style="font-family: 'La Roue', 'Playfair Display', serif; font-size: clamp(0.75rem, 1.5vw, 0.95rem); font-weight: 300; color: rgba(232, 213, 183, 0.5); margin-bottom: 15px; letter-spacing: 0.25em; text-align: center; text-transform: uppercase;">A Book with a Soundtrack?</h2>
+                <h3 class="soundtrack-sub-title" style="font-family: 'Adventures Unlimited', cursive; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 300; color: #4a7c59; margin-bottom: 90px; letter-spacing: 0.02em; text-align: center; font-style: normal; line-height: 1.1;">How Novel!</h3>
 
                 <div class="soundtrack-description" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
@@ -2320,8 +2385,8 @@
         <div class="hero-layer couch"></div>
         <div class="hero-layer subject"></div>
         <div class="hero-content about-hero-content">
-            <h2 class="about-hero-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; color: #e8d5b7; margin-bottom: 40px; letter-spacing: 0.15em; text-transform: uppercase;">About Mathew Moslow</h2>
-            <p class="about-statement" style="font-family: 'Georgia', serif; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.9; color: rgba(232, 213, 183, 0.85); max-width: 900px; margin: 0 auto; font-weight: 300;">
+            <h2 class="about-hero-title" style="font-family: 'La Roue', 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; color: #e8d5b7; margin-bottom: 40px; letter-spacing: 0.15em; text-transform: uppercase;">About Mathew Moslow</h2>
+            <p class="about-statement" style="font-family: 'Garamond', 'Garamond', serif; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.9; color: rgba(232, 213, 183, 0.85); max-width: 900px; margin: 0 auto; font-weight: 300;">
                 <em>Mathew Moslow</em> writes from the intersection of
                 <span class="highlight">healing</span> and <span class="highlight">honesty</span>—where the
                 messy work of becoming human meets the courage to examine what we'd rather
@@ -2330,58 +2395,43 @@
         </div>
     </section>
 
-    <!-- Journey Section -->
+    <!-- Biography Section - Flowing Editorial Style -->
     <section class="about-section" id="about-content" data-bg="#0f0f0f">
         <div class="about-container">
-            <!-- Journey Sections - Alternating Left/Right Layout -->
-            <div class="journey-container">
-                <!-- Left Side -->
-                <div class="journey-section-timeline left">
-                    <div class="section-number">01</div>
-                    <div class="section-content">
-                        <h3 class="section-title">Beaches of Jamaica</h3>
-                        <p class="section-location">MONTEGO BAY</p>
-                        <p class="section-description">
-                            Growing up gay in Montego Bay taught him early that survival sometimes means performing, but his work now centers on the radical act of showing up authentically—especially when it's uncomfortable.
-                        </p>
-                    </div>
-                </div>
+            <div class="bio-narrative">
+                <p class="bio-paragraph">
+                    A psychiatric nurse in training and a seeker by nature, Mathew's journey from the beaches of Jamaica to the therapy rooms of Florida reads like a masterclass in intentional transformation. Growing up gay in Montego Bay taught him early that survival sometimes means performing, but his work now centers on the radical act of showing up authentically—especially when it's uncomfortable.
+                </p>
 
-                <!-- Right Side -->
-                <div class="journey-section-timeline right">
-                    <div class="section-number">02</div>
-                    <div class="section-content">
-                        <h3 class="section-title">Psychiatric Nursing</h3>
-                        <p class="section-location">HOSPITAL FLOORS</p>
-                        <p class="section-description">
-                            A psychiatric nurse in training and a seeker by nature, Mathew's journey from the beaches of Jamaica to the hospital floors of Florida reads like a masterclass in intentional transformation.
-                        </p>
-                    </div>
-                </div>
+                <div class="bio-divider"></div>
 
-                <!-- Left Side -->
-                <div class="journey-section-timeline left">
-                    <div class="section-number">03</div>
-                    <div class="section-content">
-                        <h3 class="section-title">The Pressure Cooker Method</h3>
-                        <p class="section-location">A REVOLUTIONARY APPROACH</p>
-                        <p class="section-description">
-                            His approach to life's most difficult moments is refreshingly unconventional. When his marriage to Aaron began to unravel, rather than following the traditional script of bitter divorce proceedings, they chose what Mathew calls a "pressure cooker" method—confronting pain head-on, with therapeutic support, to transform heartbreak into something resembling wisdom.
-                        </p>
-                    </div>
-                </div>
+                <p class="bio-paragraph">
+                    His approach to life's most difficult moments is refreshingly unconventional. When his marriage to Aaron began to unravel, rather than following the traditional script of bitter divorce proceedings, they chose what Mathew calls a "pressure cooker" method—confronting pain head-on, with therapeutic support, to transform heartbreak into something resembling wisdom. The result wasn't just the preservation of their friendship, but a blueprint for how love can evolve when we stop trying to control its form.
+                </p>
 
-                <!-- Right Side -->
-                <div class="journey-section-timeline right">
-                    <div class="section-number">04</div>
-                    <div class="section-content">
-                        <h3 class="section-title">Author & Truth-Teller</h3>
-                        <p class="section-location">PRESENT DAY • FLORIDA</p>
-                        <p class="section-description">
-                            Currently working on his second book, "Beyond The Reach Of Justice"—a thriller about a disinherited nurse who turns to crime—Mathew demonstrates the range that comes from someone unafraid to explore the darker corners of human motivation, whether in fiction or his own life.
-                        </p>
-                    </div>
-                </div>
+                <div class="bio-divider"></div>
+
+                <p class="bio-paragraph">
+                    Mathew's memoir, <em class="book-mention">A Novel Divorce</em>, chronicles this journey with the precision of someone trained to observe human behavior and the vulnerability of someone willing to dissect his own. He writes about psilocybin ceremonies in Costa Rican jungles with the same unflinching honesty he brings to examining his failures as a partner, his struggles with anxiety, and his gradual learning to love without the armor of performance.
+                </p>
+
+                <div class="bio-divider"></div>
+
+                <p class="bio-paragraph">
+                    Currently working on his second book, <em class="book-mention">Beyond The Reach Of Justice</em>—a thriller about a disinherited nurse who turns to crime—Mathew demonstrates the range that comes from someone unafraid to explore the darker corners of human motivation, whether in fiction or his own life.
+                </p>
+
+                <div class="bio-divider"></div>
+
+                <p class="bio-paragraph">
+                    His academic interests in developmental and behavioral psychology and alternative therapeutic modalities aren't abstract pursuits but lived experiments in understanding how people change, heal, and grow. He's as likely to reference Brené Brown's research on vulnerability as he is to describe the practical effects of ayahuasca on trauma processing, approaching both with the curiosity of someone for whom transformation is a daily practice.
+                </p>
+
+                <div class="bio-divider"></div>
+
+                <p class="bio-paragraph">
+                    These days, Mathew lives in Florida with his dog Amber—his "easy answer" to what brings him joy—and continues the work of showing up fully for his life. His writing, whether memoir or fiction, carries the hard-won wisdom of someone who learned that the stories we tell ourselves can either trap us or set us free, and that sometimes the most radical thing we can do is tell the truth about who we've been in service of who we're becoming.
+                </p>
             </div>
         </div>
     </section>
@@ -2623,7 +2673,7 @@
             }
 
             // Font variations
-            const fonts = ['Playfair Display', 'Georgia', 'serif'];
+            const fonts = ['Playfair Display', 'Garamond', 'serif'];
             const fontWeights = [300, 400, 500];
 
             // Stylize each word individually
@@ -3072,7 +3122,7 @@
                     color: #1a1a1a;
                     line-height: 1.8;
                     font-size: 1rem;
-                    font-family: Georgia, serif;
+                    font-family: Garamond, Georgia, serif;
                 `;
 
                 // Format text with paragraphs
