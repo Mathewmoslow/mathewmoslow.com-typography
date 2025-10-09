@@ -893,27 +893,29 @@
             color: rgba(232, 213, 183, 0.95);
         }
 
-        /* Decorative Elements */
+        /* Decorative Elements - Constrained within section bounds */
         .soundtrack-hero::after {
             content: '♪ ♫ ♪';
             position: absolute;
-            top: -80px;
-            right: 5%;
-            font-size: 8rem;
-            color: rgba(74, 124, 89, 0.4);
+            top: 20px;
+            right: 8%;
+            font-size: 6rem;
+            color: rgba(74, 124, 89, 0.25);
             transform: rotate(15deg);
             animation: floatAndScale 4s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .soundtrack-hero::before {
             content: '♫ ♪ ♫';
             position: absolute;
-            bottom: -80px;
-            left: 5%;
-            font-size: 7rem;
-            color: rgba(232, 213, 183, 0.4);
+            bottom: 100px;
+            left: 8%;
+            font-size: 5rem;
+            color: rgba(232, 213, 183, 0.25);
             transform: rotate(-10deg);
             animation: floatAndScale 5s ease-in-out infinite reverse;
+            pointer-events: none;
         }
 
         @keyframes floatAndScale {
@@ -1378,12 +1380,69 @@
             padding: 0 20px;
         }
 
+        /* Central Timeline Vertical Line */
+        .journey-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(74, 124, 89, 0.3) 10%,
+                rgba(74, 124, 89, 0.3) 90%,
+                transparent
+            );
+            transform: translateX(-50%);
+        }
+
         .journey-section-timeline {
             position: relative;
             margin-bottom: 120px;
             display: flex;
             align-items: center;
             min-height: 300px;
+        }
+
+        /* Timeline Node at Center */
+        .journey-section-timeline::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: #4a7c59;
+            border: 3px solid #0f0f0f;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 0 0 4px rgba(74, 124, 89, 0.2);
+        }
+
+        /* Horizontal connector from node to content */
+        .journey-section-timeline.left::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: calc(50% - 60px);
+            height: 1px;
+            background: linear-gradient(to left, rgba(74, 124, 89, 0.3), transparent);
+            transform: translateY(-50%);
+        }
+
+        .journey-section-timeline.right::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            width: calc(50% - 60px);
+            height: 1px;
+            background: linear-gradient(to right, rgba(74, 124, 89, 0.3), transparent);
+            transform: translateY(-50%);
         }
 
         .journey-section-timeline.left {
@@ -2233,26 +2292,26 @@
                 <h2 class="soundtrack-main-title" style="font-family: 'La Roue', 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 400; color: #e8d5b7; margin-bottom: 20px; letter-spacing: 0.15em; text-align: center; text-transform: uppercase;">A Book with a Soundtrack?</h2>
                 <h3 class="soundtrack-sub-title" style="font-family: 'Adventures Unlimited', 'Playfair Display', cursive; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: rgba(232, 213, 183, 0.7); margin-bottom: 90px; letter-spacing: 0.03em; text-align: center; font-style: italic; line-height: 1.2;">How Novel!</h3>
 
-                <div class="soundtrack-description" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+                <div class="soundtrack-description" style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
                         <!-- Left Column -->
-                        <div style="position: relative;">
-                            <p class="soundtrack-intro drop-cap" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); margin-bottom: 40px;">
-                                <span class="drop-cap-letter" style="float: left; font-size: 5em; line-height: 0.8; margin-right: 10px; margin-top: 8px; font-family: 'Playfair Display', serif; color: #4a7c59;">I</span> didn't only write journal entries during my separation and divorce—I wrote full songs, I wrote poems and turned them into verses.
+                        <div style="background: rgba(74, 124, 89, 0.08); padding: 50px 40px; border-radius: 4px; border-left: 3px solid #4a7c59;">
+                            <p class="soundtrack-intro drop-cap" style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 1.9; color: rgba(232, 213, 183, 0.95); margin-bottom: 30px;">
+                                <span class="drop-cap-letter" style="float: left; font-size: 4.5em; line-height: 0.85; margin-right: 12px; margin-top: 5px; font-family: 'Playfair Display', serif; color: #4a7c59; font-weight: 400;">I</span> didn't only write journal entries during my separation and divorce—I wrote full songs, I wrote poems and turned them into verses.
                             </p>
 
-                            <p class="soundtrack-intro body-text" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); margin-bottom: 0;">
+                            <p class="soundtrack-intro body-text" style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 1.9; color: rgba(255, 255, 255, 0.75); margin-bottom: 0;">
                                 With the help of some very patient audio engineers, AI and a generous sprinkling of autotune, I took those verses and put them to music, and I sang. I sang and I learned and I made mistakes, and while not perfect, it's an expression of my feelings and this book in another form.
                             </p>
                         </div>
 
                         <!-- Right Column -->
-                        <div style="border-left: 2px solid rgba(74, 124, 89, 0.3); padding-left: 60px;">
-                            <p class="soundtrack-intro confession" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); margin-bottom: 40px;">
+                        <div style="background: rgba(232, 213, 183, 0.06); padding: 50px 40px; border-radius: 4px; border-right: 3px solid rgba(232, 213, 183, 0.4);">
+                            <p class="soundtrack-intro confession" style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 1.9; color: rgba(232, 213, 183, 0.7); margin-bottom: 35px; font-style: italic;">
                                 The bloopers—they're mostly gasps, sighs and sobbing as my voice cracks because this was probably one of the hardest things I have ever had to do.
                             </p>
 
-                            <p class="soundtrack-intro invitation" style="font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2; color: rgba(232, 213, 183, 0.9); text-align: left; margin: 0;">
+                            <p class="soundtrack-intro invitation" style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 1.9; color: rgba(232, 213, 183, 0.95); text-align: left; margin: 0; font-weight: 400;">
                                 Please enjoy this expression of emotion in music form.
                             </p>
                         </div>
