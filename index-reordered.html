@@ -2689,63 +2689,7 @@
     </div>
 
     <script>
-        // ========== VERBOSE DEBUGGING SYSTEM ==========
-        console.log('%c========== SITE AUDIT START ==========', 'background: #4a7c59; color: white; font-size: 16px; padding: 10px;');
-
-        // Check all hero image layers
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('%c[AUDIT] Checking Hero Image Layers', 'background: #e8d5b7; color: black; font-weight: bold; padding: 5px;');
-
-            const bgLayer = document.querySelector('.hero-layer.background');
-            const couchLayer = document.querySelector('.hero-layer.couch');
-            const subjectLayer = document.querySelector('.hero-layer.subject');
-
-            console.log('[HERO LAYERS] Background layer found:', bgLayer);
-            console.log('[HERO LAYERS] Couch layer found:', couchLayer);
-            console.log('[HERO LAYERS] Subject layer found:', subjectLayer);
-
-            if (bgLayer) {
-                const bgImage = window.getComputedStyle(bgLayer).backgroundImage;
-                console.log('[HERO LAYERS] Background image URL:', bgImage);
-            }
-            if (couchLayer) {
-                const couchImage = window.getComputedStyle(couchLayer).backgroundImage;
-                console.log('[HERO LAYERS] Couch image URL:', couchImage);
-            }
-            if (subjectLayer) {
-                const subjectImage = window.getComputedStyle(subjectLayer).backgroundImage;
-                console.log('[HERO LAYERS] Subject image URL:', subjectImage);
-            }
-
-            // Check About section
-            console.log('%c[AUDIT] Checking About Section', 'background: #e8d5b7; color: black; font-weight: bold; padding: 5px;');
-            const aboutSection = document.getElementById('about');
-            const aboutTitle = document.querySelector('.about-hero-title');
-            const aboutStatement = document.querySelector('.about-statement');
-
-            console.log('[ABOUT] About section found:', aboutSection);
-            console.log('[ABOUT] About title element:', aboutTitle);
-            console.log('[ABOUT] About title text:', aboutTitle?.textContent);
-            console.log('[ABOUT] About statement element:', aboutStatement);
-            console.log('[ABOUT] About statement text:', aboutStatement?.textContent);
-
-            // Check all sections exist
-            console.log('%c[AUDIT] Checking All Sections', 'background: #e8d5b7; color: black; font-weight: bold; padding: 5px;');
-            const sections = {
-                'parallax-separator': document.getElementById('parallax-separator'),
-                'books': document.getElementById('books'),
-                'soundtrack': document.getElementById('soundtrack'),
-                'about': document.getElementById('about'),
-                'journey': document.getElementById('journey'),
-                'contact': document.getElementById('contact')
-            };
-
-            Object.entries(sections).forEach(([id, el]) => {
-                console.log(`[SECTIONS] ${id}:`, el ? '✓ FOUND' : '✗ MISSING');
-            });
-
-            console.log('%c========== SITE AUDIT END ==========', 'background: #4a7c59; color: white; font-size: 16px; padding: 10px;');
-        });
+        // Production mode - silent initialization
 
         // Typography-Heavy Floating Quote System
         const quotes = [
@@ -3201,7 +3145,6 @@
             let title = '';
             let peekText = '';
 
-            console.log('[PAGE TURNER] Opening peek for:', bookType, 'Mobile:', isMobileDevice);
 
             if (bookType === 'divorce') {
                 title = 'A Novel Divorce';
@@ -3211,9 +3154,7 @@
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     peekText = await response.text();
-                    console.log('[PAGE TURNER] Loaded divorce content, length:', peekText.length);
                 } catch (error) {
-                    console.error('[PAGE TURNER] Error loading divorce content:', error);
                     peekText = 'Content not available. Error: ' + error.message;
                 }
             } else if (bookType === 'justice') {
@@ -3224,9 +3165,7 @@
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     peekText = await response.text();
-                    console.log('[PAGE TURNER] Loaded justice content, length:', peekText.length);
                 } catch (error) {
-                    console.error('[PAGE TURNER] Error loading justice content:', error);
                     peekText = 'Content not available. Error: ' + error.message;
                 }
             }
@@ -3334,7 +3273,6 @@
                 pages.push(currentPageContent);
             }
 
-            console.log('[PAGE TURNER] Created', pages.length, 'pages');
 
             // Create page elements
             pages.forEach((pageContent, index) => {
@@ -3481,7 +3419,6 @@
                 // Play audio after a short delay for animation
                 setTimeout(() => {
                     audio.play().catch(error => {
-                        console.log('Autoplay prevented');
                     });
                     reel1.classList.add('spinning');
                     reel2.classList.add('spinning');
@@ -3656,7 +3593,6 @@
                     const windowHeight = window.innerHeight;
                     const scrollProgress = Math.min(1, currentScroll / windowHeight);
 
-                    console.log('SEPARATOR DEBUG:', {
                         currentScroll,
                         windowHeight,
                         scrollProgress,
@@ -3717,7 +3653,6 @@
 
             // Only proceed if GSAP and Lenis loaded
             if (!window.gsap || !window.ScrollTrigger || !window.Lenis) {
-                console.warn('[SMOOTH SCROLL] Libraries not loaded, using fallback');
                 htmlEl.classList.add('no-anim');
                 clearTimeout(ENHANCE_TIMEOUT);
                 return;
@@ -3797,7 +3732,6 @@
 
             enhanced = true;
             clearTimeout(ENHANCE_TIMEOUT);
-            console.log('[SMOOTH SCROLL] Enhanced transitions active');
         });
     })();
     </script>
