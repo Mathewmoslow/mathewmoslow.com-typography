@@ -1730,6 +1730,44 @@
                 padding: 18px 40px;
                 font-size: 1.1rem;
             }
+
+            /* About section timeline - move to right on mobile */
+            .about-section .journey-container::before {
+                left: auto;
+                right: 80px;
+                transform: none;
+            }
+
+            .about-section .journey-section-timeline::after {
+                left: auto;
+                right: 80px;
+                transform: translate(50%, -50%);
+            }
+
+            .about-section .journey-section-timeline.left::before {
+                left: auto;
+                right: 80px;
+                width: 70px;
+                background: linear-gradient(to right, rgba(74, 124, 89, 0.3), transparent);
+            }
+
+            .about-section .journey-section-timeline.right::before {
+                right: 80px;
+                width: 70px;
+            }
+
+            .about-section .section-number {
+                left: auto;
+                right: 80px;
+                transform: translate(50%, -50%);
+            }
+
+            .about-section .journey-section-timeline.left .section-content,
+            .about-section .journey-section-timeline.right .section-content {
+                max-width: calc(100% - 180px);
+                margin-right: 180px;
+                text-align: left;
+            }
         }
 
         .form-group input:focus,
@@ -3658,15 +3696,16 @@
 
             // Initialize Lenis smooth scroll (will handle both desktop and mobile)
             const lenis = new window.Lenis({
-                duration: 1.2,
+                duration: 1.5,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 orientation: 'vertical',
                 gestureOrientation: 'vertical',
                 smoothWheel: true,
-                wheelMultiplier: 1,
+                wheelMultiplier: 0.8,
                 smoothTouch: false, // Keep native touch scrolling on mobile
-                touchMultiplier: 2,
+                touchMultiplier: 1.5,
                 infinite: false,
+                lerp: 0.08, // Smoother interpolation
             });
 
             // Connect Lenis to GSAP ScrollTrigger
@@ -3702,7 +3741,7 @@
                     scrollTrigger: {
                         start: 0,
                         end: 'max',
-                        scrub: 0.5
+                        scrub: 1
                     }
                 });
             });
@@ -3712,11 +3751,11 @@
             if (heroOverlay) {
                 gs.to('#hero-overlay', {
                     background: 'rgba(0, 0, 0, 0.85)',
-                    ease: 'none',
+                    ease: 'power1.inOut',
                     scrollTrigger: {
                         start: 0,
-                        end: () => window.innerHeight,
-                        scrub: true
+                        end: () => window.innerHeight * 1.5,
+                        scrub: 1.5
                     }
                 });
             }
