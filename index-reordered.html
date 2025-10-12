@@ -3593,12 +3593,6 @@
                     const windowHeight = window.innerHeight;
                     const scrollProgress = Math.min(1, currentScroll / windowHeight);
 
-                        currentScroll,
-                        windowHeight,
-                        scrollProgress,
-                        layers: '4 layers active'
-                    });
-
                     // Background moves slowest (0.2x scroll speed)
                     separatorBg.style.transform = `translateY(${currentScroll * 0.2}px) scale(1.1)`;
 
