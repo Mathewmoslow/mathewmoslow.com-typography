@@ -1406,8 +1406,8 @@
             min-height: 300px;
         }
 
-        /* Timeline Node at Center */
-        .journey-section-timeline::after {
+        /* Timeline Node at Center - About section only */
+        .about-section .journey-section-timeline::after {
             content: '';
             position: absolute;
             left: 50%;
@@ -1422,8 +1422,8 @@
             box-shadow: 0 0 0 4px rgba(74, 124, 89, 0.2);
         }
 
-        /* Horizontal connector from node to content */
-        .journey-section-timeline.left::before {
+        /* Horizontal connector from node to content - About section only */
+        .about-section .journey-section-timeline.left::before {
             content: '';
             position: absolute;
             left: 50%;
@@ -1434,7 +1434,7 @@
             transform: translateY(-50%);
         }
 
-        .journey-section-timeline.right::before {
+        .about-section .journey-section-timeline.right::before {
             content: '';
             position: absolute;
             right: 50%;
@@ -1590,8 +1590,8 @@
             opacity: 1;
         }
 
-        /* Horizontal connector from timeline to content */
-        .journey-section-timeline::before {
+        /* Horizontal connector from timeline to content - Visual Journey only */
+        .journey-section .journey-section-timeline::before {
             content: '';
             position: absolute;
             left: 80px;
