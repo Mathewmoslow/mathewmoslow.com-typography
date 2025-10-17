@@ -265,11 +265,6 @@
                 background-position: 20% center;
             }
 
-            .separator-layer.separator-pen {
-                background-size: auto 60%;
-                background-position: 80% center;
-            }
-
             .journey-content-area {
                 flex-direction: column;
                 gap: 30px;
@@ -981,17 +976,12 @@
 
         .separator-layer.separator-mug {
             background-image: url('images/separator-mug.png');
-            z-index: 2;
+            z-index: 10;
         }
 
         .separator-layer.separator-subject {
             background-image: url('images/separator-subject.png');
             z-index: 3;
-        }
-
-        .separator-layer.separator-pen {
-            background-image: url('images/separator-pen.png');
-            z-index: 4;
         }
 
         @media (max-width: 768px) {
@@ -2275,7 +2265,6 @@
         <div class="separator-layer separator-bg"></div>
         <div class="separator-layer separator-mug"></div>
         <div class="separator-layer separator-subject"></div>
-        <div class="separator-layer separator-pen"></div>
     </div>
 
     <!-- Books Section - Typography Heavy Timeline Style -->
@@ -3640,9 +3629,8 @@
                 const separatorBg = document.querySelector('.separator-bg');
                 const separatorMug = document.querySelector('.separator-mug');
                 const separatorSubject = document.querySelector('.separator-subject');
-                const separatorPen = document.querySelector('.separator-pen');
 
-                if (parallaxSeparator && separatorBg && separatorMug && separatorSubject && separatorPen) {
+                if (parallaxSeparator && separatorBg && separatorMug && separatorSubject) {
                     const windowHeight = window.innerHeight;
                     const scrollProgress = Math.min(1, currentScroll / windowHeight);
 
@@ -3658,11 +3646,6 @@
                     const subjectScale = 1 + (scrollProgress * 0.5); // Scales from 1x to 1.5x
                     const subjectY = currentScroll * 0.4;
                     separatorSubject.style.transform = `translateY(${subjectY}px) scale(${subjectScale})`;
-
-                    // Pen moves horizontally right and down faster
-                    const penX = scrollProgress * 120; // Moves right
-                    const penY = currentScroll * 0.6;
-                    separatorPen.style.transform = `translate(${penX}px, ${penY}px)`;
                 }
             }, { passive: true });
         });
